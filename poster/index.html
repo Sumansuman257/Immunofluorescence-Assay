@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timing Precision in Immunofluorescence Assays | Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="poster.css" />
+</head>
+<body>
+  <div class="poster-shell">
+    <article class="poster" aria-label="Scientific research poster">
+      <!-- Brand / title band -->
+      <header class="poster-header">
+        <div class="brand-block">
+          <p class="brand">Immunofluorescence Assay Lab Toolkit</p>
+          <h1>Timing Precision That Protects Your Signal</h1>
+          <p class="subtitle">
+            A step-timed workflow tracker that reduces protocol drift in multi-step immunofluorescence assays.
+          </p>
+        </div>
+        <div class="meta-block">
+          <p class="author">Suman Bhattarai</p>
+          <p class="affiliation">University of Georgia</p>
+          <p class="contact">sb97026@uga.edu</p>
+        </div>
+      </header>
+
+      <!-- Hero visual plane -->
+      <section class="hero" aria-label="Fluorescence microscopy visual">
+        <img
+          src="../assets/if-microscopy-hero.png"
+          alt="Dual-channel immunofluorescence style cell imaging with teal cytoskeletal signal and coral nuclear highlights"
+        />
+        <div class="hero-caption">
+          <span class="channel cyan">Cyan — cytoskeletal signal</span>
+          <span class="channel coral">Coral — nuclear / membrane signal</span>
+        </div>
+      </section>
+
+      <!-- Main content grid -->
+      <div class="content-grid">
+        <section class="panel" id="problem">
+          <p class="section-num">01</p>
+          <h2>The Problem</h2>
+          <p class="lead">IF assays fail quietly when incubation times drift.</p>
+          <ul>
+            <li>Fixation, permeabilization, blocking, and antibody steps stack into a long, interruptible workflow.</li>
+            <li>Phone timers and sticky notes do not show <em>which</em> step is active across parallel samples.</li>
+            <li>Over- or under-incubation weakens specificity and makes results harder to compare across days.</li>
+          </ul>
+        </section>
+
+        <section class="panel" id="approach">
+          <p class="section-num">02</p>
+          <h2>The Approach</h2>
+          <p class="lead">One visible tracker for the whole assay story.</p>
+          <ul>
+            <li>Step-locked countdown for each protocol stage.</li>
+            <li>Live clock + start stamp so lab partners can see status at a glance.</li>
+            <li>Browser-based — no install, works at the bench between incubations.</li>
+          </ul>
+          <div class="callout">
+            <strong>Design goal:</strong> make timing as visible as the fluorescence itself.
+          </div>
+        </section>
+
+        <section class="panel panel-wide" id="protocol">
+          <p class="section-num">03</p>
+          <h2>Protocol Flow</h2>
+          <p class="lead">Five timed stages, one continuous path judges can follow in seconds.</p>
+          <ol class="timeline">
+            <li>
+              <span class="step-time">10 min</span>
+              <span class="step-title">Fix</span>
+              <span class="step-detail">100% methanol</span>
+            </li>
+            <li>
+              <span class="step-time">10 min</span>
+              <span class="step-title">Permeabilize</span>
+              <span class="step-detail">0.2% Triton X-100</span>
+            </li>
+            <li>
+              <span class="step-time">30 min</span>
+              <span class="step-title">Block</span>
+              <span class="step-detail">1% PBS–BSA</span>
+            </li>
+            <li>
+              <span class="step-time">60 min</span>
+              <span class="step-title">Primary Ab</span>
+              <span class="step-detail">Target binding</span>
+            </li>
+            <li>
+              <span class="step-time">60 min</span>
+              <span class="step-title">Secondary Ab</span>
+              <span class="step-detail">Fluorophore label</span>
+            </li>
+          </ol>
+        </section>
+
+        <section class="panel" id="why-it-works">
+          <p class="section-num">04</p>
+          <h2>Why It Works</h2>
+          <p class="lead">Judges can score clarity, utility, and reproducibility fast.</p>
+          <div class="metric-row">
+            <div class="metric">
+              <p class="metric-value">5</p>
+              <p class="metric-label">Timed stages in one view</p>
+            </div>
+            <div class="metric">
+              <p class="metric-value">0</p>
+              <p class="metric-label">Install steps to start</p>
+            </div>
+            <div class="metric">
+              <p class="metric-value">1</p>
+              <p class="metric-label">Shared status for the bench</p>
+            </div>
+          </div>
+          <ul>
+            <li>Reduces missed transitions between long incubations.</li>
+            <li>Creates a repeatable rhythm for training new lab members.</li>
+            <li>Supports cleaner side-by-side comparison of stained samples.</li>
+          </ul>
+        </section>
+
+        <section class="panel takeaway" id="takeaway">
+          <p class="section-num">05</p>
+          <h2>Key Takeaway</h2>
+          <p class="big-line">
+            Better immunofluorescence starts with better timing discipline — not just better antibodies.
+          </p>
+          <p class="supporting">
+            Open the tracker → run the five steps → protect signal quality from the first methanol fix to the final secondary incubation.
+          </p>
+          <div class="cta-row">
+            <a class="cta" href="../timer/index.html">Launch Assay Timer</a>
+            <span class="cta-note">Demo live during your poster session</span>
+          </div>
+        </section>
+      </div>
+
+      <footer class="poster-footer">
+        <p><strong>How to read this poster:</strong> Problem → Approach → Protocol → Impact → Takeaway</p>
+        <p>Print tip: landscape · 48″ × 36″ · or scale to your venue’s required size</p>
+      </footer>
+    </article>
+  </div>
+
+  <aside class="screen-tools" aria-label="Poster tools">
+    <button type="button" onclick="window.print()">Print / Save PDF</button>
+    <a href="../PRESENTING.md">Presenting &amp; judging guide</a>
+    <a href="../timer/index.html">Open timer demo</a>
+  </aside>
+</body>
+</html>

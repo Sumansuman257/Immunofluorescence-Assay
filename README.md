@@ -1,106 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Immunofluorescence Assay Timer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .step {
-            margin-bottom: 20px;
-        }
-        button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:disabled {
-            background-color: #ddd;
-            cursor: not-allowed;
-        }
-        .countdown {
-            font-weight: bold;
-            color: red;
-        }
-    </style>
-</head>
-<body>
+# Immunofluorescence Assay — Poster Presentation Kit
 
-    <h1>Immunofluorescence Assay Tracker</h1>
-    <p>Current Time: <span id="currentTime"></span></p>
+An eye-catching scientific poster plus a bench-ready assay timer for presenting immunofluorescence workflows clearly and confidently.
 
-    <div class="step" id="step1">
-        <h3>Step 1: Fixing cells with 100% methanol (10 mins)</h3>
-        <button onclick="startStep(1, 10)">Start Step 1</button>
-        <p id="status1"></p>
-        <p class="countdown" id="countdown1"></p>
-    </div>
+## Open these first
 
-    <div class="step" id="step2">
-        <h3>Step 2: Permeabilizing cells with 0.2% Triton X-100 (10 mins)</h3>
-        <button onclick="startStep(2, 10)">Start Step 2</button>
-        <p id="status2"></p>
-        <p class="countdown" id="countdown2"></p>
-    </div>
+| File | Purpose |
+| --- | --- |
+| [`poster/index.html`](poster/index.html) | Award-style research poster (screen + print/PDF) |
+| [`timer/index.html`](timer/index.html) | Live 5-step IF assay countdown demo |
+| [`PRESENTING.md`](PRESENTING.md) | Pitch, judging criteria, and day-of tips |
 
-    <div class="step" id="step3">
-        <h3>Step 3: Blocking cells with 1% PBS-BSA (30 mins)</h3>
-        <button onclick="startStep(3, 30)">Start Step 3</button>
-        <p id="status3"></p>
-        <p class="countdown" id="countdown3"></p>
-    </div>
+## Why this poster is easy to judge
 
-    <div class="step" id="step4">
-        <h3>Step 4: Primary Antibody Incubation (1 hour)</h3>
-        <button onclick="startStep(4, 60)">Start Step 4</button>
-        <p id="status4"></p>
-        <p class="countdown" id="countdown4"></p>
-    </div>
+- **One reading path:** Problem → Approach → Protocol → Impact → Takeaway  
+- **Numbered sections (01–05)** so judges never get lost  
+- **Full-bleed fluorescence visual** that pulls people from across the room  
+- **Big takeaway line** they can remember after walking away  
+- **Live timer demo** that makes the idea tangible in seconds  
 
-    <div class="step" id="step5">
-        <h3>Step 5: Secondary Antibody Incubation (1 hour)</h3>
-        <button onclick="startStep(5, 60)">Start Step 5</button>
-        <p id="status5"></p>
-        <p class="countdown" id="countdown5"></p>
-    </div>
+## Protocol covered by the timer
 
-    <script>
-        // Function to update the live clock every second
-        function updateCurrentTime() {
-            const now = new Date();
-            document.getElementById('currentTime').textContent = now.toLocaleTimeString();
-        }
+1. Fix — 100% methanol (10 min)  
+2. Permeabilize — 0.2% Triton X-100 (10 min)  
+3. Block — 1% PBS–BSA (30 min)  
+4. Primary antibody (60 min)  
+5. Secondary antibody (60 min)  
 
-        // Call the clock update every second
-        setInterval(updateCurrentTime, 1000);
+## Print the poster
 
-        // Function to start each step with countdown
-        function startStep(stepNumber, durationMinutes) {
-            let startTime = new Date();
-            document.querySelector(`#step${stepNumber} button`).disabled = true;
-            document.querySelector(`#status${stepNumber}`).textContent = `Started at: ${startTime.toLocaleTimeString()}`;
+1. Open `poster/index.html` in Chrome or Edge.  
+2. Click **Print / Save PDF** (or `Ctrl/Cmd + P`).  
+3. Choose landscape orientation.  
+4. Scale to your venue size (commonly 48″ × 36″).  
 
-            let countdownElement = document.getElementById(`countdown${stepNumber}`);
-            let totalSeconds = durationMinutes * 60;
+## Author
 
-            let countdown = setInterval(() => {
-                if (totalSeconds <= 0) {
-                    clearInterval(countdown);
-                    countdownElement.textContent = `Step completed!`;
-                    return;
-                }
-                let minutes = Math.floor(totalSeconds / 60);
-                let seconds = totalSeconds % 60;
-                countdownElement.textContent = `Time remaining: ${minutes}m ${seconds}s`;
-                totalSeconds--;
-            }, 1000);  // Update countdown every second
-        }
-    </script>
-
-</body>
-</html>
+**Suman Bhattarai** · University of Georgia · sb97026@uga.edu
