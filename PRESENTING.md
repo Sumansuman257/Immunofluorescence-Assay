@@ -1,61 +1,64 @@
 # Presenting & Judging Guide
 
-Use this with the poster at [`poster/index.html`](poster/index.html) and the live demo at [`timer/index.html`](timer/index.html).
+Use with the poster at [`poster/index.html`](poster/index.html).
+
+## Study title
+
+**Incomplete Inactivation of Positive-Sense Viral RNA by Commonly Used Virus Inactivation Protocols**
 
 ## Your 30-second pitch
 
-> Immunofluorescence assays fail when incubation times drift. This browser-based tracker keeps all five IF stages visible and timed — so signal quality stays comparable across samples and days.
-
-Memorize that line. Judges often decide in the first half-minute whether to stay.
+> Positive-sense viral RNA can act as mRNA and remain infectious even after common inactivation steps. Across SINV, YFV, SVA, and SARS-CoV-2, heat and chemical methods needed virus-specific conditions — and formaldehyde or paraformaldehyde failed to silence SINV and SVA RNA. Inactivation protocols must confirm loss of both particles and viral RNA.
 
 ## Walk the poster in order
 
-1. **Problem** — why timing drift hurts IF results  
-2. **Approach** — one shared, step-locked tracker  
-3. **Protocol flow** — the five stages (point at the timeline)  
-4. **Why it works** — clarity, zero install, shared bench status  
-5. **Takeaway** — better timing protects fluorescence signal  
+1. **Background** — +ssRNA is infectious as genome/mRNA; particle inactivation ≠ RNA inactivation  
+2. **Approach** — heat / formaldehyde / PFA → extract RNA → transfect permissive cells  
+3. **Heat results** — point to the four virus cards (SINV hardest; SARS-CoV-2 easiest)  
+4. **Chemical results** — SINV/SVA fail; YFV and SARS-CoV-2 more sensitive  
+5. **Takeaway** — optimize protocols for particles **and** RNA  
 
-Do not read paragraphs. Point, pause, invite questions.
+## Memorize the headline numbers
+
+| Virus | Complete heat inactivation |
+| --- | --- |
+| SINV | **90°C · 15 min** |
+| YFV | **56°C · 60 min** |
+| SVA | **56°C · 45 min** |
+| SARS-CoV-2 | **56°C · 5 min** |
+
+Chemical flash points:
+
+- **SINV & SVA:** 3.7% formaldehyde and 4% PFA did **not** inactivate RNA  
+- **YFV:** formaldehyde all ratios; PFA only at **≥ 1:50**  
+- **SARS-CoV-2:** inactivated even at **1:100**  
 
 ## What judges usually score
 
-| Criterion | How this poster helps you |
+| Criterion | How this poster helps |
 | --- | --- |
-| Visual impact | Full-bleed microscopy visual + clear brand title |
-| Clarity | Numbered sections 01–05 in a fixed reading path |
-| Scientific / practical value | Concrete protocol times tied to real IF steps |
-| Communication | Short bullets, one big takeaway line |
-| Engagement | Live timer demo during Q&A |
+| Visual impact | Full-bleed RNA inactivation hero + four clear result cards |
+| Clarity | Numbered sections 01–05 |
+| Scientific value | Four virus families, physical + chemical methods |
+| Communication | Short bullets and one memorable takeaway |
+| Engagement | Virus-specific thresholds ready for Q&A |
 
-## Live demo tips
+## Likely questions — short answers
 
-1. Open the timer on a laptop or tablet before the session starts.  
-2. Start **Step 1** while explaining fixation — judges see the countdown move.  
-3. Mention that long incubations (blocking / antibodies) are where silent overruns happen.  
-4. Offer the QR / link so they can try it themselves later.
+- **Why does this matter for biosafety?** Extracted +ssRNA can still initiate infection after transfection; particle kill is not enough.  
+- **Why such different heat needs?** Genome/family differences; SINV required 90°C while SARS-CoV-2 RNA fell at 56°C in 5 min.  
+- **What should labs change?** Validate RNA infectivity after inactivation, not only CPE/plaque loss of treated virus.  
 
-## Design checklist before print
+## Print checklist
 
-- [ ] Confirm venue size (often 48″ × 36″ landscape)  
+- [ ] Venue size confirmed (often 48″ × 36″ landscape)  
 - [ ] Open poster → **Print / Save PDF** → check margins  
 - [ ] Title readable from ~6–8 feet  
-- [ ] Your name and email are correct on the header  
-- [ ] Hero image is not cropped awkwardly  
+- [ ] Author list and affiliations correct  
+- [ ] Heat cards and chemical bullets match your final data  
 
-## Day-of presenting habits
+## Day-of habits
 
-- Stand to the side of the poster, not in front of the hero image.  
-- Ask arriving judges: “Want the 30-second version or the protocol deep-dive?”  
-- Keep answers short; offer to expand.  
-- End every conversation with the takeaway sentence.
-
-## Optional upgrades with your real data
-
-Replace placeholder impact bullets with your measurements if you have them:
-
-- % reduction in missed step transitions  
-- Training time for new lab members  
-- Side-by-side IF images: timed vs. drifted incubation  
-
-That turns a strong methods poster into a results poster.
+- Stand beside the poster, not over the hero image.  
+- Offer: “30-second version or heat vs chemical deep-dive?”  
+- End with the takeaway: common methods do not reliably make +ssRNA noninfectious.

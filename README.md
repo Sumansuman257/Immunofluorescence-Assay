@@ -1,38 +1,29 @@
-# Immunofluorescence Assay — Poster Presentation Kit
+# Incomplete Inactivation of Positive-Sense Viral RNA
 
-An eye-catching scientific poster plus a bench-ready assay timer for presenting immunofluorescence workflows clearly and confidently.
+Award-ready scientific poster kit for:
+
+**Incomplete Inactivation of Positive-Sense Viral RNA by Commonly Used Virus Inactivation Protocols**
+
+Suman Bhattarai¹, Sanketkumar V. Nehul², Brittany Henry¹, Anish Sapkota¹, Diego Diel², Lok Raj Joshi¹  
+¹ University of Georgia · ² Cornell University
 
 ## Open these first
 
 | File | Purpose |
 | --- | --- |
-| [`poster/index.html`](poster/index.html) | Award-style research poster (screen + print/PDF) |
-| [`timer/index.html`](timer/index.html) | Live 5-step IF assay countdown demo |
-| [`PRESENTING.md`](PRESENTING.md) | Pitch, judging criteria, and day-of tips |
+| [`poster/index.html`](poster/index.html) | Conference poster (screen + print/PDF) |
+| [`PRESENTING.md`](PRESENTING.md) | 30-second pitch, key numbers, judging tips |
 
-## Why this poster is easy to judge
+## Poster story (judge path)
 
-- **One reading path:** Problem → Approach → Protocol → Impact → Takeaway  
-- **Numbered sections (01–05)** so judges never get lost  
-- **Full-bleed fluorescence visual** that pulls people from across the room  
-- **Big takeaway line** they can remember after walking away  
-- **Live timer demo** that makes the idea tangible in seconds  
+1. **Background** — +ssRNA genomes can remain infectious after particle-focused inactivation  
+2. **Approach** — heat, formaldehyde, paraformaldehyde → RNA extract → transfection assay  
+3. **Heat results** — SINV 90°C/15 min · YFV 56°C/60 min · SVA 56°C/45 min · SARS-CoV-2 56°C/5 min  
+4. **Chemical results** — SINV/SVA RNA not inactivated by standard formaldehyde/PFA; YFV and SARS-CoV-2 more sensitive  
+5. **Takeaway** — optimize protocols for **both** virions and viral RNA  
 
-## Protocol covered by the timer
+## Print
 
-1. Fix — 100% methanol (10 min)  
-2. Permeabilize — 0.2% Triton X-100 (10 min)  
-3. Block — 1% PBS–BSA (30 min)  
-4. Primary antibody (60 min)  
-5. Secondary antibody (60 min)  
-
-## Print the poster
-
-1. Open `poster/index.html` in Chrome or Edge.  
-2. Click **Print / Save PDF** (or `Ctrl/Cmd + P`).  
-3. Choose landscape orientation.  
-4. Scale to your venue size (commonly 48″ × 36″).  
-
-## Author
-
-**Suman Bhattarai** · University of Georgia · sb97026@uga.edu
+1. Open `poster/index.html` in Chrome or Edge  
+2. Click **Print / Save PDF** (or `Ctrl/Cmd + P`)  
+3. Landscape orientation; scale to venue size (commonly 48″ × 36″)
