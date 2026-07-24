@@ -325,6 +325,128 @@ body {
   color: var(--teal-deep);
 }
 
+/* One-column pictorial flow */
+.flow {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  max-width: 920px;
+}
+
+.flow-step {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 0.85rem 1rem;
+}
+
+.flow-step.accent {
+  background: rgba(15, 118, 110, 0.08);
+  border-color: rgba(15, 118, 110, 0.28);
+}
+
+.flow-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.45rem;
+}
+
+.flow-main {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.flow-arrow {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--teal-deep);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.chip-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.55rem;
+}
+
+.chip {
+  display: block;
+  text-align: center;
+  background: var(--paper-2);
+  border-top: 3px solid var(--cyan);
+  padding: 0.65rem 0.4rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.chip small {
+  display: block;
+  margin-top: 0.2rem;
+  font-weight: 500;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.treat-stack {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.treat-box {
+  padding: 0.7rem 0.85rem;
+  border-left: 4px solid var(--cyan);
+  background: var(--paper-2);
+}
+
+.treat-box.heat {
+  border-left-color: var(--coral);
+}
+
+.treat-box.fa {
+  border-left-color: var(--cyan);
+}
+
+.treat-box.h2o2 {
+  border-left-color: var(--teal);
+}
+
+.treat-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+
+.treat-cond {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.readout-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.mini-arrow {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .chip-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .result-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
