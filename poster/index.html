@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incomplete Inactivation of Positive-Sense Viral RNA | Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="poster.css" />
+</head>
+<body>
+  <div class="poster-shell">
+    <article class="poster" aria-label="Scientific research poster">
+      <header class="poster-header">
+        <div class="brand-block">
+          <p class="brand">Viral RNA Biosafety · Positive-Sense RNA Viruses</p>
+          <h1>Incomplete Inactivation of Positive-Sense Viral RNA by Commonly Used Virus Inactivation Protocols</h1>
+        </div>
+        <div class="meta-block">
+          <p class="authors">
+            Suman Bhattarai<sup>1</sup>, Sanketkumar V. Nehul<sup>2</sup>, Brittany Henry<sup>1</sup>,
+            Anish Sapkota<sup>1</sup>, Diego Diel<sup>2</sup>, Lok Raj Joshi<sup>1</sup>
+          </p>
+          <p class="affiliation"><sup>1</sup> Department of Population Health, College of Veterinary Medicine, University of Georgia, Athens, GA</p>
+          <p class="affiliation"><sup>2</sup> Department of Population Medicine and Diagnostic Sciences, College of Veterinary Medicine, Cornell University, Ithaca, NY</p>
+        </div>
+      </header>
+
+      <section class="hero" aria-label="Viral RNA inactivation visual">
+        <img
+          src="../assets/viral-rna-inactivation-hero.png"
+          alt="Illustration of positive-sense viral RNA disrupted by heat and chemical inactivation near virus particles"
+        />
+        <div class="hero-caption">
+          <span class="channel teal">Heat</span>
+          <span class="channel coral">Formaldehyde</span>
+          <span class="channel ink">H<sub>2</sub>O<sub>2</sub></span>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel" id="background">
+          <p class="section-num">01</p>
+          <h2>Background</h2>
+          <p class="lead">Positive-sense RNA genomes act as mRNA — and can still be infectious after particle inactivation.</p>
+          <ul>
+            <li>Upon cell entry, +ssRNA is translated by host ribosomes to drive viral protein production and new virions.</li>
+            <li>Many lab protocols validate inactivation of virus particles, but rarely confirm loss of infectious RNA.</li>
+            <li>How well heat, formaldehyde, and H<sub>2</sub>O<sub>2</sub> silence +ssRNA remains poorly defined.</li>
+          </ul>
+        </section>
+
+        <section class="panel panel-wide" id="methods">
+          <p class="section-num">02</p>
+          <h2>Experimental Design</h2>
+          <p class="lead">One column · top to bottom</p>
+
+          <div class="flow" aria-label="Experimental workflow">
+            <div class="flow-step">
+              <p class="flow-label">1 · Model viruses</p>
+              <div class="chip-row">
+                <span class="chip">SINV<br /><small>Togaviridae</small></span>
+                <span class="chip">YFV<br /><small>Flaviviridae</small></span>
+                <span class="chip">SVA<br /><small>Picornaviridae</small></span>
+                <span class="chip">SARS-CoV-2<br /><small>Coronaviridae</small></span>
+              </div>
+            </div>
+
+            <div class="flow-arrow" aria-hidden="true">↓</div>
+
+            <div class="flow-step accent">
+              <p class="flow-label">2 · Volume</p>
+              <p class="flow-main">500 µL virus per inactivation</p>
+            </div>
+
+            <div class="flow-arrow" aria-hidden="true">↓</div>
+
+            <div class="flow-step">
+              <p class="flow-label">3 · Inactivation treatments</p>
+              <div class="treat-stack">
+                <div class="treat-box heat">
+                  <p class="treat-name">Heat</p>
+                  <p class="treat-cond">37°C · 56°C · 75°C · 90°C</p>
+                </div>
+                <div class="treat-box fa">
+                  <p class="treat-name">Formaldehyde · 15 min</p>
+                  <p class="treat-cond">3.7% · 1.85% · 0.74% · 0.37% · 0.15% · 0.074% · 0.037%</p>
+                </div>
+                <div class="treat-box h2o2">
+                  <p class="treat-name">H<sub>2</sub>O<sub>2</sub> · 15 min</p>
+                  <p class="treat-cond">12% · 6% · 3% · 1.5%</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-arrow" aria-hidden="true">↓</div>
+
+            <div class="flow-step">
+              <p class="flow-label">4 · Readout</p>
+              <div class="readout-row">
+                <span>Extract RNA</span>
+                <span class="mini-arrow">→</span>
+                <span>Transfect cells</span>
+                <span class="mini-arrow">→</span>
+                <span>Score RNA infectivity</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel panel-wide" id="heat-results">
+          <p class="section-num">03</p>
+          <h2>Heat Required for Complete RNA Inactivation</h2>
+          <p class="lead">Conditions needed to fully silence infectious viral RNA differed sharply by virus.</p>
+          <div class="result-cards">
+            <article class="result-card hot">
+              <p class="virus">SINV</p>
+              <p class="family">Togaviridae</p>
+              <p class="condition">90°C · 15 min</p>
+              <p class="note">Most heat-resistant RNA in this set</p>
+            </article>
+            <article class="result-card">
+              <p class="virus">YFV</p>
+              <p class="family">Flaviviridae</p>
+              <p class="condition">56°C · 60 min</p>
+              <p class="note">Longest hold at 56°C</p>
+            </article>
+            <article class="result-card">
+              <p class="virus">SVA</p>
+              <p class="family">Picornaviridae</p>
+              <p class="condition">56°C · 45 min</p>
+              <p class="note">Intermediate heat demand</p>
+            </article>
+            <article class="result-card soft">
+              <p class="virus">SARS-CoV-2</p>
+              <p class="family">Coronaviridae</p>
+              <p class="condition">56°C · 5 min</p>
+              <p class="note">Most heat-sensitive RNA</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" id="chemical-results">
+          <p class="section-num">04</p>
+          <h2>Chemical Inactivation Is Uneven</h2>
+          <p class="lead">Formaldehyde and paraformaldehyde do not treat all +ssRNA genomes equally.</p>
+          <ul>
+            <li><strong>SINV &amp; SVA:</strong> 3.7% formaldehyde and 4% paraformaldehyde failed to inactivate viral RNA.</li>
+            <li><strong>YFV:</strong> formaldehyde inactivated RNA at all ratios tested; paraformaldehyde only at <strong>1:50 or higher</strong>.</li>
+            <li><strong>SARS-CoV-2:</strong> highly sensitive — inactivated by both chemicals even at the lowest dilution tested (<strong>1:100</strong>).</li>
+          </ul>
+        </section>
+
+        <section class="panel takeaway" id="takeaway">
+          <p class="section-num">05</p>
+          <h2>Key Takeaway</h2>
+          <p class="big-line">
+            Common virus inactivation methods do not reliably make positive-sense viral RNA noninfectious.
+          </p>
+          <p class="supporting">
+            Protocols should be optimized to confirm inactivation of <em>both</em> viral particles and viral RNA — especially for SINV and SVA, where chemical methods failed under standard conditions.
+          </p>
+          <div class="cta-row">
+            <p class="cta-note">Ask us about virus-specific heat and chemical thresholds for safer +ssRNA workflows.</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="poster-footer">
+        <p><strong>Reading path:</strong> Background → Approach → Heat results → Chemical results → Takeaway</p>
+        <p>Universities of Georgia &amp; Cornell · Poster session ready · Print landscape</p>
+      </footer>
+    </article>
+  </div>
+
+  <aside class="screen-tools" aria-label="Poster tools">
+    <button type="button" onclick="window.print()">Print / Save PDF</button>
+  </aside>
+</body>
+</html>
