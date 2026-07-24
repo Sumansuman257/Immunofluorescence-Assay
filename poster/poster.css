@@ -283,6 +283,48 @@ body {
   color: var(--ink);
 }
 
+.design-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  background: #fff;
+}
+
+.design-table + .design-table {
+  margin-top: 0.85rem;
+}
+
+.design-table th,
+.design-table td {
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.35;
+}
+
+.design-table th {
+  background: var(--paper-2);
+  color: var(--teal-deep);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.design-table.treatments td:first-child {
+  font-weight: 700;
+  white-space: nowrap;
+  width: 8.5rem;
+}
+
+.design-table.treatments td:last-child {
+  width: 5.5rem;
+  font-weight: 600;
+  color: var(--teal-deep);
+}
+
 .result-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
