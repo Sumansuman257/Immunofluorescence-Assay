@@ -13,6 +13,7 @@ The default workflow is intentionally draft-first: a scientist should review the
 - Adds references and image attribution.
 - Saves a local HTML copy in `drafts/`.
 - Optionally uploads the content to Blogger with `isDraft=True`.
+- Optionally emails the content to Blogger's private post-by-email address so you can avoid Google Cloud setup.
 
 If you add an OpenAI-compatible API key and model in `.env`, the agent asks the model to write a more polished article. Without that key, it still creates a structured cited draft using a local template.
 
@@ -37,6 +38,8 @@ BLOGGER_BLOG_URL=https://thepipettesolution.blogspot.com
 ```
 
 ## Blogger authorization
+
+Skip this section if you prefer the no-Google-Cloud email method below.
 
 1. Open Google Cloud Console.
 2. Enable the Blogger API.
@@ -69,6 +72,48 @@ pipette-blogger-agent draft \
 
 The Blogger API call uses `isDraft=True`, so the post is created as a draft, not published.
 
+## No-credit-card option: email drafts to Blogger
+
+Blogger has a "post using email" feature. You can configure it to save emailed posts as drafts.
+
+In Blogger:
+
+1. Open your blog dashboard.
+2. Go to **Settings**.
+3. Find **Email**.
+4. Find **Post using email**.
+5. Create your private Blogger email address.
+6. Choose the option that saves emailed posts as **drafts**.
+
+Then edit `.env`:
+
+```bash
+BLOGGER_EMAIL_TO=your-private-blogger-address@blogger.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=your-gmail-address@gmail.com
+SMTP_PASSWORD=your-gmail-app-password
+SMTP_FROM=your-gmail-address@gmail.com
+```
+
+For Gmail, use an app password rather than your normal Google password:
+
+1. Turn on 2-Step Verification for your Google account.
+2. Open Google Account settings.
+3. Search for **App passwords**.
+4. Create an app password for Mail.
+5. Paste that app password into `SMTP_PASSWORD`.
+
+Send one generated article to Blogger's email draft inbox:
+
+```bash
+pipette-blogger-agent draft \
+  --topic "Golden Gate cloning for viral vector design" \
+  --email
+```
+
+This method does not use Google Cloud or the Blogger API. Keep your private Blogger email address secret because anyone who knows it could send posts to your blog.
+
 ## Daily topic queue
 
 Create a local topic queue:
@@ -82,6 +127,12 @@ Add one topic per line. The daily command consumes the first non-comment line:
 
 ```bash
 pipette-blogger-agent run-next --upload
+```
+
+Or use the email method:
+
+```bash
+pipette-blogger-agent run-next --email
 ```
 
 ## Run daily on a local computer

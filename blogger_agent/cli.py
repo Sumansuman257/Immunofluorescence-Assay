@@ -7,6 +7,7 @@ from pathlib import Path
 
 from blogger_agent.blogger import authorize, create_blogger_draft
 from blogger_agent.config import load_config
+from blogger_agent.email_publisher import send_blogger_email_draft
 from blogger_agent.research import debug_search_url, search_images, search_literature
 from blogger_agent.writer import create_blog_draft, save_draft
 
@@ -23,6 +24,7 @@ def main(argv: list[str] | None = None) -> int:
     draft_parser.add_argument("--topic", required=True, help="Title or topic to research.")
     draft_parser.add_argument("--words", default="300-500", help="Target length, for LLM mode.")
     draft_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
+    draft_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
     draft_parser.add_argument("--no-save", action="store_true", help="Do not save local HTML.")
 
     next_parser = subparsers.add_parser("run-next", help="Draft the next topic from a topics file.")
@@ -33,6 +35,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     next_parser.add_argument("--words", default="300-500", help="Target length, for LLM mode.")
     next_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
+    next_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
 
     subparsers.add_parser("auth", help="Authorize the local computer with Blogger.")
 
@@ -59,6 +62,7 @@ def main(argv: list[str] | None = None) -> int:
             topic=args.topic,
             words=args.words,
             upload=args.upload,
+            email_upload=args.email,
             save=not args.no_save,
             config=config,
         )
@@ -72,6 +76,7 @@ def main(argv: list[str] | None = None) -> int:
             topic=topic,
             words=args.words,
             upload=args.upload,
+            email_upload=args.email,
             save=True,
             config=config,
         )
@@ -80,7 +85,11 @@ def main(argv: list[str] | None = None) -> int:
     return 1
 
 
-def _draft_topic(topic: str, words: str, upload: bool, save: bool, config) -> int:
+def _draft_topic(topic: str, words: str, upload: bool, email_upload: bool, save: bool, config) -> int:
+    if upload and email_upload:
+        print("Choose either --upload for Blogger API or --email for Blogger post-by-email, not both.")
+        return 2
+
     print(f"Researching: {topic}")
     literature = search_literature(topic)
     images = search_images(topic)
@@ -94,8 +103,12 @@ def _draft_topic(topic: str, words: str, upload: bool, save: bool, config) -> in
         result = create_blogger_draft(config, draft)
         print("Uploaded Blogger draft:")
         print(json.dumps({"id": result.get("id"), "url": result.get("url"), "title": result.get("title")}, indent=2))
+    elif email_upload:
+        result = send_blogger_email_draft(config, draft)
+        print("Sent Blogger draft email:")
+        print(json.dumps({"to": result.to_address, "subject": result.subject}, indent=2))
     else:
-        print("Upload skipped. Add --upload to create an unpublished Blogger draft.")
+        print("Upload skipped. Add --upload for Blogger API or --email for Blogger post-by-email.")
 
     return 0
 

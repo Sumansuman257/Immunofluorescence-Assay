@@ -28,6 +28,12 @@ class AgentConfig:
     openai_model: str | None
     safety_mode: str
     draft_dir: Path
+    blogger_email_to: str | None
+    smtp_host: str
+    smtp_port: int
+    smtp_username: str | None
+    smtp_password: str | None
+    smtp_from: str | None
 
 
 def _csv(value: str | None, fallback: tuple[str, ...]) -> tuple[str, ...]:
@@ -55,4 +61,10 @@ def load_config(env_path: str | os.PathLike[str] | None = None) -> AgentConfig:
         openai_model=os.getenv("OPENAI_MODEL") or None,
         safety_mode=os.getenv("SAFETY_MODE", "educational").strip().lower(),
         draft_dir=Path(os.getenv("DRAFT_DIR", "drafts")),
+        blogger_email_to=os.getenv("BLOGGER_EMAIL_TO") or None,
+        smtp_host=os.getenv("SMTP_HOST", "smtp.gmail.com").strip(),
+        smtp_port=int(os.getenv("SMTP_PORT", "587")),
+        smtp_username=os.getenv("SMTP_USERNAME") or None,
+        smtp_password=os.getenv("SMTP_PASSWORD") or None,
+        smtp_from=os.getenv("SMTP_FROM") or os.getenv("SMTP_USERNAME") or None,
     )

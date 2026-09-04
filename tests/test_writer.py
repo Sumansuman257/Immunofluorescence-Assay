@@ -19,6 +19,12 @@ def _config(tmp_path: Path) -> AgentConfig:
         openai_model=None,
         safety_mode="educational",
         draft_dir=tmp_path / "drafts",
+        blogger_email_to=None,
+        smtp_host="smtp.gmail.com",
+        smtp_port=587,
+        smtp_username=None,
+        smtp_password=None,
+        smtp_from=None,
     )
 
 
