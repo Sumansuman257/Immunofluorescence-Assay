@@ -25,6 +25,7 @@ def main(argv: list[str] | None = None) -> int:
     draft_parser.add_argument("--topic", required=True, help="Title or topic to research.")
     draft_parser.add_argument("--words", default=None, help="Target length, for LLM mode.")
     draft_parser.add_argument("--deep", action="store_true", help="Use deeper research and a longer teaching structure.")
+    draft_parser.add_argument("--gemini-image-count", type=int, default=None, help="Override Gemini-generated image count.")
     draft_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
     draft_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
     draft_parser.add_argument("--no-save", action="store_true", help="Do not save local HTML.")
@@ -37,6 +38,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     next_parser.add_argument("--words", default=None, help="Target length, for LLM mode.")
     next_parser.add_argument("--deep", action="store_true", help="Use deeper research and a longer teaching structure.")
+    next_parser.add_argument("--gemini-image-count", type=int, default=None, help="Override Gemini-generated image count.")
     next_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
     next_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
 
@@ -65,6 +67,7 @@ def main(argv: list[str] | None = None) -> int:
             topic=args.topic,
             words=args.words,
             deep=args.deep,
+            gemini_image_count=args.gemini_image_count,
             upload=args.upload,
             email_upload=args.email,
             save=not args.no_save,
@@ -80,6 +83,7 @@ def main(argv: list[str] | None = None) -> int:
             topic=topic,
             words=args.words,
             deep=args.deep,
+            gemini_image_count=args.gemini_image_count,
             upload=args.upload,
             email_upload=args.email,
             save=True,
@@ -90,7 +94,16 @@ def main(argv: list[str] | None = None) -> int:
     return 1
 
 
-def _draft_topic(topic: str, words: str | None, deep: bool, upload: bool, email_upload: bool, save: bool, config) -> int:
+def _draft_topic(
+    topic: str,
+    words: str | None,
+    deep: bool,
+    gemini_image_count: int | None,
+    upload: bool,
+    email_upload: bool,
+    save: bool,
+    config,
+) -> int:
     if upload and email_upload:
         print("Choose either --upload for Blogger API or --email for Blogger post-by-email, not both.")
         return 2
@@ -98,7 +111,7 @@ def _draft_topic(topic: str, words: str | None, deep: bool, upload: bool, email_
     print(f"Researching: {topic}")
     literature = search_literature(topic, max_results=15 if deep else 7)
     images = [
-        *generate_gemini_images(topic, config),
+        *generate_gemini_images(topic, config, count_override=gemini_image_count),
         *search_images(topic, max_results=6 if deep else 4),
     ]
     target_words = words or ("1800-2500" if deep else "900-1200")

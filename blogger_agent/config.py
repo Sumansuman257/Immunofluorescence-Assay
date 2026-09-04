@@ -79,5 +79,5 @@ def load_config(env_path: str | os.PathLike[str] | None = None) -> AgentConfig:
         ).rstrip("/"),
         gemini_text_model=os.getenv("GEMINI_TEXT_MODEL") or None,
         gemini_image_model=os.getenv("GEMINI_IMAGE_MODEL") or None,
-        gemini_image_count=int(os.getenv("GEMINI_IMAGE_COUNT", "2")),
+        gemini_image_count=int(os.getenv("GEMINI_IMAGE_COUNT", "6")),
     )

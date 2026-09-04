@@ -89,7 +89,11 @@ def generate_gemini_draft_json(
     return _extract_json(response.json())
 
 
-def generate_gemini_images(topic: str, config: AgentConfig) -> list[ImageResult]:
+def generate_gemini_images(
+    topic: str,
+    config: AgentConfig,
+    count_override: int | None = None,
+) -> list[ImageResult]:
     """Ask a Gemini image-capable model for student-friendly conceptual figures."""
 
     if not config.gemini_api_key or not config.gemini_image_model:
@@ -106,9 +110,38 @@ def generate_gemini_images(topic: str, config: AgentConfig) -> list[ImageResult]
             "Use simple shapes, readable labels, and a calm scientific color palette. "
             "Avoid realistic pathogen manipulation or procedural instructions."
         ),
+        (
+            f"Create a protocol-planning overview image for {topic}. "
+            "Show safe decision points: research question, model choice, controls, verification, "
+            "data interpretation, and SOP review. Do not include reagent amounts, temperatures, "
+            "timings, or operational steps."
+        ),
+        (
+            f"Create a student results-interpretation figure for {topic}. "
+            "Show how molecular evidence, controls, and biological readout must agree before "
+            "a conclusion is trusted. Use a clean classroom infographic style."
+        ),
+        (
+            f"Create a glossary-style visual for beginners learning {topic}. "
+            "Use labeled cards for vector, insert, control, verification, readout, and biosafety."
+        ),
+        (
+            f"Create a simple analogy illustration for {topic}. "
+            "Use a railway or assembly-line metaphor to explain how design, controls, and validation "
+            "connect. Keep it conceptual and safe."
+        ),
     ]
     images: list[ImageResult] = []
-    for index, prompt in enumerate(prompts[: max(config.gemini_image_count, 0)], start=1):
+    requested_count = max(count_override if count_override is not None else config.gemini_image_count, 0)
+    selected_prompts = list(prompts)
+    while len(selected_prompts) < requested_count:
+        selected_prompts.append(
+            f"Create an additional unique student-friendly teaching figure {len(selected_prompts) + 1} "
+            f"for {topic}. Focus on a different conceptual angle than previous figures. "
+            "Keep it high-level, safe, and free of procedural lab conditions."
+        )
+
+    for index, prompt in enumerate(selected_prompts[:requested_count], start=1):
         try:
             response = requests.post(
                 _gemini_model_url(config, config.gemini_image_model),

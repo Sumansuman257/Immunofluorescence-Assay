@@ -209,7 +209,7 @@ If your Gemini account has an image-generation model, you can also add:
 
 ```bash
 GEMINI_IMAGE_MODEL=your_gemini_image_model
-GEMINI_IMAGE_COUNT=2
+GEMINI_IMAGE_COUNT=6
 ```
 
 When Gemini is configured, use deep mode for the best article:
@@ -222,6 +222,16 @@ pipette-blogger-agent draft \
 ```
 
 The agent still adds its own generated teaching schematics and open-license Wikimedia images, so visuals are included even if Gemini image generation is unavailable.
+
+You can request more Gemini images for a special long post:
+
+```bash
+pipette-blogger-agent draft \
+  --topic "Golden Gate cloning for viral vector design" \
+  --email \
+  --deep \
+  --gemini-image-count 10
+```
 
 ### OpenAI-compatible writing
 
