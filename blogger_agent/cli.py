@@ -8,6 +8,7 @@ from pathlib import Path
 from blogger_agent.blogger import authorize, create_blogger_draft
 from blogger_agent.config import load_config
 from blogger_agent.email_publisher import send_blogger_email_draft
+from blogger_agent.gemini import generate_gemini_images
 from blogger_agent.research import debug_search_url, search_images, search_literature
 from blogger_agent.writer import create_blog_draft, save_draft
 
@@ -96,7 +97,10 @@ def _draft_topic(topic: str, words: str | None, deep: bool, upload: bool, email_
 
     print(f"Researching: {topic}")
     literature = search_literature(topic, max_results=15 if deep else 7)
-    images = search_images(topic, max_results=6 if deep else 4)
+    images = [
+        *generate_gemini_images(topic, config),
+        *search_images(topic, max_results=6 if deep else 4),
+    ]
     target_words = words or ("1800-2500" if deep else "900-1200")
     draft = create_blog_draft(
         topic,

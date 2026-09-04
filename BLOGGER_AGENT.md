@@ -16,7 +16,7 @@ The default workflow is intentionally draft-first: a scientist should review the
 - Optionally uploads the content to Blogger with `isDraft=True`.
 - Optionally emails the content to Blogger's private post-by-email address so you can avoid Google Cloud setup.
 
-If you add an OpenAI-compatible API key and model in `.env`, the agent asks the model to write a more polished article. Without that key, it still creates a structured cited draft using a local template.
+If you add a Gemini API key and model in `.env`, the agent asks Gemini to write a more polished article. Without Gemini, it can use an OpenAI-compatible model if configured. Without either key, it still creates a structured cited draft using a local template.
 
 The built-in template is written for students: it includes visual explanation, introduction, key ideas, literature-reading guidance, protocol-planning notes, common mistakes, conclusions, safety note, and references.
 
@@ -189,6 +189,41 @@ pipette-blogger-agent research \
 Use this to inspect the papers retrieved before generating a post.
 
 ## Optional LLM writing
+
+### Gemini writing and image generation
+
+If you like Gemini's writing style, use Gemini for the main article.
+
+1. Open Google AI Studio.
+2. Create an API key if your account supports it.
+3. Add the key and model names to `.env`.
+
+Example:
+
+```bash
+GEMINI_API_KEY=your_gemini_key
+GEMINI_TEXT_MODEL=your_gemini_text_model
+```
+
+If your Gemini account has an image-generation model, you can also add:
+
+```bash
+GEMINI_IMAGE_MODEL=your_gemini_image_model
+GEMINI_IMAGE_COUNT=2
+```
+
+When Gemini is configured, use deep mode for the best article:
+
+```bash
+pipette-blogger-agent draft \
+  --topic "Golden Gate cloning for viral vector design" \
+  --email \
+  --deep
+```
+
+The agent still adds its own generated teaching schematics and open-license Wikimedia images, so visuals are included even if Gemini image generation is unavailable.
+
+### OpenAI-compatible writing
 
 Set these in `.env`:
 

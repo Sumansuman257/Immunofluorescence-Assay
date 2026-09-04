@@ -34,6 +34,11 @@ class AgentConfig:
     smtp_username: str | None
     smtp_password: str | None
     smtp_from: str | None
+    gemini_api_key: str | None
+    gemini_base_url: str
+    gemini_text_model: str | None
+    gemini_image_model: str | None
+    gemini_image_count: int
 
 
 def _csv(value: str | None, fallback: tuple[str, ...]) -> tuple[str, ...]:
@@ -67,4 +72,12 @@ def load_config(env_path: str | os.PathLike[str] | None = None) -> AgentConfig:
         smtp_username=os.getenv("SMTP_USERNAME") or None,
         smtp_password=os.getenv("SMTP_PASSWORD") or None,
         smtp_from=os.getenv("SMTP_FROM") or os.getenv("SMTP_USERNAME") or None,
+        gemini_api_key=os.getenv("GEMINI_API_KEY") or None,
+        gemini_base_url=os.getenv(
+            "GEMINI_BASE_URL",
+            "https://generativelanguage.googleapis.com/v1beta",
+        ).rstrip("/"),
+        gemini_text_model=os.getenv("GEMINI_TEXT_MODEL") or None,
+        gemini_image_model=os.getenv("GEMINI_IMAGE_MODEL") or None,
+        gemini_image_count=int(os.getenv("GEMINI_IMAGE_COUNT", "2")),
     )

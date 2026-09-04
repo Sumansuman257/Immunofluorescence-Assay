@@ -25,6 +25,11 @@ def test_build_blogger_email_contains_html_alternative(tmp_path: Path) -> None:
         smtp_username="sender@example.com",
         smtp_password="app-password",
         smtp_from="sender@example.com",
+        gemini_api_key=None,
+        gemini_base_url="https://generativelanguage.googleapis.com/v1beta",
+        gemini_text_model=None,
+        gemini_image_model=None,
+        gemini_image_count=2,
     )
     draft = BlogDraft(
         title="Draft title",

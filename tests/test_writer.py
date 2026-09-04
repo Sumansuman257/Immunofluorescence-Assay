@@ -25,6 +25,11 @@ def _config(tmp_path: Path) -> AgentConfig:
         smtp_username=None,
         smtp_password=None,
         smtp_from=None,
+        gemini_api_key=None,
+        gemini_base_url="https://generativelanguage.googleapis.com/v1beta",
+        gemini_text_model=None,
+        gemini_image_model=None,
+        gemini_image_count=2,
     )
 
 

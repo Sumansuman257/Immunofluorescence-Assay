@@ -12,6 +12,7 @@ from urllib.parse import quote
 import requests
 
 from blogger_agent.config import AgentConfig
+from blogger_agent.gemini import generate_gemini_draft_json
 from blogger_agent.research import ImageResult, LiteratureResult
 
 
@@ -32,6 +33,12 @@ def create_blog_draft(
 ) -> BlogDraft:
     """Create a Blogger-ready draft with an LLM when configured, otherwise use a local template."""
 
+    if config.gemini_api_key and config.gemini_text_model:
+        try:
+            return _create_gemini_draft(topic, literature, images, config, requested_words, deep_research)
+        except (requests.RequestException, RuntimeError, json.JSONDecodeError):
+            pass
+
     if config.openai_api_key and config.openai_model:
         try:
             return _create_llm_draft(topic, literature, images, config, requested_words, deep_research)
@@ -40,6 +47,29 @@ def create_blog_draft(
             pass
 
     return _create_template_draft(topic, literature, images, config, deep_research)
+
+
+def _create_gemini_draft(
+    topic: str,
+    literature: list[LiteratureResult],
+    images: list[ImageResult],
+    config: AgentConfig,
+    requested_words: str,
+    deep_research: bool,
+) -> BlogDraft:
+    parsed = generate_gemini_draft_json(
+        topic=topic,
+        literature=literature,
+        images=images,
+        config=config,
+        requested_words=requested_words,
+        deep_research=deep_research,
+    )
+    return BlogDraft(
+        title=str(parsed.get("title") or topic).strip(),
+        html=_with_required_visuals(str(parsed.get("html") or ""), topic, literature, images),
+        labels=tuple(parsed.get("labels") or config.default_labels),
+    )
 
 
 def save_draft(draft: BlogDraft, draft_dir: Path) -> Path:
