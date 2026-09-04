@@ -9,13 +9,16 @@ The default workflow is intentionally draft-first: a scientist should review the
 - Takes a title or topic from the command line or a daily topic queue.
 - Searches Europe PMC for relevant papers.
 - Searches Wikimedia Commons for open-license illustrative images.
-- Writes a 300-500 word educational draft by default.
+- Writes a longer 900-1200 word educational draft target by default when LLM writing is configured.
+- Always embeds a generated concept-map image so visual explanations are not missed.
 - Adds references and image attribution.
 - Saves a local HTML copy in `drafts/`.
 - Optionally uploads the content to Blogger with `isDraft=True`.
 - Optionally emails the content to Blogger's private post-by-email address so you can avoid Google Cloud setup.
 
 If you add an OpenAI-compatible API key and model in `.env`, the agent asks the model to write a more polished article. Without that key, it still creates a structured cited draft using a local template.
+
+The built-in template is written for students: it includes visual explanation, why the topic matters, key ideas, literature-reading guidance, protocol-planning notes, common mistakes, take-home message, safety note, and references.
 
 ## Safety note for virology content
 
@@ -61,6 +64,14 @@ pipette-blogger-agent draft \
 ```
 
 This saves an HTML file in `drafts/` and does not upload.
+
+For a shorter or longer LLM-assisted article, override the target:
+
+```bash
+pipette-blogger-agent draft \
+  --topic "Golden Gate cloning for viral vector design" \
+  --words "1500-1800"
+```
 
 ## Upload as a Blogger draft
 

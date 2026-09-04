@@ -79,46 +79,50 @@ def search_literature(topic: str, max_results: int = 7) -> list[LiteratureResult
     return [paper for _, paper in candidates[:max_results]]
 
 
-def search_images(topic: str, max_results: int = 2) -> list[ImageResult]:
+def search_images(topic: str, max_results: int = 4) -> list[ImageResult]:
     """Search Wikimedia Commons for embeddable illustrative images."""
 
-    params: dict[str, Any] = {
-        "action": "query",
-        "generator": "search",
-        "gsrnamespace": "6",
-        "gsrsearch": f"{topic} molecular biology",
-        "gsrlimit": str(max_results * 3),
-        "prop": "imageinfo",
-        "iiprop": "url|extmetadata",
-        "format": "json",
-    }
-    response = requests.get(
-        WIKIMEDIA_API_URL,
-        params=params,
-        headers={"User-Agent": USER_AGENT},
-        timeout=25,
-    )
-    response.raise_for_status()
-    pages = response.json().get("query", {}).get("pages", {})
-
     images: list[ImageResult] = []
-    for page in pages.values():
-        imageinfo = (page.get("imageinfo") or [{}])[0]
-        url = imageinfo.get("url")
-        if not url or not _is_supported_image(url):
-            continue
-        metadata = imageinfo.get("extmetadata", {})
-        images.append(
-            ImageResult(
-                title=page.get("title", "Wikimedia Commons image"),
-                url=url,
-                page_url=imageinfo.get("descriptionurl", url),
-                license_name=_metadata_value(metadata, "LicenseShortName"),
-                artist=_metadata_value(metadata, "Artist"),
-            )
+    seen: set[str] = set()
+
+    for image_query in _image_queries(topic):
+        params: dict[str, Any] = {
+            "action": "query",
+            "generator": "search",
+            "gsrnamespace": "6",
+            "gsrsearch": image_query,
+            "gsrlimit": str(max_results * 4),
+            "prop": "imageinfo",
+            "iiprop": "url|extmetadata",
+            "format": "json",
+        }
+        response = requests.get(
+            WIKIMEDIA_API_URL,
+            params=params,
+            headers={"User-Agent": USER_AGENT},
+            timeout=25,
         )
-        if len(images) >= max_results:
-            break
+        response.raise_for_status()
+        pages = response.json().get("query", {}).get("pages", {})
+
+        for page in pages.values():
+            imageinfo = (page.get("imageinfo") or [{}])[0]
+            url = imageinfo.get("url")
+            if not url or not _is_supported_image(url) or url in seen:
+                continue
+            seen.add(url)
+            metadata = imageinfo.get("extmetadata", {})
+            images.append(
+                ImageResult(
+                    title=page.get("title", "Wikimedia Commons image"),
+                    url=url,
+                    page_url=imageinfo.get("descriptionurl", url),
+                    license_name=_metadata_value(metadata, "LicenseShortName"),
+                    artist=_metadata_value(metadata, "Artist"),
+                )
+            )
+            if len(images) >= max_results:
+                return images
     return images
 
 
@@ -128,6 +132,16 @@ def _fallback_publication_url(item: dict[str, Any]) -> str:
     if item.get("pmcid"):
         return f"https://www.ncbi.nlm.nih.gov/pmc/articles/{item['pmcid']}/"
     return "https://europepmc.org/"
+
+
+def _image_queries(topic: str) -> list[str]:
+    return [
+        f"{topic} molecular biology diagram",
+        f"{topic} DNA plasmid vector",
+        "molecular cloning diagram DNA plasmid",
+        "virology viral vector diagram",
+        "DNA sequencing molecular biology",
+    ]
 
 
 def _candidate_queries(topic: str) -> list[str]:

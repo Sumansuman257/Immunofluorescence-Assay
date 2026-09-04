@@ -22,7 +22,7 @@ def main(argv: list[str] | None = None) -> int:
 
     draft_parser = subparsers.add_parser("draft", help="Generate a draft from one topic.")
     draft_parser.add_argument("--topic", required=True, help="Title or topic to research.")
-    draft_parser.add_argument("--words", default="300-500", help="Target length, for LLM mode.")
+    draft_parser.add_argument("--words", default="900-1200", help="Target length, for LLM mode.")
     draft_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
     draft_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
     draft_parser.add_argument("--no-save", action="store_true", help="Do not save local HTML.")
@@ -33,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:
         default="data/topics.txt",
         help="Plain-text queue with one topic per line.",
     )
-    next_parser.add_argument("--words", default="300-500", help="Target length, for LLM mode.")
+    next_parser.add_argument("--words", default="900-1200", help="Target length, for LLM mode.")
     next_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
     next_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
 

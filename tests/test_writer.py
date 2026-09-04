@@ -73,3 +73,12 @@ def test_save_draft_writes_html_file(tmp_path: Path) -> None:
     assert path.exists()
     assert path.suffix == ".html"
     assert "Reporter genes in virology assays" in path.read_text(encoding="utf-8")
+
+
+def test_template_draft_always_includes_generated_visual(tmp_path: Path) -> None:
+    draft = create_blog_draft("Plasmid maps for student cloning projects", [], [], _config(tmp_path))
+
+    assert "Visual explanation" in draft.html
+    assert "data:image/svg+xml" in draft.html
+    assert "Generated teaching schematic" in draft.html
+    assert "Additional open-license images" not in draft.html
