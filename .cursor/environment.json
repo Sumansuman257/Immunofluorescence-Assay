@@ -1,0 +1,13 @@
+{
+  "name": "Viral RNA inactivation poster",
+  "install": "python3 --version",
+  "terminals": [
+    {
+      "name": "poster-server",
+      "command": "python3 -m http.server 8080 --bind 0.0.0.0"
+    }
+  ],
+  "ports": [
+    { "name": "poster", "port": 8080 }
+  ]
+}
