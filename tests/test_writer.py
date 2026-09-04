@@ -58,7 +58,9 @@ def test_template_draft_contains_references_and_safety_note(tmp_path: Path) -> N
         _config(tmp_path),
     )
 
-    assert "Protocol-planning notes" in draft.html
+    assert "Methods and protocol overview" in draft.html
+    assert "Expected results and interpretation" in draft.html
+    assert "Conclusions" in draft.html
     assert "Safety and editorial note" in draft.html
     assert "Doe J, Smith A" in draft.html
     assert "CC BY-SA 4.0" in draft.html
@@ -79,6 +81,33 @@ def test_template_draft_always_includes_generated_visual(tmp_path: Path) -> None
     draft = create_blog_draft("Plasmid maps for student cloning projects", [], [], _config(tmp_path))
 
     assert "Visual explanation" in draft.html
-    assert "data:image/svg+xml" in draft.html
+    assert draft.html.count("data:image/svg+xml") >= 3
     assert "Generated teaching schematic" in draft.html
     assert "Additional open-license images" not in draft.html
+
+
+def test_deep_template_includes_additional_papers(tmp_path: Path) -> None:
+    literature = [
+        LiteratureResult(
+            title=f"Paper {index} about plasmid verification",
+            authors="Doe J",
+            year="2026",
+            journal="Teaching Virology",
+            doi=f"10.1000/example-{index}",
+            pmid=None,
+            abstract="This paper discusses sequence verification and controls in cloning.",
+            url=f"https://doi.org/10.1000/example-{index}",
+        )
+        for index in range(8)
+    ]
+
+    draft = create_blog_draft(
+        "Plasmid verification for students",
+        literature,
+        [],
+        _config(tmp_path),
+        deep_research=True,
+    )
+
+    assert "Additional papers reviewed in deep mode" in draft.html
+    assert "Paper 7 about plasmid verification" in draft.html

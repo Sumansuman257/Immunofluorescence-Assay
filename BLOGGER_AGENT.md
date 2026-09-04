@@ -18,7 +18,9 @@ The default workflow is intentionally draft-first: a scientist should review the
 
 If you add an OpenAI-compatible API key and model in `.env`, the agent asks the model to write a more polished article. Without that key, it still creates a structured cited draft using a local template.
 
-The built-in template is written for students: it includes visual explanation, why the topic matters, key ideas, literature-reading guidance, protocol-planning notes, common mistakes, take-home message, safety note, and references.
+The built-in template is written for students: it includes visual explanation, introduction, key ideas, literature-reading guidance, protocol-planning notes, common mistakes, conclusions, safety note, and references.
+
+For major teaching posts, use deep mode. Deep mode retrieves more papers and images, targets a longer article, and uses a full structure: introduction, methods and protocol overview, worked example, expected results and interpretation, common mistakes, conclusions, safety note, and references.
 
 ## Safety note for virology content
 
@@ -73,6 +75,14 @@ pipette-blogger-agent draft \
   --words "1500-1800"
 ```
 
+For a longer student-focused article with more research and more generated teaching figures:
+
+```bash
+pipette-blogger-agent draft \
+  --topic "Golden Gate cloning for viral vector design" \
+  --deep
+```
+
 ## Upload as a Blogger draft
 
 ```bash
@@ -120,7 +130,8 @@ Send one generated article to Blogger's email draft inbox:
 ```bash
 pipette-blogger-agent draft \
   --topic "Golden Gate cloning for viral vector design" \
-  --email
+  --email \
+  --deep
 ```
 
 This method does not use Google Cloud or the Blogger API. Keep your private Blogger email address secret because anyone who knows it could send posts to your blog.
@@ -144,6 +155,12 @@ Or use the email method:
 
 ```bash
 pipette-blogger-agent run-next --email
+```
+
+For deeper daily drafts:
+
+```bash
+pipette-blogger-agent run-next --email --deep
 ```
 
 ## Run daily on a local computer

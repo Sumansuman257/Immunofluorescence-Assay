@@ -22,7 +22,8 @@ def main(argv: list[str] | None = None) -> int:
 
     draft_parser = subparsers.add_parser("draft", help="Generate a draft from one topic.")
     draft_parser.add_argument("--topic", required=True, help="Title or topic to research.")
-    draft_parser.add_argument("--words", default="900-1200", help="Target length, for LLM mode.")
+    draft_parser.add_argument("--words", default=None, help="Target length, for LLM mode.")
+    draft_parser.add_argument("--deep", action="store_true", help="Use deeper research and a longer teaching structure.")
     draft_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
     draft_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
     draft_parser.add_argument("--no-save", action="store_true", help="Do not save local HTML.")
@@ -33,7 +34,8 @@ def main(argv: list[str] | None = None) -> int:
         default="data/topics.txt",
         help="Plain-text queue with one topic per line.",
     )
-    next_parser.add_argument("--words", default="900-1200", help="Target length, for LLM mode.")
+    next_parser.add_argument("--words", default=None, help="Target length, for LLM mode.")
+    next_parser.add_argument("--deep", action="store_true", help="Use deeper research and a longer teaching structure.")
     next_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
     next_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
 
@@ -61,6 +63,7 @@ def main(argv: list[str] | None = None) -> int:
         return _draft_topic(
             topic=args.topic,
             words=args.words,
+            deep=args.deep,
             upload=args.upload,
             email_upload=args.email,
             save=not args.no_save,
@@ -75,6 +78,7 @@ def main(argv: list[str] | None = None) -> int:
         return _draft_topic(
             topic=topic,
             words=args.words,
+            deep=args.deep,
             upload=args.upload,
             email_upload=args.email,
             save=True,
@@ -85,15 +89,23 @@ def main(argv: list[str] | None = None) -> int:
     return 1
 
 
-def _draft_topic(topic: str, words: str, upload: bool, email_upload: bool, save: bool, config) -> int:
+def _draft_topic(topic: str, words: str | None, deep: bool, upload: bool, email_upload: bool, save: bool, config) -> int:
     if upload and email_upload:
         print("Choose either --upload for Blogger API or --email for Blogger post-by-email, not both.")
         return 2
 
     print(f"Researching: {topic}")
-    literature = search_literature(topic)
-    images = search_images(topic)
-    draft = create_blog_draft(topic, literature, images, config, requested_words=words)
+    literature = search_literature(topic, max_results=15 if deep else 7)
+    images = search_images(topic, max_results=6 if deep else 4)
+    target_words = words or ("1800-2500" if deep else "900-1200")
+    draft = create_blog_draft(
+        topic,
+        literature,
+        images,
+        config,
+        requested_words=target_words,
+        deep_research=deep,
+    )
 
     if save:
         path = save_draft(draft, config.draft_dir)

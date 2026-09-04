@@ -28,17 +28,18 @@ def create_blog_draft(
     images: list[ImageResult],
     config: AgentConfig,
     requested_words: str = "900-1200",
+    deep_research: bool = False,
 ) -> BlogDraft:
     """Create a Blogger-ready draft with an LLM when configured, otherwise use a local template."""
 
     if config.openai_api_key and config.openai_model:
         try:
-            return _create_llm_draft(topic, literature, images, config, requested_words)
+            return _create_llm_draft(topic, literature, images, config, requested_words, deep_research)
         except requests.RequestException:
             # Network/model failures should not stop daily drafting; fall back to a cited template.
             pass
 
-    return _create_template_draft(topic, literature, images, config)
+    return _create_template_draft(topic, literature, images, config, deep_research)
 
 
 def save_draft(draft: BlogDraft, draft_dir: Path) -> Path:
@@ -55,6 +56,7 @@ def _create_llm_draft(
     images: list[ImageResult],
     config: AgentConfig,
     requested_words: str,
+    deep_research: bool,
 ) -> BlogDraft:
     payload = {
         "model": config.openai_model,
@@ -79,6 +81,7 @@ def _create_llm_draft(
                     {
                         "topic": topic,
                         "target_words": requested_words,
+                        "deep_research": deep_research,
                         "safety_mode": config.safety_mode,
                         "literature": [
                             {
@@ -102,8 +105,10 @@ def _create_llm_draft(
                         ],
                         "format": (
                             "Return strict JSON with keys title, labels, html. "
-                            "html must be Blogger-ready HTML with headings, figure tags, APA/Vancouver-style "
-                            "references, teaching-focused visual explanations, and a short safety note."
+                            "html must be Blogger-ready HTML with these sections: Introduction, "
+                            "Methods and protocol overview, Worked example, Expected results and interpretation, "
+                            "Common mistakes, Conclusions, Safety note, and References. Include figure tags, "
+                            "APA/Vancouver-style references, and teaching-focused visual explanations."
                         ),
                     }
                 ),
@@ -135,6 +140,7 @@ def _create_template_draft(
     literature: list[LiteratureResult],
     images: list[ImageResult],
     config: AgentConfig,
+    deep_research: bool,
 ) -> BlogDraft:
     safe_topic = html.escape(topic)
     lead = _lead_from_literature(literature)
@@ -151,7 +157,7 @@ def _create_template_draft(
         ),
         *_render_generated_diagram(topic, literature),
         *_render_figures(images),
-        "<h3>Why this matters</h3>",
+        "<h3>Introduction: why this matters</h3>",
         (
             "<p>For cloning-centered virology work, the strongest articles usually connect "
             "three layers: the genetic design, the delivery or expression context, and the "
@@ -185,7 +191,14 @@ def _create_template_draft(
             "list of steps; it is an argument that the molecule being tested is the molecule the authors "
             "intended to build.</p>"
         ),
-        "<h3>Protocol-planning notes</h3>",
+        "<h3>Methods and protocol overview</h3>",
+        (
+            "<p>For students, the methods section should read like a map of decisions rather than a "
+            "recipe. In molecular cloning and virology communication, the useful questions are: What "
+            "molecule or model is being built? Which safer model system is appropriate for teaching? "
+            "How will the construct be checked? What result would support the hypothesis, and what "
+            "result would show that the system failed?</p>"
+        ),
         (
             "<ul>"
             "<li>Define the biological question, construct architecture, and non-pathogenic model system before selecting a cloning workflow.</li>"
@@ -194,6 +207,29 @@ def _create_template_draft(
             "<li>Separate conceptual workflow discussion from lab-specific operating conditions, which should come from validated institutional SOPs.</li>"
             "<li>Include biosafety context when viral vectors, infectious clones, or primary specimens are discussed.</li>"
             "</ul>"
+        ),
+        "<h3>Worked example for students</h3>",
+        (
+            f"<p>Imagine a student reading about {safe_topic} for the first time. A helpful example "
+            "would not begin with temperatures, incubation times, or reagent volumes. It would begin "
+            "with the purpose: a researcher wants to compare whether a genetic design produces the "
+            "expected reporter or expression readout in a safer teaching system. The student should "
+            "then identify the insert, the vector backbone, the control construct, the verification "
+            "method, and the interpretation rule before thinking about any lab-specific execution.</p>"
+        ),
+        (
+            "<p>This style of example teaches the scientific logic without turning the post into an "
+            "unreviewed operating protocol. It also helps readers understand why sequence confirmation, "
+            "negative controls, and biological replicates are not decorative details; they are the "
+            "guardrails that keep a result from becoming a misleading story.</p>"
+        ),
+        "<h3>Expected results and interpretation</h3>",
+        (
+            "<p>A well-designed workflow should produce evidence that lines up across levels. The "
+            "molecular check should support the intended construct identity. The control comparison "
+            "should show that background signal is understood. The biological readout should answer "
+            "the original question without overclaiming. If these layers disagree, the right conclusion "
+            "is not failure; it is an invitation to troubleshoot design, verification, or assay context.</p>"
         ),
         "<h3>Common mistakes to watch for</h3>",
         (
@@ -205,7 +241,8 @@ def _create_template_draft(
         ),
         "<h3>What the cited work suggests</h3>",
         _render_literature_summary(literature),
-        "<h3>Take-home message</h3>",
+        *(_render_deep_research_notes(literature) if deep_research else []),
+        "<h3>Conclusions</h3>",
         (
             f"<p>The practical lesson for {safe_topic} is to keep the molecular story visible. "
             "A strong post should help students see how the design, controls, validation, and safety "
@@ -293,7 +330,7 @@ def _render_generated_diagram(topic: str, literature: list[LiteratureResult]) ->
   <text x="460" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#5a3b00">{html.escape(evidence_label)}</text>
 </svg>"""
     data_uri = "data:image/svg+xml;utf8," + quote(svg)
-    return [
+    figures = [
         "<h3>Visual explanation</h3>",
         (
             "<figure>"
@@ -302,6 +339,74 @@ def _render_generated_diagram(topic: str, literature: list[LiteratureResult]) ->
             "<figcaption>Generated teaching schematic: the topic is framed as a concept map linking design, controls, verification, interpretation, and biosafety review.</figcaption>"
             "</figure>"
         ),
+    ]
+    figures.extend(_render_methods_diagram(topic))
+    figures.extend(_render_results_diagram())
+    return figures
+
+
+def _render_methods_diagram(topic: str) -> list[str]:
+    topic_label = _svg_text(topic, 36)
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img">
+  <rect width="920" height="360" rx="24" fill="#fffdf6" />
+  <text x="460" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#303030">Protocol-planning ladder</text>
+  <text x="460" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#303030">{html.escape(topic_label)} as a safe teaching workflow</text>
+  <rect x="70" y="112" width="170" height="90" rx="16" fill="#e8f5e9" stroke="#4c9f50" stroke-width="2" />
+  <text x="155" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1b5e20">Question</text>
+  <text x="155" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1b5e20">What are we trying</text>
+  <text x="155" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#1b5e20">to learn?</text>
+  <rect x="280" y="112" width="170" height="90" rx="16" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" />
+  <text x="365" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0d47a1">Model</text>
+  <text x="365" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#0d47a1">Choose safer system</text>
+  <text x="365" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#0d47a1">for learning</text>
+  <rect x="490" y="112" width="170" height="90" rx="16" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2" />
+  <text x="575" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#4a148c">Controls</text>
+  <text x="575" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#4a148c">Positive, negative,</text>
+  <text x="575" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#4a148c">verification</text>
+  <rect x="700" y="112" width="170" height="90" rx="16" fill="#fff3e0" stroke="#ef6c00" stroke-width="2" />
+  <text x="785" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#7b3f00">SOP review</text>
+  <text x="785" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#7b3f00">Use approved local</text>
+  <text x="785" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#7b3f00">protocols only</text>
+  <path d="M240 157 H280 M450 157 H490 M660 157 H700" stroke="#555" stroke-width="3" stroke-dasharray="7 5" />
+  <rect x="140" y="250" width="640" height="56" rx="16" fill="#ffffff" stroke="#777" stroke-width="1.8" />
+  <text x="460" y="283" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#303030">Good methods writing explains decisions, controls, and interpretation before lab-specific execution.</text>
+</svg>"""
+    return [
+        (
+            "<figure>"
+            f'<img src="data:image/svg+xml;utf8,{quote(svg)}" alt="Protocol-planning ladder" '
+            'style="max-width:100%;height:auto;" />'
+            "<figcaption>Generated teaching schematic: protocol planning is shown as a ladder from question to model, controls, and SOP review.</figcaption>"
+            "</figure>"
+        )
+    ]
+
+
+def _render_results_diagram() -> list[str]:
+    svg = """<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img">
+  <rect width="920" height="360" rx="24" fill="#f9f7ff" />
+  <text x="460" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#28204a">How to interpret results</text>
+  <text x="460" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#28204a">A student-friendly triangle for deciding whether the story is reliable</text>
+  <polygon points="460,105 220,285 700,285" fill="#ffffff" stroke="#6a5acd" stroke-width="3" />
+  <circle cx="460" cy="128" r="48" fill="#e8e1ff" stroke="#6a5acd" stroke-width="2" />
+  <text x="460" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#28204a">Molecular</text>
+  <text x="460" y="144" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#28204a">evidence</text>
+  <circle cx="270" cy="265" r="48" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+  <text x="270" y="261" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#014d75">Control</text>
+  <text x="270" y="281" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#014d75">logic</text>
+  <circle cx="650" cy="265" r="48" fill="#e8f5e9" stroke="#43a047" stroke-width="2" />
+  <text x="650" y="261" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1b5e20">Biological</text>
+  <text x="650" y="281" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1b5e20">readout</text>
+  <text x="460" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#28204a">Trust the conclusion only when all three corners agree.</text>
+</svg>"""
+    return [
+        (
+            "<figure>"
+            f'<img src="data:image/svg+xml;utf8,{quote(svg)}" alt="Results interpretation triangle" '
+            'style="max-width:100%;height:auto;" />'
+            "<figcaption>Generated teaching schematic: reliable interpretation requires agreement between molecular evidence, controls, and biological readout.</figcaption>"
+            "</figure>"
+        )
     ]
 
 
@@ -339,11 +444,37 @@ def _render_literature_summary(literature: list[LiteratureResult]) -> str:
     return "<ul>" + "\n".join(items) + "</ul>"
 
 
+def _render_deep_research_notes(literature: list[LiteratureResult]) -> list[str]:
+    if not literature:
+        return []
+
+    items = []
+    for paper in literature[5:12]:
+        items.append(
+            "<li>"
+            f"{html.escape(paper.title)} "
+            f"({html.escape(paper.year or 'n.d.')})"
+            "</li>"
+        )
+    if not items:
+        return []
+
+    return [
+        "<h3>Additional papers reviewed in deep mode</h3>",
+        (
+            "<p>Deep mode reviews a wider set of papers so the draft can connect the main topic "
+            "to nearby methods, validation strategies, and teaching examples. These extra papers "
+            "should be checked during editorial review before the final post is published.</p>"
+        ),
+        "<ul>" + "\n".join(items) + "</ul>",
+    ]
+
+
 def _render_references(literature: list[LiteratureResult]) -> str:
     if not literature:
         return "<p>References to be added during editorial review.</p>"
     return "<ol>" + "\n".join(
-        f"<li>{html.escape(item.citation)}</li>" for item in literature[:7]
+        f"<li>{html.escape(item.citation)}</li>" for item in literature[:12]
     ) + "</ol>"
 
 
