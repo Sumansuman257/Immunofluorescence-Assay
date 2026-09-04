@@ -1,6 +1,6 @@
 {
   "name": "Viral RNA inactivation poster",
-  "install": "python3 --version && test -f poster/index.html",
+  "install": "python3 --version",
   "terminals": [
     {
       "name": "poster-server",
