@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kairos — Temporal Command Calendar</title>
+  <meta name="description" content="An advanced customizable calendar with living event popups, orbit view, conflict radar, and a full theme forge." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23061018'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%233DDC97' stroke-width='3'/%3E%3Ccircle cx='32' cy='14' r='4' fill='%23FF8A4C'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="grid-wash"></div>
+  </div>
+
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div>
+          <p class="brand">Kairos</p>
+          <p class="brand-sub">Temporal command</p>
+        </div>
+      </div>
+
+      <div class="nav-cluster">
+        <button class="icon-btn" id="prevBtn" title="Previous" aria-label="Previous period">‹</button>
+        <button class="today-btn" id="todayBtn">Today</button>
+        <button class="icon-btn" id="nextBtn" title="Next" aria-label="Next period">›</button>
+        <h1 class="period-label" id="periodLabel">March 2026</h1>
+      </div>
+
+      <div class="top-actions">
+        <div class="live-clock" id="liveClock" aria-live="polite"></div>
+        <button class="ghost-btn" id="commandBtn" title="Command palette (Ctrl/Cmd+K)">⌘K</button>
+        <button class="ghost-btn" id="themeBtn">Customize</button>
+        <button class="primary-btn" id="addEventBtn">+ Event</button>
+      </div>
+    </header>
+
+    <aside class="sidebar">
+      <section class="side-card">
+        <h2>Quick capture</h2>
+        <form id="quickForm" class="quick-form">
+          <input
+            id="quickInput"
+            type="text"
+            placeholder='Try: "Dentist tomorrow 3pm 45m"'
+            autocomplete="off"
+          />
+          <button type="submit">Add</button>
+        </form>
+        <p class="hint">Natural language · Enter to save</p>
+      </section>
+
+      <section class="side-card">
+        <div class="side-head">
+          <h2>Calendars</h2>
+          <button class="text-btn" id="addCalendarBtn">+ Layer</button>
+        </div>
+        <ul class="layer-list" id="layerList"></ul>
+      </section>
+
+      <section class="side-card">
+        <h2>Incoming</h2>
+        <div class="incoming" id="incomingList"></div>
+      </section>
+
+      <section class="side-card conflict-card" id="conflictCard">
+        <h2>Conflict radar</h2>
+        <div id="conflictList" class="conflict-list"></div>
+      </section>
+    </aside>
+
+    <main class="stage">
+      <div class="view-tabs" role="tablist" aria-label="Calendar views">
+        <button class="view-tab active" data-view="month">Month</button>
+        <button class="view-tab" data-view="week">Week</button>
+        <button class="view-tab" data-view="day">Day</button>
+        <button class="view-tab" data-view="agenda">Agenda</button>
+        <button class="view-tab" data-view="orbit">Orbit</button>
+      </div>
+
+      <div class="urgency-ribbon" id="urgencyRibbon" aria-hidden="true"></div>
+      <div class="view-shell" id="viewShell"></div>
+    </main>
+  </div>
+
+  <!-- Event editor -->
+  <dialog class="modal" id="eventModal">
+    <form method="dialog" id="eventForm" class="modal-panel">
+      <header class="modal-head">
+        <h2 id="eventModalTitle">New event</h2>
+        <button type="button" class="icon-btn" id="closeEventModal" aria-label="Close">×</button>
+      </header>
+
+      <div class="form-grid">
+        <label class="span-2">
+          <span>Title</span>
+          <input name="title" id="eventTitle" required placeholder="What happens?" />
+        </label>
+
+        <label>
+          <span>Date</span>
+          <input type="date" name="date" id="eventDate" required />
+        </label>
+        <label>
+          <span>Calendar</span>
+          <select name="calendarId" id="eventCalendar"></select>
+        </label>
+
+        <label>
+          <span>Start</span>
+          <input type="time" name="start" id="eventStart" required />
+        </label>
+        <label>
+          <span>End</span>
+          <input type="time" name="end" id="eventEnd" required />
+        </label>
+
+        <label>
+          <span>All day</span>
+          <input type="checkbox" name="allDay" id="eventAllDay" />
+        </label>
+        <label>
+          <span>Energy</span>
+          <select name="energy" id="eventEnergy">
+            <option value="low">Low focus</option>
+            <option value="medium" selected>Steady</option>
+            <option value="high">High stakes</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Remind me</span>
+          <select name="reminder" id="eventReminder">
+            <option value="0">At start</option>
+            <option value="5" selected>5 minutes before</option>
+            <option value="15">15 minutes before</option>
+            <option value="30">30 minutes before</option>
+            <option value="60">1 hour before</option>
+            <option value="1440">1 day before</option>
+          </select>
+        </label>
+        <label>
+          <span>Repeat</span>
+          <select name="repeat" id="eventRepeat">
+            <option value="none">Does not repeat</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </label>
+
+        <label class="span-2">
+          <span>Location / link</span>
+          <input name="location" id="eventLocation" placeholder="Room, Zoom, address…" />
+        </label>
+
+        <label class="span-2">
+          <span>Notes</span>
+          <textarea name="notes" id="eventNotes" rows="3" placeholder="Context, agenda, prep…"></textarea>
+        </label>
+      </div>
+
+      <footer class="modal-foot">
+        <button type="button" class="danger-btn hidden" id="deleteEventBtn">Delete</button>
+        <div class="spacer"></div>
+        <button type="button" class="ghost-btn" id="cancelEventBtn">Cancel</button>
+        <button type="submit" class="primary-btn">Save event</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Theme forge -->
+  <dialog class="modal" id="themeModal">
+    <div class="modal-panel theme-panel">
+      <header class="modal-head">
+        <h2>Theme forge</h2>
+        <button type="button" class="icon-btn" id="closeThemeModal" aria-label="Close">×</button>
+      </header>
+      <p class="panel-lead">Customize everything — color, type, density, motion, and alert behavior.</p>
+
+      <div class="theme-grid">
+        <label>
+          <span>Accent</span>
+          <input type="color" id="accentColor" value="#3DDC97" />
+        </label>
+        <label>
+          <span>Signal / alerts</span>
+          <input type="color" id="signalColor" value="#FF8A4C" />
+        </label>
+        <label>
+          <span>Surface</span>
+          <input type="color" id="surfaceColor" value="#0D1B24" />
+        </label>
+        <label>
+          <span>Ink</span>
+          <input type="color" id="inkColor" value="#E8F1F5" />
+        </label>
+        <label>
+          <span>Corner radius</span>
+          <input type="range" id="radiusRange" min="0" max="28" value="16" />
+        </label>
+        <label>
+          <span>Density</span>
+          <input type="range" id="densityRange" min="0.85" max="1.2" step="0.01" value="1" />
+        </label>
+        <label>
+          <span>Type scale</span>
+          <input type="range" id="typeRange" min="0.9" max="1.25" step="0.01" value="1" />
+        </label>
+        <label>
+          <span>Motion</span>
+          <select id="motionSelect">
+            <option value="lively" selected>Lively</option>
+            <option value="calm">Calm</option>
+            <option value="off">Off</option>
+          </select>
+        </label>
+        <label>
+          <span>Display font</span>
+          <select id="displayFont">
+            <option value="Syne" selected>Syne</option>
+            <option value="Manrope">Manrope</option>
+            <option value="'Courier New', monospace">Mono</option>
+          </select>
+        </label>
+        <label>
+          <span>Popup style</span>
+          <select id="popupStyle">
+            <option value="toast" selected>Toast + modal</option>
+            <option value="modal">Fullscreen pulse</option>
+            <option value="toast-only">Toast only</option>
+          </select>
+        </label>
+        <label class="check-row">
+          <input type="checkbox" id="browserNotify" checked />
+          <span>Browser notifications</span>
+        </label>
+        <label class="check-row">
+          <input type="checkbox" id="soundAlerts" checked />
+          <span>Soft alert chime</span>
+        </label>
+      </div>
+
+      <div class="preset-row">
+        <button type="button" class="ghost-btn preset" data-preset="observatory">Observatory</button>
+        <button type="button" class="ghost-btn preset" data-preset="ember">Ember Desk</button>
+        <button type="button" class="ghost-btn preset" data-preset="glacier">Glacier</button>
+        <button type="button" class="ghost-btn preset" data-preset="mono">Mono Signal</button>
+      </div>
+
+      <footer class="modal-foot">
+        <button type="button" class="ghost-btn" id="exportDataBtn">Export JSON</button>
+        <button type="button" class="ghost-btn" id="importDataBtn">Import JSON</button>
+        <input type="file" id="importFile" accept="application/json" hidden />
+        <div class="spacer"></div>
+        <button type="button" class="primary-btn" id="saveThemeBtn">Apply</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- Command palette -->
+  <dialog class="command" id="commandModal">
+    <div class="command-panel">
+      <input id="commandInput" type="text" placeholder="Jump, create, search events…" autocomplete="off" />
+      <ul id="commandResults" class="command-results"></ul>
+    </div>
+  </dialog>
+
+  <!-- Living popups -->
+  <div class="toast-stack" id="toastStack" aria-live="assertive"></div>
+  <div class="pulse-overlay hidden" id="pulseOverlay" role="alertdialog" aria-modal="true">
+    <div class="pulse-card">
+      <p class="pulse-kicker">Happening soon</p>
+      <h2 id="pulseTitle">Event</h2>
+      <p id="pulseMeta"></p>
+      <div class="pulse-actions">
+        <button class="ghost-btn" id="pulseSnooze">Snooze 5m</button>
+        <button class="primary-btn" id="pulseDismiss">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
