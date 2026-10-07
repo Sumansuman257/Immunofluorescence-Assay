@@ -10,6 +10,12 @@ from blogger_agent.config import load_config
 from blogger_agent.email_publisher import send_blogger_email_draft
 from blogger_agent.gemini import generate_gemini_images
 from blogger_agent.research import debug_search_url, search_images, search_literature
+from blogger_agent.science_queue import (
+    append_manifest,
+    ensure_queue_file,
+    resolve_theme,
+    rotate_next_theme_id,
+)
 from blogger_agent.writer import create_blog_draft, save_draft
 
 
@@ -58,6 +64,28 @@ def main(argv: list[str] | None = None) -> int:
     research_parser.add_argument("--topic", required=True, help="Title or topic to research.")
     research_parser.add_argument("--limit", type=int, default=7, help="Maximum papers to return.")
 
+    science_parser = subparsers.add_parser(
+        "science-next",
+        help="Generate the next rotating Bench Notes science-update draft.",
+    )
+    science_parser.add_argument(
+        "--queue-file",
+        default="data/science-updates.txt",
+        help="Rotating theme-id queue (created from data/science-updates.txt.example if missing).",
+    )
+    science_parser.add_argument(
+        "--output-dir",
+        default="content/science-updates",
+        help="Where to save paste-ready HTML (default: content/science-updates).",
+    )
+    science_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
+    science_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
+    science_parser.add_argument(
+        "--theme",
+        default=None,
+        help="Optional theme id or Bench Notes title (skips queue rotation when set).",
+    )
+
     args = parser.parse_args(argv)
     config = load_config(args.env)
 
@@ -102,6 +130,16 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
         )
 
+    if args.command == "science-next":
+        return _science_next(
+            queue_file=Path(args.queue_file),
+            output_dir=Path(args.output_dir),
+            upload=args.upload,
+            email_upload=args.email,
+            theme_override=args.theme,
+            config=config,
+        )
+
     parser.print_help()
     return 1
 
@@ -116,6 +154,9 @@ def _draft_topic(
     email_upload: bool,
     save: bool,
     config,
+    queries: tuple[str, ...] | None = None,
+    output_dir: Path | None = None,
+    theme_id: str | None = None,
 ) -> int:
     if upload and email_upload:
         print("Choose either --upload for Blogger API or --email for Blogger post-by-email, not both.")
@@ -123,7 +164,7 @@ def _draft_topic(
 
     print(f"Researching: {topic}")
     if science_update:
-        literature = _research_science_update(topic)
+        literature = _research_science_update(topic, queries=queries)
     else:
         literature = search_literature(topic, max_results=15 if deep else 7)
 
@@ -143,8 +184,19 @@ def _draft_topic(
     )
 
     if save:
-        path = save_draft(draft, config.draft_dir)
+        draft_dir = output_dir or config.draft_dir
+        path = save_draft(draft, draft_dir)
         print(f"Saved local draft: {path}")
+        if science_update:
+            dois = [paper.doi for paper in literature if paper.doi]
+            append_manifest(
+                Path(draft_dir) / "INDEX.md",
+                title=draft.title,
+                html_path=path,
+                theme_id=theme_id or "science-update",
+                dois=dois,
+            )
+            print(f"Updated manifest: {Path(draft_dir) / 'INDEX.md'}")
 
     if upload:
         result = create_blogger_draft(config, draft)
@@ -160,10 +212,45 @@ def _draft_topic(
     return 0
 
 
-def _research_science_update(topic: str):
+def _science_next(
+    queue_file: Path,
+    output_dir: Path,
+    upload: bool,
+    email_upload: bool,
+    theme_override: str | None,
+    config,
+) -> int:
+    ensure_queue_file(queue_file, Path("data/science-updates.txt.example"))
+    if theme_override:
+        theme_key = theme_override
+    else:
+        theme_key = rotate_next_theme_id(queue_file)
+        if not theme_key:
+            print(f"No theme ids found in {queue_file}.")
+            return 0
+
+    theme = resolve_theme(theme_key)
+    print(f"Science theme: {theme.theme_id}")
+    return _draft_topic(
+        topic=theme.title,
+        words=None,
+        deep=False,
+        science_update=True,
+        gemini_image_count=None,
+        upload=upload,
+        email_upload=email_upload,
+        save=True,
+        config=config,
+        queries=theme.queries,
+        output_dir=output_dir,
+        theme_id=theme.theme_id,
+    )
+
+
+def _research_science_update(topic: str, queries: tuple[str, ...] | None = None):
     """Prefer theme-specific Europe PMC queries so roundups stay on-topic."""
 
-    theme_queries = (
+    theme_queries = queries or (
         "CloneFast plasmid assembly phosphorothioate sticky ends",
         "PEI transfection plasmid DNA mammalian cells Expi293 OR ARPE",
         "immunofluorescence fluorescent nanobody labeling microscopy",

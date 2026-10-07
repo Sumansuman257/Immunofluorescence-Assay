@@ -77,9 +77,23 @@ pipette-blogger-agent draft \
   --science-update
 ```
 
+### Repeatable “next update” flow
+
+Re-run anytime (rotating theme queue never empties):
+
+```bash
+./scripts/produce-science-update.sh
+# same as:
+python3 -m blogger_agent.cli science-next
+```
+
+- Theme ids live in `data/science-updates.txt` (seeded from `data/science-updates.txt.example`).
+- Paste-ready HTML lands in `content/science-updates/` with an `INDEX.md` manifest.
+- Copy-paste agent prompt: `content/science-updates/PROMPT.md`.
+
 Science-update mode:
 
-- Pulls recent Europe PMC papers (and widens to transfection / immunofluorescence / Golden Gate themes).
+- Pulls recent Europe PMC papers from the active theme’s query pack.
 - Writes a brand-first HTML post with navy/teal atmosphere, highlight blocks, and DOIs — no invented citations.
 - Labels the draft with `science update` plus the default blog labels.
 - Stays draft-first: review abstracts and biosafety framing before publishing on Blogger.
