@@ -67,6 +67,23 @@ pipette-blogger-agent draft \
 
 This saves an HTML file in `drafts/` and does not upload.
 
+## Science updates (Bench Notes)
+
+For a faster, more interesting literature roundup aimed at The Pipettes Solution homepage voice:
+
+```bash
+pipette-blogger-agent draft \
+  --topic "Bench Notes: plasmid assembly, PEI delivery, and fluorescent readout" \
+  --science-update
+```
+
+Science-update mode:
+
+- Pulls recent Europe PMC papers (and widens to transfection / immunofluorescence / Golden Gate themes).
+- Writes a brand-first HTML post with navy/teal atmosphere, highlight blocks, and DOIs — no invented citations.
+- Labels the draft with `science update` plus the default blog labels.
+- Stays draft-first: review abstracts and biosafety framing before publishing on Blogger.
+
 For a shorter or longer LLM-assisted article, override the target:
 
 ```bash

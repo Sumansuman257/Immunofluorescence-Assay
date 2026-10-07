@@ -23,6 +23,14 @@ class BlogDraft:
     labels: tuple[str, ...]
 
 
+SCIENCE_UPDATE_LABELS = (
+    "science update",
+    "molecular cloning",
+    "lab methods",
+    "research highlights",
+)
+
+
 def create_blog_draft(
     topic: str,
     literature: list[LiteratureResult],
@@ -30,8 +38,12 @@ def create_blog_draft(
     config: AgentConfig,
     requested_words: str = "900-1200",
     deep_research: bool = False,
+    science_update: bool = False,
 ) -> BlogDraft:
     """Create a Blogger-ready draft with an LLM when configured, otherwise use a local template."""
+
+    if science_update:
+        return _create_science_update_draft(topic, literature, images, config)
 
     if config.gemini_api_key and config.gemini_text_model:
         try:
@@ -165,6 +177,75 @@ def _create_llm_draft(
     )
 
 
+def _create_science_update_draft(
+    topic: str,
+    literature: list[LiteratureResult],
+    images: list[ImageResult],
+    config: AgentConfig,
+) -> BlogDraft:
+    """Write a brand-forward science-highlights roundup with real Europe PMC citations."""
+
+    title = topic if ":" in topic or "update" in topic.lower() else f"Bench Notes: {topic}"
+    papers = literature[:5]
+    body: list[str] = [
+        _post_style_block(),
+        '<article class="tps-post tps-science-update">',
+        f'<p class="tps-brand">The Pipettes Solution</p>',
+        f"<h2>{html.escape(title)}</h2>",
+        (
+            "<p class=\"tps-dek\">Fresh literature highlights for molecular cloning, delivery, "
+            "and fluorescent readout — written for students and wet-lab planners who want the "
+            "why before the recipe.</p>"
+        ),
+        (
+            "<p><em>Editorial draft:</em> citations were pulled from Europe PMC. Review abstracts, "
+            "licenses, and biosafety framing before publishing.</p>"
+        ),
+        *_render_science_banner(topic),
+        *_render_figures(images[:2]),
+        "<h3>Why this roundup</h3>",
+        (
+            "<p>The Pipettes Solution is strongest when calculators and protocols sit next to "
+            "living science. This update gathers recent papers that sharpen three everyday bench "
+            "questions: How do we assemble DNA cleanly? How do we get DNA into cells without "
+            "treating transfection as magic? How do we trust a fluorescent signal once the "
+            "construct is in place?</p>"
+        ),
+        "<h3>Highlights from the literature</h3>",
+        *_render_science_highlights(papers),
+        "<h3>What to steal for your own reading notes</h3>",
+        (
+            "<ul class=\"tps-list\">"
+            "<li><strong>Start with the claim map.</strong> Before methods denseness, ask what "
+            "molecule, delivery context, and readout the paper is actually defending.</li>"
+            "<li><strong>Hunt the controls.</strong> Empty vector, filler DNA, no-primary "
+            "antibody, and sequence confirmation are not footnotes — they are the difference "
+            "between a story and a result.</li>"
+            "<li><strong>Separate teaching logic from SOP detail.</strong> Use papers to learn "
+            "decision points; execute only from institution-approved protocols.</li>"
+            "</ul>"
+        ),
+        "<h3>Bridge back to the bench tools</h3>",
+        (
+            "<p>If a highlight changes how you think about assembly stoichiometry, PEI ratios, "
+            "or assay background, open the matching calculator on "
+            "<a href=\"https://thepipettesolution.blogspot.com/\">The Pipettes Solution</a> "
+            "and pressure-test the numbers against your local SOP — never the other way around.</p>"
+        ),
+        "<h3>Safety and editorial note</h3>",
+        (
+            "<p>Educational communication only. This post does not provide operational instructions "
+            "for engineering, recovering, propagating, or enhancing pathogens. Viral-vector and "
+            "imaging workflows require local biosafety review.</p>"
+        ),
+        "<h3>References</h3>",
+        _render_references(papers),
+        "</article>",
+    ]
+    labels = tuple(dict.fromkeys([*SCIENCE_UPDATE_LABELS, *config.default_labels]))
+    return BlogDraft(title=title, html="\n".join(body), labels=labels)
+
+
 def _create_template_draft(
     topic: str,
     literature: list[LiteratureResult],
@@ -177,6 +258,9 @@ def _create_template_draft(
     title = f"{topic}: a molecular cloning and virology research update"
 
     body: list[str] = [
+        _post_style_block(),
+        '<article class="tps-post">',
+        '<p class="tps-brand">The Pipettes Solution</p>',
         f"<h2>{html.escape(title)}</h2>",
         "<p><em>Draft generated for editorial review before publishing.</em></p>",
         (
@@ -204,7 +288,7 @@ def _create_template_draft(
         ),
         "<h3>Key ideas for students</h3>",
         (
-            "<ul>"
+            "<ul class=\"tps-list\">"
             "<li><strong>Design logic:</strong> What question does the construct answer, and what part of the system is being measured?</li>"
             "<li><strong>Context:</strong> Is the work about a plasmid, reporter, viral vector, pseudotyped system, cell-free assay, or clinical sample?</li>"
             "<li><strong>Controls:</strong> Which comparison tells the reader that the observed signal is real and not a cloning or assay artifact?</li>"
@@ -230,7 +314,7 @@ def _create_template_draft(
             "result would show that the system failed?</p>"
         ),
         (
-            "<ul>"
+            "<ul class=\"tps-list\">"
             "<li>Define the biological question, construct architecture, and non-pathogenic model system before selecting a cloning workflow.</li>"
             "<li>List positive, negative, and sequence-confirmation controls in the article so readers can evaluate experimental logic.</li>"
             "<li>Explain what must be verified before interpreting downstream virology data: identity, orientation, integrity, expression, and assay background.</li>"
@@ -288,8 +372,159 @@ def _create_template_draft(
         ),
         "<h3>References</h3>",
         _render_references(literature),
+        "</article>",
     ]
     return BlogDraft(title=title, html="\n".join(body), labels=config.default_labels)
+
+
+def _post_style_block() -> str:
+    return """<style>
+.tps-post{
+  --tps-ink:#0b1220;
+  --tps-muted:#4a5a6a;
+  --tps-brand:#0b2f5c;
+  --tps-accent:#0f766e;
+  --tps-wash:#e8f1f4;
+  --tps-line:#c5d5de;
+  color:var(--tps-ink);
+  font-family:"Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  line-height:1.65;
+  max-width:42rem;
+}
+.tps-post .tps-brand{
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--tps-brand);
+}
+.tps-post h2,.tps-post h3{
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  color:var(--tps-brand);
+  letter-spacing:-.02em;
+  line-height:1.2;
+}
+.tps-post h2{font-size:1.85rem;margin:.2rem 0 .75rem}
+.tps-post h3{font-size:1.15rem;margin:1.6rem 0 .55rem}
+.tps-post .tps-dek{
+  font-size:1.05rem;
+  color:var(--tps-muted);
+  border-left:3px solid var(--tps-accent);
+  padding-left:.85rem;
+  margin:0 0 1.1rem;
+}
+.tps-post .tps-list{padding-left:1.1rem}
+.tps-post .tps-list li{margin:.45rem 0}
+.tps-highlight{
+  margin:1rem 0;
+  padding:1rem 1.1rem 1.05rem;
+  background:linear-gradient(160deg,var(--tps-wash),#f7fbfc 55%,#ffffff);
+  border-top:2px solid var(--tps-accent);
+}
+.tps-highlight h4{
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:1.02rem;
+  color:var(--tps-brand);
+}
+.tps-highlight .tps-meta{
+  margin:0 0 .55rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.82rem;
+  color:var(--tps-muted);
+}
+.tps-post figure{margin:1.1rem 0}
+.tps-post figcaption{
+  margin-top:.4rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.82rem;
+  color:var(--tps-muted);
+}
+.tps-post a{color:var(--tps-accent)}
+@media (prefers-reduced-motion:no-preference){
+  .tps-science-update .tps-dek{animation:tps-rise .7s ease both}
+  .tps-highlight{animation:tps-rise .55s ease both}
+}
+@keyframes tps-rise{
+  from{opacity:.35;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+</style>"""
+
+
+def _render_science_highlights(literature: list[LiteratureResult]) -> list[str]:
+    if not literature:
+        return [
+            "<p>No Europe PMC hits were retrieved for this topic. Add manual references before publishing.</p>"
+        ]
+
+    blocks: list[str] = []
+    angles = (
+        "Assembly angle",
+        "Delivery angle",
+        "Readout angle",
+        "Verification angle",
+        "Teaching angle",
+    )
+    for index, paper in enumerate(literature):
+        abstract = paper.abstract or "Abstract unavailable from Europe PMC."
+        summary = _first_sentence(abstract)
+        doi_html = (
+            f' · <a href="https://doi.org/{html.escape(paper.doi, quote=True)}">'
+            f"doi:{html.escape(paper.doi)}</a>"
+            if paper.doi
+            else f' · <a href="{html.escape(paper.url, quote=True)}">source</a>'
+        )
+        blocks.append(
+            "<section class=\"tps-highlight\">"
+            f"<h4>{html.escape(angles[index % len(angles)])}: {html.escape(paper.title)}</h4>"
+            f"<p class=\"tps-meta\">{html.escape(paper.authors or 'Authors listed in source')} "
+            f"({html.escape(paper.year or 'n.d.')}) · {html.escape(paper.journal or 'Journal n/a')}"
+            f"{doi_html}</p>"
+            f"<p>{html.escape(summary)}</p>"
+            "<p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was "
+            "built or delivered, which control made the claim believable, and which local SOP "
+            "would you need before trying anything similar.</p>"
+            "</section>"
+        )
+    return blocks
+
+
+def _render_science_banner(topic: str) -> list[str]:
+    label = _svg_text(topic, 48)
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="960" height="280" viewBox="0 0 960 280" role="img" aria-labelledby="tpsTitle tpsDesc">
+  <title id="tpsTitle">The Pipettes Solution science update</title>
+  <desc id="tpsDesc">Brand banner introducing a literature roundup for {html.escape(label)}.</desc>
+  <defs>
+    <linearGradient id="tpsWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b2f5c"/>
+      <stop offset="55%" stop-color="#134e6f"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+    <pattern id="tpsGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="960" height="280" fill="url(#tpsWash)"/>
+  <rect width="960" height="280" fill="url(#tpsGrid)"/>
+  <circle cx="820" cy="70" r="90" fill="rgba(255,255,255,.06)"/>
+  <circle cx="880" cy="210" r="60" fill="rgba(15,118,110,.35)"/>
+  <text x="48" y="78" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#9fd5cf">THE PIPETTES SOLUTION</text>
+  <text x="48" y="128" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="34" font-weight="700" fill="#f4faf9">Bench Notes</text>
+  <text x="48" y="168" font-family="Source Serif 4, Georgia, serif" font-size="20" fill="#d7ebe8">{html.escape(label)}</text>
+  <text x="48" y="220" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="15" fill="#b7d8d3">Cited highlights · student-readable · draft-first</text>
+</svg>"""
+    return [
+        (
+            "<figure>"
+            f'<img src="data:image/svg+xml;utf8,{quote(svg)}" alt="The Pipettes Solution science update banner" '
+            'style="max-width:100%;height:auto;" />'
+            "<figcaption>Brand banner for this science-update draft.</figcaption>"
+            "</figure>"
+        )
+    ]
 
 
 def _render_figures(images: Iterable[ImageResult]) -> list[str]:
@@ -389,10 +624,10 @@ def _render_methods_diagram(topic: str) -> list[str]:
   <text x="365" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0d47a1">Model</text>
   <text x="365" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#0d47a1">Choose safer system</text>
   <text x="365" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#0d47a1">for learning</text>
-  <rect x="490" y="112" width="170" height="90" rx="16" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2" />
-  <text x="575" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#4a148c">Controls</text>
-  <text x="575" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#4a148c">Positive, negative,</text>
-  <text x="575" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#4a148c">verification</text>
+  <rect x="490" y="112" width="170" height="90" rx="16" fill="#e7f1ef" stroke="#0f766e" stroke-width="2" />
+  <text x="575" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0b2f5c">Controls</text>
+  <text x="575" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#0b2f5c">Positive, negative,</text>
+  <text x="575" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#0b2f5c">verification</text>
   <rect x="700" y="112" width="170" height="90" rx="16" fill="#fff3e0" stroke="#ef6c00" stroke-width="2" />
   <text x="785" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#7b3f00">SOP review</text>
   <text x="785" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#7b3f00">Use approved local</text>
@@ -414,20 +649,20 @@ def _render_methods_diagram(topic: str) -> list[str]:
 
 def _render_results_diagram() -> list[str]:
     svg = """<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img">
-  <rect width="920" height="360" rx="24" fill="#f9f7ff" />
-  <text x="460" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#28204a">How to interpret results</text>
-  <text x="460" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#28204a">A student-friendly triangle for deciding whether the story is reliable</text>
-  <polygon points="460,105 220,285 700,285" fill="#ffffff" stroke="#6a5acd" stroke-width="3" />
-  <circle cx="460" cy="128" r="48" fill="#e8e1ff" stroke="#6a5acd" stroke-width="2" />
-  <text x="460" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#28204a">Molecular</text>
-  <text x="460" y="144" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#28204a">evidence</text>
-  <circle cx="270" cy="265" r="48" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
-  <text x="270" y="261" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#014d75">Control</text>
-  <text x="270" y="281" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#014d75">logic</text>
-  <circle cx="650" cy="265" r="48" fill="#e8f5e9" stroke="#43a047" stroke-width="2" />
-  <text x="650" y="261" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1b5e20">Biological</text>
-  <text x="650" y="281" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1b5e20">readout</text>
-  <text x="460" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#28204a">Trust the conclusion only when all three corners agree.</text>
+  <rect width="920" height="360" rx="24" fill="#eef5f4" />
+  <text x="460" y="44" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="23" font-weight="700" fill="#0b2f5c">How to interpret results</text>
+  <text x="460" y="72" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="14" fill="#0b2f5c">A student-friendly triangle for deciding whether the story is reliable</text>
+  <polygon points="460,105 220,285 700,285" fill="#ffffff" stroke="#0f766e" stroke-width="3" />
+  <circle cx="460" cy="128" r="48" fill="#d9ebe8" stroke="#0f766e" stroke-width="2" />
+  <text x="460" y="124" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#0b2f5c">Molecular</text>
+  <text x="460" y="144" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#0b2f5c">evidence</text>
+  <circle cx="270" cy="265" r="48" fill="#dce8f2" stroke="#0b2f5c" stroke-width="2" />
+  <text x="270" y="261" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#0b2f5c">Control</text>
+  <text x="270" y="281" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#0b2f5c">logic</text>
+  <circle cx="650" cy="265" r="48" fill="#e5f2ea" stroke="#2f6b4f" stroke-width="2" />
+  <text x="650" y="261" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#1f4d38">Biological</text>
+  <text x="650" y="281" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#1f4d38">readout</text>
+  <text x="460" y="246" text-anchor="middle" font-family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif" font-size="15" fill="#0b2f5c">Trust the conclusion only when all three corners agree.</text>
 </svg>"""
     return [
         (

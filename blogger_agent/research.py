@@ -3,6 +3,7 @@ from __future__ import annotations
 import html
 import re
 from dataclasses import dataclass
+from html import unescape
 from typing import Any
 from urllib.parse import urlencode
 
@@ -278,7 +279,10 @@ def _journal_title(item: dict[str, Any]) -> str:
 def _clean_text(value: Any) -> str:
     if not value:
         return ""
-    text = _strip_tags(str(value))
+    # Europe PMC often returns entity-encoded markup such as &lt;i&gt;title&lt;/i&gt;.
+    text = unescape(str(value))
+    text = _strip_tags(text)
+    text = unescape(text)
     return re.sub(r"\s+", " ", text).strip()
 
 

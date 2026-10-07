@@ -91,6 +91,45 @@ def test_template_draft_always_includes_generated_visual(tmp_path: Path) -> None
     assert "Additional open-license images" not in draft.html
 
 
+def test_science_update_draft_is_brand_forward_and_cited(tmp_path: Path) -> None:
+    literature = [
+        LiteratureResult(
+            title="CloneFast plasmid construction guide",
+            authors="Example A, Example B",
+            year="2025",
+            journal="STAR protocols",
+            doi="10.1016/j.xpro.2025.104025",
+            pmid="1",
+            abstract="A streamlined plasmid construction workflow helps teaching labs complete assemblies in a few days.",
+            url="https://doi.org/10.1016/j.xpro.2025.104025",
+        ),
+        LiteratureResult(
+            title="Optimized PEI transfection in mammalian cells",
+            authors="Example C",
+            year="2025",
+            journal="Frontiers in Bioengineering",
+            doi="10.3389/fbioe.2025.1661193",
+            pmid="2",
+            abstract="Adjusting PEI-to-DNA ratios and filler DNA can improve transient expression economics.",
+            url="https://doi.org/10.3389/fbioe.2025.1661193",
+        ),
+    ]
+
+    draft = create_blog_draft(
+        "Bench Notes: plasmid assembly and delivery",
+        literature,
+        [],
+        _config(tmp_path),
+        science_update=True,
+    )
+
+    assert "The Pipettes Solution" in draft.html
+    assert "tps-science-update" in draft.html
+    assert "doi:10.1016/j.xpro.2025.104025" in draft.html
+    assert "science update" in draft.labels
+    assert "Visual explanation" not in draft.html
+
+
 def test_deep_template_includes_additional_papers(tmp_path: Path) -> None:
     literature = [
         LiteratureResult(

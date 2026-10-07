@@ -25,6 +25,11 @@ def main(argv: list[str] | None = None) -> int:
     draft_parser.add_argument("--topic", required=True, help="Title or topic to research.")
     draft_parser.add_argument("--words", default=None, help="Target length, for LLM mode.")
     draft_parser.add_argument("--deep", action="store_true", help="Use deeper research and a longer teaching structure.")
+    draft_parser.add_argument(
+        "--science-update",
+        action="store_true",
+        help="Write a cited science-highlights roundup for The Pipettes Solution.",
+    )
     draft_parser.add_argument("--gemini-image-count", type=int, default=None, help="Override Gemini-generated image count.")
     draft_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
     draft_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
@@ -38,6 +43,11 @@ def main(argv: list[str] | None = None) -> int:
     )
     next_parser.add_argument("--words", default=None, help="Target length, for LLM mode.")
     next_parser.add_argument("--deep", action="store_true", help="Use deeper research and a longer teaching structure.")
+    next_parser.add_argument(
+        "--science-update",
+        action="store_true",
+        help="Write a cited science-highlights roundup for The Pipettes Solution.",
+    )
     next_parser.add_argument("--gemini-image-count", type=int, default=None, help="Override Gemini-generated image count.")
     next_parser.add_argument("--upload", action="store_true", help="Upload to Blogger as a draft.")
     next_parser.add_argument("--email", action="store_true", help="Email to Blogger's post-by-email draft address.")
@@ -67,6 +77,7 @@ def main(argv: list[str] | None = None) -> int:
             topic=args.topic,
             words=args.words,
             deep=args.deep,
+            science_update=args.science_update,
             gemini_image_count=args.gemini_image_count,
             upload=args.upload,
             email_upload=args.email,
@@ -83,6 +94,7 @@ def main(argv: list[str] | None = None) -> int:
             topic=topic,
             words=args.words,
             deep=args.deep,
+            science_update=args.science_update,
             gemini_image_count=args.gemini_image_count,
             upload=args.upload,
             email_upload=args.email,
@@ -98,6 +110,7 @@ def _draft_topic(
     topic: str,
     words: str | None,
     deep: bool,
+    science_update: bool,
     gemini_image_count: int | None,
     upload: bool,
     email_upload: bool,
@@ -109,12 +122,16 @@ def _draft_topic(
         return 2
 
     print(f"Researching: {topic}")
-    literature = search_literature(topic, max_results=15 if deep else 7)
+    if science_update:
+        literature = _research_science_update(topic)
+    else:
+        literature = search_literature(topic, max_results=15 if deep else 7)
+
     images = [
         *generate_gemini_images(topic, config, count_override=gemini_image_count),
         *search_images(topic, max_results=6 if deep else 4),
     ]
-    target_words = words or ("1800-2500" if deep else "900-1200")
+    target_words = words or ("1800-2500" if deep else ("700-1000" if science_update else "900-1200"))
     draft = create_blog_draft(
         topic,
         literature,
@@ -122,6 +139,7 @@ def _draft_topic(
         config,
         requested_words=target_words,
         deep_research=deep,
+        science_update=science_update,
     )
 
     if save:
@@ -140,6 +158,36 @@ def _draft_topic(
         print("Upload skipped. Add --upload for Blogger API or --email for Blogger post-by-email.")
 
     return 0
+
+
+def _research_science_update(topic: str):
+    """Prefer theme-specific Europe PMC queries so roundups stay on-topic."""
+
+    theme_queries = (
+        "CloneFast plasmid assembly phosphorothioate sticky ends",
+        "PEI transfection plasmid DNA mammalian cells Expi293 OR ARPE",
+        "immunofluorescence fluorescent nanobody labeling microscopy",
+        "Golden Gate cloning plasmid assembly sequence verification",
+        topic,
+    )
+    literature = []
+    for query in theme_queries:
+        for paper in search_literature(query, max_results=3):
+            if paper.doi and any(existing.doi == paper.doi for existing in literature):
+                continue
+            if any(existing.title == paper.title for existing in literature):
+                continue
+            # Prefer recent papers for a newsy roundup voice.
+            try:
+                year = int(paper.year) if paper.year and paper.year.isdigit() else 0
+            except ValueError:
+                year = 0
+            if year and year < 2022:
+                continue
+            literature.append(paper)
+        if len(literature) >= 5:
+            break
+    return literature[:5]
 
 
 def _pop_next_topic(path: Path) -> str | None:
