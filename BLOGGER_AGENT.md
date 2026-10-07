@@ -90,6 +90,13 @@ python3 -m blogger_agent.cli science-next
 - Theme ids live in `data/science-updates.txt` (seeded from `data/science-updates.txt.example`).
 - Paste-ready HTML lands in `content/science-updates/` with an `INDEX.md` manifest.
 - Copy-paste agent prompt: `content/science-updates/PROMPT.md`.
+- Upload already-generated HTML as **Blogger drafts only**:
+
+```bash
+./scripts/upload-science-drafts.sh
+# or: python3 -m blogger_agent.cli upload-science-updates
+# email path: ./scripts/upload-science-drafts.sh --email
+```
 
 Science-update mode:
 

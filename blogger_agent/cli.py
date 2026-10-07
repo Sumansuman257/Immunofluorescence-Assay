@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -16,7 +17,7 @@ from blogger_agent.science_queue import (
     resolve_theme,
     rotate_next_theme_id,
 )
-from blogger_agent.writer import create_blog_draft, save_draft
+from blogger_agent.writer import SCIENCE_UPDATE_LABELS, BlogDraft, create_blog_draft, save_draft
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -86,6 +87,27 @@ def main(argv: list[str] | None = None) -> int:
         help="Optional theme id or Bench Notes title (skips queue rotation when set).",
     )
 
+    upload_parser = subparsers.add_parser(
+        "upload-science-updates",
+        help="Upload existing content/science-updates/*.html to Blogger as drafts (isDraft=True).",
+    )
+    upload_parser.add_argument(
+        "--dir",
+        default="content/science-updates",
+        help="Directory of paste-ready HTML drafts.",
+    )
+    upload_parser.add_argument(
+        "--email",
+        action="store_true",
+        help="Send via Blogger post-by-email instead of the API.",
+    )
+    upload_parser.add_argument(
+        "--file",
+        action="append",
+        default=None,
+        help="Optional specific HTML file (repeatable). Defaults to all dated Bench Notes HTML.",
+    )
+
     args = parser.parse_args(argv)
     config = load_config(args.env)
 
@@ -137,6 +159,14 @@ def main(argv: list[str] | None = None) -> int:
             upload=args.upload,
             email_upload=args.email,
             theme_override=args.theme,
+            config=config,
+        )
+
+    if args.command == "upload-science-updates":
+        return _upload_science_updates(
+            directory=Path(args.dir),
+            files=args.file,
+            email_upload=args.email,
             config=config,
         )
 
@@ -210,6 +240,111 @@ def _draft_topic(
         print("Upload skipped. Add --upload for Blogger API or --email for Blogger post-by-email.")
 
     return 0
+
+
+def _upload_science_updates(
+    directory: Path,
+    files: list[str] | None,
+    email_upload: bool,
+    config,
+) -> int:
+    """Push existing paste-ready HTML into Blogger as unpublished drafts only."""
+
+    paths = _science_html_paths(directory, files)
+    if not paths:
+        print(f"No Bench Notes HTML found in {directory}.")
+        return 1
+
+    print(
+        f"Uploading {len(paths)} file(s) to {config.blog_url} as Blogger drafts "
+        f"(isDraft=True / post-by-email draft). Never publishes live."
+    )
+
+    results = []
+    for path in paths:
+        draft = _blog_draft_from_html(path, config)
+        print(f"- {path.name} → {draft.title}")
+        try:
+            if email_upload:
+                result = send_blogger_email_draft(config, draft)
+                results.append(
+                    {
+                        "file": str(path),
+                        "title": draft.title,
+                        "method": "email",
+                        "to": result.to_address,
+                        "status": "sent as email draft (confirm in Blogger Drafts)",
+                    }
+                )
+            else:
+                result = create_blogger_draft(config, draft)
+                results.append(
+                    {
+                        "file": str(path),
+                        "title": draft.title,
+                        "method": "api",
+                        "id": result.get("id"),
+                        "url": result.get("url"),
+                        "status": "draft" if result.get("status") == "DRAFT" or result.get("id") else "uploaded",
+                        "blogger_status": result.get("status"),
+                    }
+                )
+        except FileNotFoundError as exc:
+            print("\nBLOCKED: Blogger credentials missing.")
+            print(str(exc))
+            print(_credential_help())
+            return 3
+        except Exception as exc:  # noqa: BLE001 - surface setup failures clearly
+            print(f"\nBLOCKED while uploading {path.name}: {exc}")
+            print(_credential_help())
+            return 3
+
+    print(json.dumps(results, indent=2))
+    print("\nConfirm in Blogger → Posts → Drafts. These should not appear as live posts.")
+    return 0
+
+
+def _science_html_paths(directory: Path, files: list[str] | None) -> list[Path]:
+    if files:
+        return [Path(item) for item in files]
+    if not directory.exists():
+        return []
+    return sorted(
+        path
+        for path in directory.glob("*.html")
+        if path.name.startswith("20") and "bench-notes" in path.name
+    )
+
+
+def _blog_draft_from_html(path: Path, config) -> BlogDraft:
+    html = path.read_text(encoding="utf-8")
+    match = re.search(r"<h2[^>]*>(.*?)</h2>", html, flags=re.IGNORECASE | re.DOTALL)
+    if match:
+        title = re.sub(r"<[^>]+>", "", match.group(1)).strip()
+    else:
+        title = path.stem.replace("-", " ").title()
+    labels = tuple(dict.fromkeys([*SCIENCE_UPDATE_LABELS, *config.default_labels]))
+    return BlogDraft(title=title, html=html, labels=labels)
+
+
+def _credential_help() -> str:
+    return """
+Shortest owner steps to create Blogger drafts (not live posts):
+
+Option A — Blogger API (recommended)
+1. Google Cloud Console → enable Blogger API → create OAuth Desktop client.
+2. Download JSON as client_secret.json in the repo root.
+3. On a machine with a browser: pipette-blogger-agent auth
+4. Copy token.json (and client_secret.json) into this environment, or run locally:
+   python3 -m blogger_agent.cli upload-science-updates
+
+Option B — Post by email (no Google Cloud)
+1. Blogger → Settings → Email → Post using email → create address → save as Drafts.
+2. Put in .env: BLOGGER_EMAIL_TO, SMTP_USERNAME, SMTP_PASSWORD (Gmail app password), SMTP_FROM.
+3. python3 -m blogger_agent.cli upload-science-updates --email
+
+Paste-ready HTML is already in content/science-updates/ if you prefer manual paste into Blogger Drafts.
+""".strip()
 
 
 def _science_next(

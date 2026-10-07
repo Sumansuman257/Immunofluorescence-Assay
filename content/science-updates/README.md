@@ -28,11 +28,20 @@ See [INDEX.md](./INDEX.md) for the full list. Seed draft:
 4. Labels: `science update`, `molecular cloning`, `lab methods`, `research highlights`.
 5. Review citations/abstracts, then **Publish** (or save as draft first).
 
-Or, if OAuth / post-by-email is already configured locally:
+### Upload existing HTML as Blogger drafts (not live)
+
+Once credentials exist locally:
 
 ```bash
-./scripts/produce-science-update.sh --upload
-# or --email
+./scripts/upload-science-drafts.sh          # Blogger API, isDraft=True
+./scripts/upload-science-drafts.sh --email  # post-by-email → Drafts
+# or
+python3 -m blogger_agent.cli upload-science-updates
 ```
 
-Do not invent Blogspot credentials in cloud agents.
+Setup (pick one):
+
+1. **API:** `client_secret.json` + `pipette-blogger-agent auth` → `token.json`
+2. **Email:** Blogger Settings → Email → Post using email (save as drafts) + `.env` SMTP fields
+
+Do not invent Blogspot credentials in cloud agents. Manual paste into Blogger → New post → save as draft also works.
