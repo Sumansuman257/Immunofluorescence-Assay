@@ -1,0 +1,107 @@
+<style>
+.tps-post{
+  --tps-ink:#0b1220;
+  --tps-muted:#4a5a6a;
+  --tps-brand:#0b2f5c;
+  --tps-accent:#0f766e;
+  --tps-wash:#e8f1f4;
+  --tps-line:#c5d5de;
+  color:var(--tps-ink);
+  font-family:"Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  line-height:1.65;
+  max-width:42rem;
+  text-decoration:none;
+}
+/* Neutralize accidental Blogger Compose s/strike/del wrappers (do not put angle-bracket tags in CSS comments; HTML parsers can open them) */
+.tps-post s,.tps-post strike,.tps-post del{text-decoration:none!important}
+.tps-post .tps-brand{
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--tps-brand);
+}
+.tps-post h2,.tps-post h3{
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  color:var(--tps-brand);
+  letter-spacing:-.02em;
+  line-height:1.2;
+}
+.tps-post h2{font-size:1.85rem;margin:.2rem 0 .75rem}
+.tps-post h3{font-size:1.15rem;margin:1.6rem 0 .55rem}
+.tps-post .tps-dek{
+  font-size:1.05rem;
+  color:var(--tps-muted);
+  border-left:3px solid var(--tps-accent);
+  padding-left:.85rem;
+  margin:0 0 1.1rem;
+}
+.tps-post .tps-list{padding-left:1.1rem}
+.tps-post .tps-list li{margin:.45rem 0}
+.tps-highlight{
+  margin:1rem 0;
+  padding:1rem 1.1rem 1.05rem;
+  background:linear-gradient(160deg,var(--tps-wash),#f7fbfc 55%,#ffffff);
+  border-top:2px solid var(--tps-accent);
+}
+.tps-highlight h4{
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:1.02rem;
+  color:var(--tps-brand);
+}
+.tps-highlight .tps-meta{
+  margin:0 0 .55rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.82rem;
+  color:var(--tps-muted);
+}
+.tps-post figure{margin:1.1rem 0}
+.tps-post figcaption{
+  margin-top:.4rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.82rem;
+  color:var(--tps-muted);
+}
+.tps-post a{color:var(--tps-accent)}
+@media (prefers-reduced-motion:no-preference){
+  .tps-science-update .tps-dek{animation:tps-rise .7s ease both}
+  .tps-highlight{animation:tps-rise .55s ease both}
+}
+@keyframes tps-rise{
+  from{opacity:.35;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+</style>
+<article class="tps-post tps-science-update">
+<p class="tps-brand">The Pipettes Solution</p>
+<h2>Bench Notes: sequence verification before you trust a clone</h2>
+<p class="tps-dek">Fresh literature highlights for molecular cloning, delivery, and fluorescent readout — written for students and wet-lab planners who want the why before the recipe.</p>
+<p><em>Editorial draft:</em> citations were pulled from Europe PMC. Review abstracts, licenses, and biosafety framing before publishing.</p>
+<figure><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22960%22%20height%3D%22280%22%20viewBox%3D%220%200%20960%20280%22%20role%3D%22img%22%20aria-labelledby%3D%22tpsTitle%20tpsDesc%22%3E%0A%20%20%3Ctitle%20id%3D%22tpsTitle%22%3EThe%20Pipettes%20Solution%20science%20update%3C/title%3E%0A%20%20%3Cdesc%20id%3D%22tpsDesc%22%3EBrand%20banner%20introducing%20a%20literature%20roundup%20for%20Bench%20Notes%3A%20sequence%20verification%20before%20you....%3C/desc%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22tpsWash%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230b2f5c%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%23134e6f%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f766e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3Cpattern%20id%3D%22tpsGrid%22%20width%3D%2224%22%20height%3D%2224%22%20patternUnits%3D%22userSpaceOnUse%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M24%200H0V24%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C255%2C255%2C.08%29%22%20stroke-width%3D%221%22/%3E%0A%20%20%20%20%3C/pattern%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%22960%22%20height%3D%22280%22%20fill%3D%22url%28%23tpsWash%29%22/%3E%0A%20%20%3Crect%20width%3D%22960%22%20height%3D%22280%22%20fill%3D%22url%28%23tpsGrid%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22820%22%20cy%3D%2270%22%20r%3D%2290%22%20fill%3D%22rgba%28255%2C255%2C255%2C.06%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22880%22%20cy%3D%22210%22%20r%3D%2260%22%20fill%3D%22rgba%2815%2C118%2C110%2C.35%29%22/%3E%0A%20%20%3Ctext%20x%3D%2248%22%20y%3D%2278%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2218%22%20font-weight%3D%22700%22%20letter-spacing%3D%224%22%20fill%3D%22%239fd5cf%22%3ETHE%20PIPETTES%20SOLUTION%3C/text%3E%0A%20%20%3Ctext%20x%3D%2248%22%20y%3D%22128%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22700%22%20fill%3D%22%23f4faf9%22%3EBench%20Notes%3C/text%3E%0A%20%20%3Ctext%20x%3D%2248%22%20y%3D%22168%22%20font-family%3D%22Source%20Serif%204%2C%20Georgia%2C%20serif%22%20font-size%3D%2220%22%20fill%3D%22%23d7ebe8%22%3EBench%20Notes%3A%20sequence%20verification%20before%20you...%3C/text%3E%0A%20%20%3Ctext%20x%3D%2248%22%20y%3D%22220%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2215%22%20fill%3D%22%23b7d8d3%22%3ECited%20highlights%20%C2%B7%20student-readable%20%C2%B7%20draft-first%3C/text%3E%0A%3C/svg%3E" alt="The Pipettes Solution science update banner" style="max-width:100%;height:auto;" /><figcaption>Brand banner for this science-update draft.</figcaption></figure>
+<h3>Additional open-license images</h3>
+<figure><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Golden_Gate_assembly.svg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=original" alt="Golden Gate assembly.svg" style="max-width:100%;height:auto;" /><figcaption>Golden Gate assembly.svg. Credit: Rob Hurt, <a href="https://commons.wikimedia.org/wiki/File:Golden_Gate_assembly.svg">CC BY-SA 4.0</a>.</figcaption></figure>
+<figure><img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Hepatitis_B_virus_v2.png?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=original" alt="Hepatitis B virus v2.png" style="max-width:100%;height:auto;" /><figcaption>Hepatitis B virus v2.png. Credit: Created by en:User:GrahamColm. Original uploader was TimVickers at en.wikipedia, <a href="https://commons.wikimedia.org/wiki/File:Hepatitis_B_virus_v2.png">Public domain</a>.</figcaption></figure>
+<h3>Why this roundup</h3>
+<p>The Pipettes Solution is strongest when calculators and protocols sit next to living science. This update gathers recent papers that sharpen three everyday bench questions: How do we assemble DNA cleanly? How do we get DNA into cells without treating transfection as magic? How do we trust a fluorescent signal once the construct is in place?</p>
+<h3>Highlights from the literature</h3>
+<section class="tps-highlight"><h4>Assembly angle: Long-Read Plasmid Sequencing and Assembly Using Nanopore Sequencing-Based Workflows.</h4><p class="tps-meta">Cortés-Cortés G, Warner C, Ellenbach J, Katz S, Kim J, Camps M. (2026) · Journal of visualized experiments : JoVE · <a href="https://doi.org/10.3791/70202">doi:10.3791/70202</a></p><p>The present study describes a workflow for nanopore sequencing designed to maximize plasmid DNA yield and sequencing accuracy.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<section class="tps-highlight"><h4>Delivery angle: AistSeq: An in-house easy-to-purify Tn5-based plasmid sequencing platform using a compact benchtop sequencer.</h4><p class="tps-meta">Suzuki H, Romsuk J, Nakamura A, Moriwaki K, Yamanishi Y, Sugano SS. (2025) · Frontiers in bioengineering and biotechnology · <a href="https://doi.org/10.3389/fbioe.2025.1673510">doi:10.3389/fbioe.2025.1673510</a></p><p>Sequence verification of plasmids is a fundamental process in synthetic biology. For plasmid sequence verification using next-generation sequencing (NGS) library preparation, Tn5 transposase is widely used.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<section class="tps-highlight"><h4>Readout angle: AistSeq: An In-House Tn5-Based Plasmid Sequencing Platform Using A Compact Benchtop Sequencer</h4><p class="tps-meta">Suzuki H, Romsuk J, Nakamura A, Moriwaki K, Sugano SS. (2024) · Journal n/a · <a href="https://doi.org/10.1101/2024.11.04.618112">doi:10.1101/2024.11.04.618112</a></p><p>Sequence verification of plasmids is a fundamental process in synthetic biology. For plasmid sequence verification using next-generation sequencing (NGS) library preparation, Tn5 transposase is widely used.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<section class="tps-highlight"><h4>Verification angle: Easy reference-guided assembly of nanopore whole plasmid sequencing datasets.</h4><p class="tps-meta">Sharma V, Jiang N, Nagashima Y, Koiwa H. (2025) · Analytical biochemistry · <a href="https://doi.org/10.1016/j.ab.2025.115970">doi:10.1016/j.ab.2025.115970</a></p><p>Whole plasmid sequencing (WPS) using Nanopore long read sequencing has emerged as a cost-effective alternative for dideoxy sequencing methods.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<section class="tps-highlight"><h4>Teaching angle: Make it so: Rapid and affordable plasmid sequencing on ONT platforms with PICARD-seq</h4><p class="tps-meta">Wolters R, Debler JW, Go G, Bond A, Ly F, Ryall C, Orrock J, Valle NT, Hodge B, Kwok van der Giezen FM, Gong P, Jadhav H, Bagherian M, Thevarajoo Z, Khan A, Herring G, Zhu JY, Swain T, Blinco J, Chowdhury F, Pflueger C, Roychoudhry S, Floyd A, Lister R, Fox A, Lloyd JPB. (2026) · Journal n/a · <a href="https://doi.org/10.64898/2026.09.19.752805">doi:10.64898/2026.09.19.752805</a></p><p>Plasmid construction underpins molecular biology and synthetic biology, yet validation is often limited to the inserted fragment rather than the whole plasmid, and around a third of laboratory-made plasmids carry sequence errors that can affect function.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<h3>What to steal for your own reading notes</h3>
+<ul class="tps-list"><li><strong>Start with the claim map.</strong> Before methods denseness, ask what molecule, delivery context, and readout the paper is actually defending.</li><li><strong>Hunt the controls.</strong> Empty vector, filler DNA, no-primary antibody, and sequence confirmation are not footnotes — they are the difference between a story and a result.</li><li><strong>Separate teaching logic from SOP detail.</strong> Use papers to learn decision points; execute only from institution-approved protocols.</li></ul>
+<h3>Bridge back to the bench tools</h3>
+<p>If a highlight changes how you think about assembly stoichiometry, PEI ratios, or assay background, open the matching calculator on <a href="https://thepipettesolution.blogspot.com/">The Pipettes Solution</a> and pressure-test the numbers against your local SOP — never the other way around.</p>
+<h3>Safety and editorial note</h3>
+<p>Educational communication only. This post does not provide operational instructions for engineering, recovering, propagating, or enhancing pathogens. Viral-vector and imaging workflows require local biosafety review.</p>
+<h3>References</h3>
+<ol><li>Cortés-Cortés G, Warner C, Ellenbach J, Katz S, Kim J, Camps M. (2026). Long-Read Plasmid Sequencing and Assembly Using Nanopore Sequencing-Based Workflows. Journal of visualized experiments : JoVE. https://doi.org/10.3791/70202</li>
+<li>Suzuki H, Romsuk J, Nakamura A, Moriwaki K, Yamanishi Y, Sugano SS. (2025). AistSeq: An in-house easy-to-purify Tn5-based plasmid sequencing platform using a compact benchtop sequencer. Frontiers in bioengineering and biotechnology. https://doi.org/10.3389/fbioe.2025.1673510</li>
+<li>Suzuki H, Romsuk J, Nakamura A, Moriwaki K, Sugano SS. (2024). AistSeq: An In-House Tn5-Based Plasmid Sequencing Platform Using A Compact Benchtop Sequencer. Unknown source. https://doi.org/10.1101/2024.11.04.618112</li>
+<li>Sharma V, Jiang N, Nagashima Y, Koiwa H. (2025). Easy reference-guided assembly of nanopore whole plasmid sequencing datasets. Analytical biochemistry. https://doi.org/10.1016/j.ab.2025.115970</li>
+<li>Wolters R, Debler JW, Go G, Bond A, Ly F, Ryall C, Orrock J, Valle NT, Hodge B, Kwok van der Giezen FM, Gong P, Jadhav H, Bagherian M, Thevarajoo Z, Khan A, Herring G, Zhu JY, Swain T, Blinco J, Chowdhury F, Pflueger C, Roychoudhry S, Floyd A, Lister R, Fox A, Lloyd JPB. (2026). Make it so: Rapid and affordable plasmid sequencing on ONT platforms with PICARD-seq. Unknown source. https://doi.org/10.64898/2026.09.19.752805</li></ol>
+</article>

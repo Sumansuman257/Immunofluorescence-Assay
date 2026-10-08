@@ -1,0 +1,11 @@
+# Rotating science-update queue for The Pipettes Solution.
+# Run: pipette-blogger-agent science-next
+# The first non-comment theme id is used, then moved to the bottom (never empties).
+#
+# Theme ids are defined in blogger_agent/science_queue.py
+sequencing-verification
+transfection-expression
+fluorescence-imaging
+seamless-assembly
+miniprep-and-qc
+assembly-delivery-readout
