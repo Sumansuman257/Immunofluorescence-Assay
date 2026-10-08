@@ -10,7 +10,10 @@
   font-family:"Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   line-height:1.65;
   max-width:42rem;
+  text-decoration:none;
 }
+/* Neutralize accidental Blogger Compose s/strike/del wrappers (do not put angle-bracket tags in CSS comments; HTML parsers can open them) */
+.tps-post s,.tps-post strike,.tps-post del{text-decoration:none!important}
 .tps-post .tps-brand{
   margin:0 0 .35rem;
   font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;

@@ -35,3 +35,7 @@ When the user says “keep updating” / “add this again,” **run the next sc
 - New file(s) in `content/science-updates/`
 - PR updated
 - Short note: what was added, how to re-run, publish blocker if any
+
+## Blogger paste caution
+
+Paste into Blogger **HTML** view only (not Compose). Do not put literal HTML tags like angle-bracket s/strike/del inside CSS comments — HTML parsers can treat them as real elements and strike through the post. The shared `.tps-post` CSS already sets `text-decoration:none` and neutralizes accidental strike wrappers.
