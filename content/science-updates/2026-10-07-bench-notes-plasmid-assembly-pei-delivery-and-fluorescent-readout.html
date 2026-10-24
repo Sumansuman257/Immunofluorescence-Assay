@@ -1,0 +1,107 @@
+<style>
+.tps-post{
+  --tps-ink:#0b1220;
+  --tps-muted:#4a5a6a;
+  --tps-brand:#0b2f5c;
+  --tps-accent:#0f766e;
+  --tps-wash:#e8f1f4;
+  --tps-line:#c5d5de;
+  color:var(--tps-ink);
+  font-family:"Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  line-height:1.65;
+  max-width:42rem;
+  text-decoration:none;
+}
+/* Neutralize accidental Blogger Compose s/strike/del wrappers (do not put angle-bracket tags in CSS comments; HTML parsers can open them) */
+.tps-post s,.tps-post strike,.tps-post del{text-decoration:none!important}
+.tps-post .tps-brand{
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--tps-brand);
+}
+.tps-post h2,.tps-post h3{
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  color:var(--tps-brand);
+  letter-spacing:-.02em;
+  line-height:1.2;
+}
+.tps-post h2{font-size:1.85rem;margin:.2rem 0 .75rem}
+.tps-post h3{font-size:1.15rem;margin:1.6rem 0 .55rem}
+.tps-post .tps-dek{
+  font-size:1.05rem;
+  color:var(--tps-muted);
+  border-left:3px solid var(--tps-accent);
+  padding-left:.85rem;
+  margin:0 0 1.1rem;
+}
+.tps-post .tps-list{padding-left:1.1rem}
+.tps-post .tps-list li{margin:.45rem 0}
+.tps-highlight{
+  margin:1rem 0;
+  padding:1rem 1.1rem 1.05rem;
+  background:linear-gradient(160deg,var(--tps-wash),#f7fbfc 55%,#ffffff);
+  border-top:2px solid var(--tps-accent);
+}
+.tps-highlight h4{
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:1.02rem;
+  color:var(--tps-brand);
+}
+.tps-highlight .tps-meta{
+  margin:0 0 .55rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.82rem;
+  color:var(--tps-muted);
+}
+.tps-post figure{margin:1.1rem 0}
+.tps-post figcaption{
+  margin-top:.4rem;
+  font-family:"IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-size:.82rem;
+  color:var(--tps-muted);
+}
+.tps-post a{color:var(--tps-accent)}
+@media (prefers-reduced-motion:no-preference){
+  .tps-science-update .tps-dek{animation:tps-rise .7s ease both}
+  .tps-highlight{animation:tps-rise .55s ease both}
+}
+@keyframes tps-rise{
+  from{opacity:.35;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+</style>
+<article class="tps-post tps-science-update">
+<p class="tps-brand">The Pipettes Solution</p>
+<h2>Bench Notes: plasmid assembly, PEI delivery, and fluorescent readout</h2>
+<p class="tps-dek">Fresh literature highlights for molecular cloning, delivery, and fluorescent readout — written for students and wet-lab planners who want the why before the recipe.</p>
+<p><em>Editorial draft:</em> citations were pulled from Europe PMC. Review abstracts, licenses, and biosafety framing before publishing.</p>
+<figure><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22960%22%20height%3D%22280%22%20viewBox%3D%220%200%20960%20280%22%20role%3D%22img%22%20aria-labelledby%3D%22tpsTitle%20tpsDesc%22%3E%0A%20%20%3Ctitle%20id%3D%22tpsTitle%22%3EThe%20Pipettes%20Solution%20science%20update%3C/title%3E%0A%20%20%3Cdesc%20id%3D%22tpsDesc%22%3EBrand%20banner%20introducing%20a%20literature%20roundup%20for%20Bench%20Notes%3A%20plasmid%20assembly%2C%20PEI%20delivery%2C....%3C/desc%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22tpsWash%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230b2f5c%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%23134e6f%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f766e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3Cpattern%20id%3D%22tpsGrid%22%20width%3D%2224%22%20height%3D%2224%22%20patternUnits%3D%22userSpaceOnUse%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M24%200H0V24%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C255%2C255%2C.08%29%22%20stroke-width%3D%221%22/%3E%0A%20%20%20%20%3C/pattern%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%22960%22%20height%3D%22280%22%20fill%3D%22url%28%23tpsWash%29%22/%3E%0A%20%20%3Crect%20width%3D%22960%22%20height%3D%22280%22%20fill%3D%22url%28%23tpsGrid%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22820%22%20cy%3D%2270%22%20r%3D%2290%22%20fill%3D%22rgba%28255%2C255%2C255%2C.06%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22880%22%20cy%3D%22210%22%20r%3D%2260%22%20fill%3D%22rgba%2815%2C118%2C110%2C.35%29%22/%3E%0A%20%20%3Ctext%20x%3D%2248%22%20y%3D%2278%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2218%22%20font-weight%3D%22700%22%20letter-spacing%3D%224%22%20fill%3D%22%239fd5cf%22%3ETHE%20PIPETTES%20SOLUTION%3C/text%3E%0A%20%20%3Ctext%20x%3D%2248%22%20y%3D%22128%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22700%22%20fill%3D%22%23f4faf9%22%3EBench%20Notes%3C/text%3E%0A%20%20%3Ctext%20x%3D%2248%22%20y%3D%22168%22%20font-family%3D%22Source%20Serif%204%2C%20Georgia%2C%20serif%22%20font-size%3D%2220%22%20fill%3D%22%23d7ebe8%22%3EBench%20Notes%3A%20plasmid%20assembly%2C%20PEI%20delivery%2C...%3C/text%3E%0A%20%20%3Ctext%20x%3D%2248%22%20y%3D%22220%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2215%22%20fill%3D%22%23b7d8d3%22%3ECited%20highlights%20%C2%B7%20student-readable%20%C2%B7%20draft-first%3C/text%3E%0A%3C/svg%3E" alt="The Pipettes Solution science update banner" style="max-width:100%;height:auto;" /><figcaption>Brand banner for this science-update draft.</figcaption></figure>
+<h3>Additional open-license images</h3>
+<figure><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Golden_Gate_assembly.svg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=original" alt="Golden Gate assembly.svg" style="max-width:100%;height:auto;" /><figcaption>Golden Gate assembly.svg. Credit: Rob Hurt, <a href="https://commons.wikimedia.org/wiki/File:Golden_Gate_assembly.svg">CC BY-SA 4.0</a>.</figcaption></figure>
+<figure><img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Hepatitis_B_virus_v2.png?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=original" alt="Hepatitis B virus v2.png" style="max-width:100%;height:auto;" /><figcaption>Hepatitis B virus v2.png. Credit: Created by en:User:GrahamColm. Original uploader was TimVickers at en.wikipedia, <a href="https://commons.wikimedia.org/wiki/File:Hepatitis_B_virus_v2.png">Public domain</a>.</figcaption></figure>
+<h3>Why this roundup</h3>
+<p>The Pipettes Solution is strongest when calculators and protocols sit next to living science. This update gathers recent papers that sharpen three everyday bench questions: How do we assemble DNA cleanly? How do we get DNA into cells without treating transfection as magic? How do we trust a fluorescent signal once the construct is in place?</p>
+<h3>Highlights from the literature</h3>
+<section class="tps-highlight"><h4>Assembly angle: CloneFast: A simple plasmid design and construction guide for labs venturing into synthetic biology.</h4><p class="tps-meta">Fung V, Tiwade PB, Fenton OS. (2025) · STAR protocols · <a href="https://doi.org/10.1016/j.xpro.2025.104025">doi:10.1016/j.xpro.2025.104025</a></p><p>Traditional plasmid assembly often involves expensive or restrictive enzymatic processes.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<section class="tps-highlight"><h4>Delivery angle: Development of Polymer-Lipid Hybrid Nanoparticles for Large-Sized Plasmid DNA Transfection.</h4><p class="tps-meta">Maeki M, Uno S, Sugiura K, Sato Y, Fujioka Y, Ishida A, Ohba Y, Harashima H, Tokeshi M. (2024) · ACS applied materials &amp; interfaces · <a href="https://doi.org/10.1021/acsami.3c14714">doi:10.1021/acsami.3c14714</a></p><p>RNA and DNA delivery technologies using lipid nanoparticles (LNPs) have advanced significantly, as demonstrated by their successful application in mRNA vaccines.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<section class="tps-highlight"><h4>Readout angle: BRIGHT Enables High-SNR Live-Cell Imaging of Non-Repetitive Sequences via Bivalent Fluorescent Nanobody-Mediated Cascade-Dependent Illumination.</h4><p class="tps-meta">Feng L, Huang T, Han Y, Tian M, Wang D, Mei Z, Ma Y, Ma Y, Li J, Zhang R. (2026) · Advanced science (Weinheim, Baden-Wurttemberg, Germany) · <a href="https://doi.org/10.1002/advs.202513014">doi:10.1002/advs.202513014</a></p><p>Genomic loci and genome-independent DNA exhibit heterogeneous dynamics related to physiological function.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<section class="tps-highlight"><h4>Verification angle: In vivo detection of ALFA-tagged proteins in C. elegans with a transgenic fluorescent nanobody.</h4><p class="tps-meta">Quintin S, Saad MI, Amann G, Reymann AC. (2025) · microPublication biology · <a href="https://doi.org/10.17912/micropub.biology.001542">doi:10.17912/micropub.biology.001542</a></p><p>To track tagged endogenous proteins in vivo , we created a C. elegans strain expressing a fluorescently-labelled nanobody directed against the ALFA-tag epitope.</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<section class="tps-highlight"><h4>Teaching angle: Design of a Golden Gate Cloning Plasmid for the Generation of a Chimeric Virus-Like Particle-Based Subunit Vaccine Against Porcine Circovirus Type 2.</h4><p class="tps-meta">Hernández-Aviña ADS, Mendoza-Gómez LF, Hernández-Mancillas XD, Salazar-González JA, Zapata-Cuellar L, Camacho-Ruiz RM, Comas-García M, Sarmiento-Silva RE, Rodríguez JA, Arellano-Plaza M, Flores-Valdez MA, Gutiérrez-Ortega A. (2025) · Molecular biotechnology · <a href="https://doi.org/10.1007/s12033-024-01334-z">doi:10.1007/s12033-024-01334-z</a></p><p>Porcine circovirus type 2 (PCV2) is a pervasive pathogen in the swine industry, leading to a spectrum of disorders known as porcine circovirus associated diseases (PCVAD).</p><p><strong>Bench takeaway:</strong> treat this paper as a decision map — what was built or delivered, which control made the claim believable, and which local SOP would you need before trying anything similar.</p></section>
+<h3>What to steal for your own reading notes</h3>
+<ul class="tps-list"><li><strong>Start with the claim map.</strong> Before methods denseness, ask what molecule, delivery context, and readout the paper is actually defending.</li><li><strong>Hunt the controls.</strong> Empty vector, filler DNA, no-primary antibody, and sequence confirmation are not footnotes — they are the difference between a story and a result.</li><li><strong>Separate teaching logic from SOP detail.</strong> Use papers to learn decision points; execute only from institution-approved protocols.</li></ul>
+<h3>Bridge back to the bench tools</h3>
+<p>If a highlight changes how you think about assembly stoichiometry, PEI ratios, or assay background, open the matching calculator on <a href="https://thepipettesolution.blogspot.com/">The Pipettes Solution</a> and pressure-test the numbers against your local SOP — never the other way around.</p>
+<h3>Safety and editorial note</h3>
+<p>Educational communication only. This post does not provide operational instructions for engineering, recovering, propagating, or enhancing pathogens. Viral-vector and imaging workflows require local biosafety review.</p>
+<h3>References</h3>
+<ol><li>Fung V, Tiwade PB, Fenton OS. (2025). CloneFast: A simple plasmid design and construction guide for labs venturing into synthetic biology. STAR protocols. https://doi.org/10.1016/j.xpro.2025.104025</li>
+<li>Maeki M, Uno S, Sugiura K, Sato Y, Fujioka Y, Ishida A, Ohba Y, Harashima H, Tokeshi M. (2024). Development of Polymer-Lipid Hybrid Nanoparticles for Large-Sized Plasmid DNA Transfection. ACS applied materials &amp; interfaces. https://doi.org/10.1021/acsami.3c14714</li>
+<li>Feng L, Huang T, Han Y, Tian M, Wang D, Mei Z, Ma Y, Ma Y, Li J, Zhang R. (2026). BRIGHT Enables High-SNR Live-Cell Imaging of Non-Repetitive Sequences via Bivalent Fluorescent Nanobody-Mediated Cascade-Dependent Illumination. Advanced science (Weinheim, Baden-Wurttemberg, Germany). https://doi.org/10.1002/advs.202513014</li>
+<li>Quintin S, Saad MI, Amann G, Reymann AC. (2025). In vivo detection of ALFA-tagged proteins in C. elegans with a transgenic fluorescent nanobody. microPublication biology. https://doi.org/10.17912/micropub.biology.001542</li>
+<li>Hernández-Aviña ADS, Mendoza-Gómez LF, Hernández-Mancillas XD, Salazar-González JA, Zapata-Cuellar L, Camacho-Ruiz RM, Comas-García M, Sarmiento-Silva RE, Rodríguez JA, Arellano-Plaza M, Flores-Valdez MA, Gutiérrez-Ortega A. (2025). Design of a Golden Gate Cloning Plasmid for the Generation of a Chimeric Virus-Like Particle-Based Subunit Vaccine Against Porcine Circovirus Type 2. Molecular biotechnology. https://doi.org/10.1007/s12033-024-01334-z</li></ol>
+</article>

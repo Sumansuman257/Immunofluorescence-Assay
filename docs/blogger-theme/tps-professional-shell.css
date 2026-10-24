@@ -1,0 +1,484 @@
+/* ============================================================
+   The Pipettes Solution — Professional Shell CSS
+   Paste into: Blogger → Theme → Customize → Advanced → Add CSS
+   (or wrap in <style> inside an HTML gadget)
+   Original Pipettes design. Inspiration-only IA from academic/lab portfolios.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+
+:root {
+  --tps-navy: #0b2f5c;
+  --tps-teal: #0f766e;
+  --tps-ink: #0b1220;
+  --tps-muted: #4a5a6a;
+  --tps-wash: #e8f1f4;
+  --tps-line: #c5d5de;
+  --tps-paper: #f7fbfc;
+  --tps-white: #ffffff;
+  --tps-ease: cubic-bezier(.22, 1, .36, 1);
+  /* Override Plus UI tokens toward Pipettes brand */
+  --themeC: #0b2f5c !important;
+  --linkC: #0f766e !important;
+  --linkB: #0f766e !important;
+  --waveB: #0f766e !important;
+  --headC: #0b1220 !important;
+  --bodyB: #e8f1f4 !important;
+  --contentB: #f7fbfc !important;
+  --headerB: transparent !important;
+  --fontH: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif !important;
+  --fontB: "Source Serif 4", Georgia, "Iowan Old Style", serif !important;
+  --fontBa: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif !important;
+  --buttonR: 4px !important;
+}
+
+html { scroll-behavior: smooth; }
+html:has(.tps-pro-hero),
+body:has(.tps-pro-hero) {
+  overflow-x: clip;
+}
+body {
+  color: var(--tps-ink) !important;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(15, 118, 110, 0.12), transparent 55%),
+    radial-gradient(900px 400px at 90% 0%, rgba(11, 47, 92, 0.10), transparent 50%),
+    var(--tps-wash) !important;
+  font-family: var(--fontB) !important;
+}
+
+/* ---- Header / brand ---- */
+header, .Header {
+  background: linear-gradient(180deg, rgba(247, 251, 252, 0.96), rgba(232, 241, 244, 0.9)) !important;
+  border-bottom: 1px solid var(--tps-line) !important;
+  backdrop-filter: blur(8px);
+}
+.Header .titlewrapper .title,
+.Header h1,
+.Header h1 a,
+header .title a {
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--tps-navy) !important;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem) !important;
+}
+.Header .description {
+  font-family: "IBM Plex Sans", sans-serif !important;
+  color: var(--tps-muted) !important;
+  font-size: 0.9rem !important;
+}
+
+/* ---- Soften / hide old inset welcome if still present ---- */
+.welcome-hero {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 0 1.25rem !important;
+}
+/* When TPS pro shell gadget is live, collapse legacy welcome card chrome */
+body:has(.tps-pro-hero) .welcome-hero,
+body:has(.tps-pro-hero) .welcome-hero > *:not(script) {
+  display: none !important;
+}
+body:has(.tps-pro-hero) .welcome-hero {
+  margin: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Calm Plus UI chrome toward portfolio shell (homepage) */
+.blog-posts .post-outer,
+.Blog .post {
+  border-radius: 0 !important;
+}
+#sidebar-right-1 .widget,
+.sidebar .widget {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  border: 1px solid var(--tps-line) !important;
+}
+/* Soften dashboard-like left rail / floating chrome when present */
+.left-rail,
+.nav-left,
+.blog-pager {
+  font-family: "IBM Plex Sans", sans-serif !important;
+}
+/* Search / header chips → brand ink */
+.search-form input,
+.search input,
+header input[type="search"],
+header input[type="text"] {
+  border-radius: 4px !important;
+  border-color: var(--tps-line) !important;
+}
+/* Pill labels → restrained chips */
+.post-labels a,
+.label-size,
+.Label a {
+  border-radius: 4px !important;
+  background: rgba(15, 118, 110, 0.08) !important;
+  color: var(--tps-navy) !important;
+}
+/* Homepage: give TPS shell breathing room above feed */
+body:has(.tps-pro-hero) .blog-posts {
+  margin-top: 0.5rem !important;
+}
+/* Prefer science feed density over cardy SaaS look */
+body:has(.tps-pro-hero) .post-outer {
+  box-shadow: none !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--tps-line) !important;
+  background: transparent !important;
+  margin-bottom: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* ---- TPS professional sections (homepage gadget) ---- */
+.tps-pro {
+  --navy: var(--tps-navy);
+  --teal: var(--tps-teal);
+  font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--tps-ink);
+  margin: 0 0 2rem;
+}
+.tps-pro * { box-sizing: border-box; }
+.tps-pro a { color: var(--teal); text-decoration: none; }
+.tps-pro a:hover { text-decoration: underline; }
+.tps-pro a:focus-visible,
+.tps-pro-cta a:focus-visible,
+.tps-pro-tools a:focus-visible,
+.tps-pro-feature a:focus-visible {
+  outline: 2px solid var(--tps-teal);
+  outline-offset: 3px;
+}
+.tps-pro-cta a:focus-visible {
+  outline-color: #9fd5cf;
+}
+
+.tps-pro-hero {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: 1.75rem;
+  padding: clamp(2.75rem, 7vw, 5rem) clamp(1.25rem, 6vw, 4rem);
+  background:
+    linear-gradient(135deg, #0b2f5c 0%, #134e6f 48%, #0f766e 100%);
+  color: #f4faf9;
+  min-height: min(78vh, 620px);
+  display: flex;
+  align-items: flex-end;
+}
+.tps-pro-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(255,255,255,.10), transparent 40%),
+    repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255,255,255,.05) 24px),
+    repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(255,255,255,.04) 24px);
+  pointer-events: none;
+}
+.tps-pro-hero-mark {
+  position: absolute;
+  right: clamp(1rem, 6vw, 4rem);
+  top: 50%;
+  transform: translateY(-48%);
+  width: min(34vw, 240px);
+  height: min(34vw, 240px);
+  opacity: .22;
+  z-index: 0;
+  pointer-events: none;
+  animation: tpsFade .9s var(--tps-ease) both;
+}
+.tps-pro-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+  animation: tpsRise .7s var(--tps-ease) both;
+}
+.tps-pro-kicker {
+  margin: 0 0 .65rem;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #9fd5cf;
+}
+.tps-pro-brand {
+  margin: 0 0 .75rem;
+  font-size: clamp(2.1rem, 5vw, 3.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #fff;
+}
+.tps-pro-dek {
+  margin: 0 0 1.4rem;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.55;
+  color: #d7ebe8;
+  max-width: 34rem;
+  border-left: 3px solid #9fd5cf;
+  padding-left: .9rem;
+}
+.tps-pro-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+}
+.tps-pro-cta a {
+  display: inline-block;
+  padding: .72rem 1.15rem;
+  font-weight: 700;
+  font-size: .92rem;
+  letter-spacing: .01em;
+  border-radius: 4px;
+  text-decoration: none !important;
+  transition: transform .25s var(--tps-ease), background .25s, color .25s;
+}
+.tps-pro-cta a:hover { transform: translateY(-2px); }
+.tps-pro-cta a:active { transform: translateY(0); }
+.tps-pro-cta .primary {
+  background: #fff;
+  color: var(--tps-navy) !important;
+}
+.tps-pro-cta .secondary {
+  background: transparent;
+  color: #fff !important;
+  border: 1.5px solid rgba(255,255,255,.55);
+}
+@supports (animation-timeline: view()) {
+  .tps-pro-section {
+    animation: tpsRise .7s var(--tps-ease) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+.tps-pro-section {
+  margin: 0 0 2.25rem;
+  animation: tpsRise .65s var(--tps-ease) both;
+}
+.tps-pro-section:nth-of-type(2) { animation-delay: .05s; }
+.tps-pro-section:nth-of-type(3) { animation-delay: .1s; }
+.tps-pro-h2 {
+  margin: 0 0 .35rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--tps-navy);
+}
+.tps-pro-sub {
+  margin: 0 0 1.1rem;
+  font-family: "Source Serif 4", Georgia, serif;
+  color: var(--tps-muted);
+  font-size: 1.02rem;
+  max-width: 36rem;
+}
+
+.tps-pro-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .75rem;
+}
+.tps-pro-tools a {
+  display: block;
+  padding: 1rem 1.05rem;
+  background: linear-gradient(165deg, #fff, var(--tps-wash));
+  border-top: 2px solid var(--tps-teal);
+  color: var(--tps-navy) !important;
+  text-decoration: none !important;
+  transition: transform .25s var(--tps-ease), box-shadow .25s;
+  min-height: 5.5rem;
+}
+.tps-pro-tools a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(11, 47, 92, 0.08);
+  text-decoration: none !important;
+}
+.tps-pro-tools strong {
+  display: block;
+  font-size: .95rem;
+  margin-bottom: .35rem;
+}
+.tps-pro-tools span {
+  display: block;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: .86rem;
+  color: var(--tps-muted);
+  line-height: 1.4;
+}
+
+.tps-pro-feature {
+  display: grid;
+  gap: .85rem;
+}
+.tps-pro-feature a {
+  display: block;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  border-left: 3px solid var(--tps-navy);
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: border-color .2s, transform .25s var(--tps-ease);
+}
+.tps-pro-feature a:hover {
+  border-color: var(--tps-teal);
+  transform: translateX(3px);
+}
+.tps-pro-feature .eyebrow {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--tps-teal);
+  margin: 0 0 .3rem;
+}
+.tps-pro-feature h3 {
+  margin: 0 0 .35rem;
+  font-size: 1.1rem;
+  color: var(--tps-navy);
+}
+.tps-pro-feature p {
+  margin: 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  color: var(--tps-muted);
+  font-size: .95rem;
+}
+
+.tps-pro-trust {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--tps-line);
+  border-bottom: 1px solid var(--tps-line);
+}
+.tps-pro-trust div strong {
+  display: block;
+  color: var(--tps-navy);
+  font-size: .95rem;
+  margin-bottom: .25rem;
+}
+.tps-pro-trust div span {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: .9rem;
+  color: var(--tps-muted);
+}
+
+.tps-pro-about-strip {
+  padding: 1.35rem 0 0;
+}
+.tps-pro-about-strip p {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--tps-ink);
+  max-width: 40rem;
+  margin: 0 0 1rem;
+}
+
+@keyframes tpsRise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes tpsFade {
+  from { opacity: 0; }
+  to { opacity: .22; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tps-pro-hero-inner,
+  .tps-pro-hero-mark,
+  .tps-pro-section { animation: none !important; }
+  .tps-pro-cta a:hover,
+  .tps-pro-tools a:hover,
+  .tps-pro-feature a:hover { transform: none; }
+}
+
+/* ---- Post body polish (Bench Notes + general) ---- */
+.post-body,
+.post-body.entry-content,
+article .post-body {
+  font-family: "Source Serif 4", Georgia, serif !important;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  color: var(--tps-ink) !important;
+}
+.post-body h2,
+.post-body h3,
+.post-title,
+h1.post-title,
+h3.post-title {
+  font-family: "IBM Plex Sans", sans-serif !important;
+  color: var(--tps-navy) !important;
+  letter-spacing: -0.02em;
+}
+.post-body a { color: var(--tps-teal) !important; }
+.post-body s,
+.post-body strike,
+.post-body del {
+  text-decoration: none !important;
+}
+.post-body .tps-shell { max-width: 46rem; margin: 0 auto; }
+
+/* ---- Buttons / pills → less “generic theme” ---- */
+.btn, button, .button,
+a.btn {
+  border-radius: 4px !important;
+}
+
+/* ---- Footer calm ---- */
+footer {
+  border-top: 1px solid var(--tps-line) !important;
+  background: linear-gradient(180deg, transparent, rgba(11, 47, 92, 0.04)) !important;
+}
+
+/* ---- Accessibility: skip target + focus ---- */
+.tps-pro-section:target {
+  scroll-margin-top: 4.5rem;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--tps-teal) !important;
+  outline-offset: 2px;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 720px) {
+  .tps-pro-hero {
+    min-height: min(78vh, 560px);
+    padding: 2.25rem 1.15rem 2.5rem;
+  }
+  .tps-pro-tools { grid-template-columns: 1fr 1fr; }
+  .tps-pro-hero-mark {
+    opacity: .14;
+    width: min(42vw, 160px);
+    height: min(42vw, 160px);
+    right: 0.5rem;
+  }
+  .tps-pro-brand { font-size: clamp(1.85rem, 9vw, 2.4rem); }
+  .tps-pro-dek { font-size: 1.02rem; }
+  .tps-pro-feature a { padding: 1rem; }
+  .post-body { font-size: 1.02rem !important; }
+}
+@media (max-width: 420px) {
+  .tps-pro-tools { grid-template-columns: 1fr; }
+  .tps-pro-cta a {
+    width: 100%;
+    text-align: center;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tps-pro-tools a { min-height: 4.75rem; }
+  .tps-pro-hero { min-height: 72vh; }
+}
+@media (max-width: 720px) and (orientation: landscape) {
+  .tps-pro-hero { min-height: auto; padding: 1.75rem 1.25rem; }
+}

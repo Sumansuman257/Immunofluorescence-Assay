@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pipette-solution-blogger-agent"
+version = "0.1.0"
+description = "Local Blogger draft agent for researched molecular cloning and virology articles."
+readme = "BLOGGER_AGENT.md"
+requires-python = ">=3.10"
+dependencies = [
+    "google-api-python-client>=2.146.0",
+    "google-auth-httplib2>=0.2.0",
+    "google-auth-oauthlib>=1.2.1",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.4",
+]
+
+[project.scripts]
+pipette-blogger-agent = "blogger_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["blogger_agent*"]

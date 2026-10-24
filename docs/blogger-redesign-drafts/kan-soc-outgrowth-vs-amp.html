@@ -1,0 +1,354 @@
+<style>
+.tps-shell{
+  --tps-ink:#0b1220;
+  --tps-muted:#4a5a6a;
+  --tps-brand:#0b2f5c;
+  --tps-accent:#0f766e;
+  --tps-wash:#e8f1f4;
+  --tps-line:#c5d5de;
+  --tps-card:#ffffff;
+  color:var(--tps-ink);
+  font-family:"Source Serif 4","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  line-height:1.65;
+  max-width:46rem;
+  margin:0 auto;
+  text-decoration:none;
+}
+.tps-shell s,.tps-shell strike,.tps-shell del{text-decoration:none!important}
+.tps-shell *{box-sizing:border-box}
+.tps-shell .tps-kicker{
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--tps-brand);
+}
+.tps-shell .tps-title{
+  margin:.15rem 0 .55rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-size:1.85rem;
+  font-weight:700;
+  letter-spacing:-.02em;
+  line-height:1.2;
+  color:var(--tps-brand);
+}
+.tps-shell .tps-dek{
+  margin:0 0 1rem;
+  padding-left:.85rem;
+  border-left:3px solid var(--tps-accent);
+  font-size:1.05rem;
+  color:var(--tps-muted);
+}
+.tps-shell .tps-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem;
+  margin:0 0 1.1rem;
+  padding:0;
+  list-style:none;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+}
+.tps-shell .tps-chips li{
+  margin:0;
+  padding:.28rem .65rem;
+  border:1px solid var(--tps-line);
+  background:linear-gradient(160deg,var(--tps-wash),#fff);
+  color:var(--tps-brand);
+  font-size:.78rem;
+  font-weight:600;
+}
+.tps-shell .tps-hero{
+  margin:0 0 1.25rem;
+  overflow:hidden;
+  border-top:2px solid var(--tps-accent);
+  background:linear-gradient(160deg,var(--tps-wash),#f7fbfc 55%,#fff);
+}
+.tps-shell .tps-hero img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.tps-shell .tps-hero figcaption{
+  margin:0;
+  padding:.55rem .85rem .7rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-size:.82rem;
+  color:var(--tps-muted);
+}
+.tps-shell .tps-body{
+  font-size:1.02rem;
+}
+.tps-shell .tps-body h2,
+.tps-shell .tps-body h3,
+.tps-shell .tps-body h4{
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  color:var(--tps-brand);
+  letter-spacing:-.02em;
+  line-height:1.25;
+}
+.tps-shell .tps-body h2{font-size:1.45rem;margin:1.6rem 0 .55rem}
+.tps-shell .tps-body h3{font-size:1.18rem;margin:1.35rem 0 .45rem}
+.tps-shell .tps-body h4{font-size:1.05rem;margin:1.1rem 0 .4rem}
+.tps-shell .tps-body p{margin:.7rem 0}
+.tps-shell .tps-body ul,.tps-shell .tps-body ol{padding-left:1.15rem}
+.tps-shell .tps-body li{margin:.4rem 0}
+.tps-shell .tps-body a{color:var(--tps-accent)}
+.tps-shell .tps-body img{max-width:100%;height:auto}
+.tps-shell .tps-callout{
+  margin:1.1rem 0;
+  padding:1rem 1.1rem;
+  background:linear-gradient(160deg,var(--tps-wash),#fff);
+  border-top:2px solid var(--tps-accent);
+}
+.tps-shell .tps-callout strong{
+  display:block;
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  color:var(--tps-brand);
+}
+.tps-shell .tps-footer-note{
+  margin:1.6rem 0 0;
+  padding-top:.85rem;
+  border-top:1px solid var(--tps-line);
+  font-size:.9rem;
+  color:var(--tps-muted);
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+}
+@media (prefers-reduced-motion:no-preference){
+  .tps-shell .tps-dek{animation:tps-rise .65s ease both}
+  .tps-shell .tps-hero{animation:tps-rise .55s ease both .05s}
+}
+@keyframes tps-rise{
+  from{opacity:.35;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+
+.tps-shell .tps-fig{
+  margin:1.25rem 0 1.4rem;padding:0;overflow:hidden;
+  border-top:2px solid var(--tps-accent);
+  background:linear-gradient(165deg,var(--tps-wash),#fff 70%);
+}
+.tps-shell .tps-fig svg{display:block;width:100%;height:auto}
+.tps-shell .tps-fig figcaption{
+  margin:0;padding:.6rem .9rem .75rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-size:.84rem;color:var(--tps-muted);line-height:1.45
+}
+.tps-shell .tps-glossary{
+  margin:1.1rem 0;padding:1rem 1.1rem;
+  border-left:3px solid var(--tps-brand);
+  background:linear-gradient(90deg,rgba(11,47,92,.05),transparent)
+}
+.tps-shell .tps-glossary dt{
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-weight:700;color:var(--tps-brand);margin-top:.55rem
+}
+.tps-shell .tps-glossary dt:first-child{margin-top:0}
+.tps-shell .tps-glossary dd{margin:.15rem 0 .45rem;color:var(--tps-muted)}
+.tps-shell .tps-steps{counter-reset:tpsstep;list-style:none;padding-left:0}
+.tps-shell .tps-steps>li{
+  position:relative;margin:.85rem 0;padding:.85rem 1rem .85rem 3.1rem;
+  background:linear-gradient(160deg,var(--tps-wash),#fff);
+  border-top:2px solid var(--tps-line)
+}
+.tps-shell .tps-steps>li:before{
+  counter-increment:tpsstep;content:counter(tpsstep);
+  position:absolute;left:.75rem;top:.85rem;
+  width:1.7rem;height:1.7rem;border-radius:50%;
+  background:var(--tps-brand);color:#fff;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-weight:700;font-size:.9rem;line-height:1.7rem;text-align:center
+}
+.tps-shell .tps-steps strong{color:var(--tps-brand)}
+.tps-shell .tps-compare{
+  width:100%;border-collapse:collapse;margin:1rem 0;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;font-size:.92rem
+}
+.tps-shell .tps-compare th,.tps-shell .tps-compare td{
+  border:1px solid var(--tps-line);padding:.55rem .7rem;vertical-align:top;text-align:left
+}
+.tps-shell .tps-compare th{background:var(--tps-wash);color:var(--tps-brand)}
+
+</style>
+
+
+<article class="tps-shell">
+<p class="tps-kicker">The Pipettes Solution · Bench Notes · Cloning literacy</p>
+<h2 class="tps-title">Why Kan plates need SOC outgrowth (and Amp is different)</h2>
+<p class="tps-dek">Beginner-length lab literacy (≥1000 words): short steps first — after heat-shock or electroporation, why you recover in SOC (or similar rich medium without antibiotic) before plating on kanamycin, and why ampicillin selection is more forgiving. Real citations. Not a vendor protocol paste.</p>
+<ul class="tps-chips"><li>transformation</li><li>SOC</li><li>kanamycin</li><li>ampicillin</li><li>phenotypic lag</li><li>cloning</li><li>E. coli</li><li>lab methods</li></ul>
+<figure class="tps-hero"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22960%22%20height%3D%22280%22%20viewBox%3D%220%200%20960%20280%22%20role%3D%22img%22%20aria-label%3D%22Kan%20needs%20SOC%20outgrowth%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230b2f5c%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f766e%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Crect%20width%3D%22960%22%20height%3D%22280%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%3Ccircle%20cx%3D%22820%22%20cy%3D%2270%22%20r%3D%2290%22%20fill%3D%22rgba%28255%2C255%2C255%2C.06%29%22%2F%3E%0A%3Ctext%20x%3D%2248%22%20y%3D%2278%22%20font-family%3D%22IBM%20Plex%20Sans%2Csans-serif%22%20font-size%3D%2218%22%20font-weight%3D%22700%22%20letter-spacing%3D%224%22%20fill%3D%22%239fd5cf%22%3ETHE%20PIPETTES%20SOLUTION%3C%2Ftext%3E%0A%3Ctext%20x%3D%2248%22%20y%3D%22138%22%20font-family%3D%22IBM%20Plex%20Sans%2Csans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22700%22%20fill%3D%22%23f4faf9%22%3EWhy%20Kan%20needs%20SOC%20outgrowth%3C%2Ftext%3E%0A%3Ctext%20x%3D%2248%22%20y%3D%22182%22%20font-family%3D%22Source%20Serif%204%2CGeorgia%2Cserif%22%20font-size%3D%2218%22%20fill%3D%22%23d7ebe8%22%3AAmp%20is%20different%20%C2%B7%20phenotypic%20lag%3C%2Ftext%3E%0A%3Ctext%20x%3D%2248%22%20y%3D%22230%22%20font-family%3D%22IBM%20Plex%20Sans%2Csans-serif%22%20font-size%3D%2215%22%20fill%3D%22%23b7d8d3%22%3ETransformation%20%E2%86%92%20recovery%20%E2%86%92%20selection%3C%2Ftext%3E%0A%3C%2Fsvg%3E" alt="Why Kan plates need SOC outgrowth thumbnail" /><figcaption>Featured thumbnail. Teaching figures below compare Kan vs Amp selection after transformation.</figcaption></figure>
+<div class="tps-body">
+
+<div class="tps-callout"><strong>What this story is</strong>
+After you put plasmid DNA into competent <em>E. coli</em>, the cells do not instantly “become resistant.” They need time to recover and to <em>express</em> the resistance gene before you put them on antibiotic plates. That recovery is usually <strong>SOC (or LB/SOB without antibiotic)</strong> with shaking at 37 °C. This Bench Notes explains <strong>why that step is stricter for kanamycin than for ampicillin</strong>, with real literature behind the biology.</div>
+
+<div class="tps-callout"><strong>Short protocol / conclusion steps (read first)</strong>
+<ol class="tps-steps">
+<li><strong>Transform</strong> — Mix DNA with competent cells; ice → heat shock (or electroporate). Cells are stressed and not ready for selection yet.</li>
+<li><strong>Add recovery medium without antibiotic</strong> — Typically SOC (or rich LB/SOB). Do <em>not</em> add Kan or Amp here.</li>
+<li><strong>Outgrow ~45–60 min at 37 °C with shaking</strong> — Standard cloning practice after heat shock; many kits specify ~1 h for Kan/Cm.</li>
+<li><strong>Plate on the matching antibiotic</strong> — Kan plates for <em>neo</em>/<em>aph</em> plasmids; Amp (or carbenicillin) for <em>bla</em> plasmids.</li>
+<li><strong>Treat Kan as non-negotiable for outgrowth</strong> — Kan hits protein synthesis immediately; cells need resistance protein first.</li>
+<li><strong>Know Amp is more forgiving</strong> — Some labs skip Amp outgrowth on strong plasmids; outgrowth still often improves colony counts.</li>
+<li><strong>Do not confuse “no colonies” with “failed ligation”</strong> — Missing SOC on Kan is a classic false-negative.</li>
+<li><strong>Match your kit</strong> — Vendor timings vary; follow the signed SOP for cell type (chemically competent vs electrocompetent).</li>
+</ol></div>
+
+<figure class="tps-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" role="img" aria-label="Transformation to plate timeline">
+<rect width="800" height="260" fill="#e8f1f4"/>
+<text x="24" y="32" font-family="IBM Plex Sans,sans-serif" font-size="16" font-weight="700" fill="#0b2f5c">Figure 1 · Timeline: DNA in → recover → select</text>
+<rect x="24" y="55" width="140" height="90" rx="8" fill="#0b2f5c"/>
+<text x="94" y="90" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="IBM Plex Sans,sans-serif">1. Transform</text>
+<text x="94" y="112" text-anchor="middle" fill="#9fd5cf" font-size="11" font-family="IBM Plex Sans,sans-serif">ice / heat shock</text>
+<path d="M170 100h28" stroke="#0f766e" stroke-width="3"/>
+<rect x="204" y="55" width="160" height="90" rx="8" fill="#0f766e"/>
+<text x="284" y="85" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="IBM Plex Sans,sans-serif">2. SOC outgrowth</text>
+<text x="284" y="108" text-anchor="middle" fill="#e8f1f4" font-size="11" font-family="IBM Plex Sans,sans-serif">no antibiotic</text>
+<text x="284" y="128" text-anchor="middle" fill="#e8f1f4" font-size="11" font-family="IBM Plex Sans,sans-serif">~45–60 min 37 °C</text>
+<path d="M370 100h28" stroke="#0f766e" stroke-width="3"/>
+<rect x="404" y="55" width="160" height="90" rx="8" fill="#134e6f"/>
+<text x="484" y="90" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="IBM Plex Sans,sans-serif">3. Express marker</text>
+<text x="484" y="112" text-anchor="middle" fill="#9fd5cf" font-size="11" font-family="IBM Plex Sans,sans-serif">KanR or AmpR protein</text>
+<path d="M570 100h28" stroke="#0f766e" stroke-width="3"/>
+<rect x="604" y="55" width="170" height="90" rx="8" fill="#fff" stroke="#0b2f5c" stroke-width="2"/>
+<text x="689" y="90" text-anchor="middle" fill="#0b2f5c" font-size="13" font-weight="700" font-family="IBM Plex Sans,sans-serif">4. Plate</text>
+<text x="689" y="112" text-anchor="middle" fill="#4a5a6a" font-size="11" font-family="Georgia,serif">Kan or Amp agar</text>
+<text x="24" y="185" font-family="Georgia,serif" font-size="13" fill="#4a5a6a">SOC is recovery fuel + time for transcription/translation of the resistance gene — not “extra growth for fun.”</text>
+<text x="24" y="230" font-family="IBM Plex Sans,sans-serif" font-size="12" fill="#0f766e">Teaching schematic · The Pipettes Solution</text>
+</svg><figcaption>Figure 1. Outgrowth sits between transformation stress and antibiotic selection.</figcaption></figure>
+
+<figure class="tps-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" role="img" aria-label="Kan vs Amp mechanism">
+<rect width="800" height="280" fill="#e8f1f4"/>
+<text x="24" y="30" font-family="IBM Plex Sans,sans-serif" font-size="16" font-weight="700" fill="#0b2f5c">Figure 2 · Why Kan is stricter than Amp after transformation</text>
+<rect x="24" y="50" width="360" height="180" rx="8" fill="#fff" stroke="#0b2f5c" stroke-width="2"/>
+<text x="204" y="80" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="14" font-weight="700" fill="#0b2f5c">Kanamycin (aminoglycoside)</text>
+<text x="40" y="110" font-family="Georgia,serif" font-size="12" fill="#4a5a6a">• Hits 30S ribosome → mistranslation / kill</text>
+<text x="40" y="132" font-family="Georgia,serif" font-size="12" fill="#4a5a6a">• Bactericidal while cells are translating</text>
+<text x="40" y="154" font-family="Georgia,serif" font-size="12" fill="#4a5a6a">• Resistance = modify drug (e.g. APH / neo)</text>
+<text x="40" y="176" font-family="Georgia,serif" font-size="12" fill="#4a5a6a">• Need enzyme before Kan arrives</text>
+<text x="40" y="205" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="700" fill="#b45309">→ Outgrowth usually required</text>
+<rect x="416" y="50" width="360" height="180" rx="8" fill="#fff" stroke="#0f766e" stroke-width="2"/>
+<text x="596" y="80" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="14" font-weight="700" fill="#0b2f5c">Ampicillin (β-lactam)</text>
+<text x="432" y="110" font-family="Georgia,serif" font-size="12" fill="#4a5a6a">• Hits cell-wall synthesis (PBPs)</text>
+<text x="432" y="132" font-family="Georgia,serif" font-size="12" fill="#4a5a6a">• Strongest on actively dividing cells</text>
+<text x="432" y="154" font-family="Georgia,serif" font-size="12" fill="#4a5a6a">• Resistance = periplasmic β-lactamase (bla)</text>
+<text x="432" y="176" font-family="Georgia,serif" font-size="12" fill="#4a5a6a">• Enzyme can clear Amp near the cell</text>
+<text x="432" y="205" font-family="IBM Plex Sans,sans-serif" font-size="12" font-weight="700" fill="#0f766e">→ Outgrowth often optional / helpful</text>
+<text x="24" y="255" font-family="IBM Plex Sans,sans-serif" font-size="12" fill="#0f766e">Same “resistance gene on a plasmid” — different pharmacology after plating</text>
+</svg><figcaption>Figure 2. Kan attacks translation now; Amp attacks wall synthesis as cells grow — plus different resistance enzymes.</figcaption></figure>
+
+<figure class="tps-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" role="img" aria-label="Plate Kan immediately failure mode">
+<rect width="800" height="250" fill="#e8f1f4"/>
+<text x="24" y="30" font-family="IBM Plex Sans,sans-serif" font-size="16" font-weight="700" fill="#0b2f5c">Figure 3 · What if you plate Kan immediately?</text>
+<rect x="30" y="55" width="220" height="120" rx="8" fill="#0b2f5c"/>
+<text x="140" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="IBM Plex Sans,sans-serif">Plasmid entered</text>
+<text x="140" y="120" text-anchor="middle" fill="#9fd5cf" font-size="12" font-family="IBM Plex Sans,sans-serif">genotype: KanR gene</text>
+<text x="140" y="145" text-anchor="middle" fill="#9fd5cf" font-size="12" font-family="IBM Plex Sans,sans-serif">phenotype: not ready</text>
+<path d="M260 115h40" stroke="#b45309" stroke-width="3"/>
+<rect x="310" y="55" width="220" height="120" rx="8" fill="#b45309"/>
+<text x="420" y="95" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="IBM Plex Sans,sans-serif">Kan on the plate</text>
+<text x="420" y="120" text-anchor="middle" fill="#fde68a" font-size="12" font-family="IBM Plex Sans,sans-serif">blocks ribosomes</text>
+<text x="420" y="145" text-anchor="middle" fill="#fde68a" font-size="12" font-family="IBM Plex Sans,sans-serif">before KanR builds</text>
+<path d="M540 115h40" stroke="#b45309" stroke-width="3"/>
+<rect x="590" y="55" width="180" height="120" rx="8" fill="#fff" stroke="#b45309" stroke-width="2"/>
+<text x="680" y="100" text-anchor="middle" fill="#b45309" font-size="13" font-weight="700" font-family="IBM Plex Sans,sans-serif">Few / no colonies</text>
+<text x="680" y="130" text-anchor="middle" fill="#4a5a6a" font-size="12" font-family="Georgia,serif">false “failed clone”</text>
+<text x="24" y="210" font-family="Georgia,serif" font-size="13" fill="#4a5a6a">Genotype ≠ phenotype yet. That gap is why recovery media exist.</text>
+</svg><figcaption>Figure 3. Immediate Kan plating can kill successful transformants before resistance is expressed.</figcaption></figure>
+
+<h3>The beginner puzzle</h3>
+<p>Your ligation worked. The control plasmid transformed yesterday. Tonight’s Kan plate is empty. Before you redesign primers, ask: <strong>Did I give the cells SOC (or equivalent) time after heat shock?</strong></p>
+<p>Transformation puts DNA into cells that are cold-shocked, membrane-permeabilized, and metabolically scrambled. Classic high-efficiency methods recover them in rich medium after the heat pulse — a practice rooted in optimization work such as Hanahan’s plasmid transformation studies and later protocol refinements that still prescribe a post-shock incubation before plating (<a href="https://pubmed.ncbi.nlm.nih.gov/6345791/">Hanahan, 1983, PMID 6345791</a>; protocol forms in <a href="https://pubmed.ncbi.nlm.nih.gov/29496820/">CSH Protocols, PMID 29496820</a>; heat-shock video protocol <a href="https://pubmed.ncbi.nlm.nih.gov/18997900/">PMID 18997900</a>). Older optimization papers also found a pre-plating incubation beneficial for freshly prepared competent cells (<a href="https://pubmed.ncbi.nlm.nih.gov/2268424/">Pope &amp; Kent, 1990, PMID 2268424</a>).</p>
+<p>SOC (Super Optimal broth with Catabolite repression) is the usual recovery medium: rich nutrients plus glucose. The point of the hour is not to grow a turbid culture — it is to let survivors restart transcription/translation and make enough resistance protein to face selection.</p>
+
+<div class="tps-glossary">
+<dt>SOC / SOB</dt><dd>Rich recovery media used after transformation; SOC includes glucose. No antibiotic in the outgrowth tube.</dd>
+<dt>Phenotypic lag</dt><dd>Time gap between acquiring a resistance genotype and displaying a resistant phenotype under selection.</dd>
+<dt>KanR / neo / aph</dt><dd>Common plasmid markers encoding aminoglycoside-modifying enzymes that inactivate kanamycin-family drugs.</dd>
+<dt>bla (AmpR)</dt><dd>β-lactamase gene (often TEM-type) that hydrolyzes ampicillin in the periplasm.</dd>
+<dt>Bactericidal vs bacteriostatic (lab sense)</dt><dd>Kan/aminoglycosides can kill translating cells; Amp’s lethal effect couples strongly to ongoing wall synthesis/division — different selection “urgency.”</dd>
+</div>
+
+<h3>What kanamycin does to an unprepared cell</h3>
+<p>Kanamycin is an <strong>aminoglycoside</strong>. These drugs bind the bacterial ribosome (notably the 30S decoding site), promote mistranslation, and are classically described as rapidly bactericidal (<a href="https://pubmed.ncbi.nlm.nih.gov/27252397/">Krause et al., 2016, PMID 27252397</a>). Ribosome-targeting drugs also show growth-environment–dependent killing behavior (<a href="https://pubmed.ncbi.nlm.nih.gov/26146675/">Greulich et al., 2015, PMID 26146675</a>). Recent work even separates translation inhibition from the voltage/metabolic route that drives aminoglycoside killing in <em>E. coli</em> (<a href="https://pubmed.ncbi.nlm.nih.gov/32748785/">Bruni &amp; Kralj, 2020, PMID 32748785</a>).</p>
+<p>For the cloner, the practical translation is blunt: <strong>if Kan is present before the cell has made enough modifying enzyme, the ribosome is already under attack.</strong> Plasmid-borne Kan resistance typically works by chemically inactivating the drug (aminoglycoside phosphotransferases and related enzymes — the familiar <em>neo</em>/<em>aph</em> family on many cloning vectors). That enzyme must be synthesized <em>on the cell’s own ribosomes</em>. Plating onto Kan before those proteins accumulate is asking a cell to invent a parachute while already falling.</p>
+<p>Teaching labs and cloning manuals therefore treat outgrowth as <strong>required for Kan (and similarly for chloramphenicol)</strong>, while noting Amp is more flexible — a pattern you will see across institutional transformation SOPs and commercial kit notes (e.g., NEB / Addgene-style guidance: outgrowth important for Kan/Cm; Amp sometimes skippable). Use those as procedure references; use the papers above for mechanism.</p>
+
+<h3>What ampicillin does — and why bla buys you slack</h3>
+<p>Ampicillin is a <strong>β-lactam</strong>. It interferes with peptidoglycan cross-linking via penicillin-binding proteins. Cells that are not building wall as aggressively are not hit the same way as rapidly dividing cells — one reason “satellite colonies” and Amp quirks show up in cloning folklore.</p>
+<p>Resistance on standard Amp plasmids is usually <strong>TEM-type β-lactamase</strong> encoded by <em>bla</em>. That enzyme is exported to the <strong>periplasm</strong>, where it hydrolyzes Amp before the drug reaches its targets (<a href="https://pubmed.ncbi.nlm.nih.gov/4565549/">Neu, 1972, PMID 4565549</a>). Quantitative treatments of Gram-negative β-lactam sensitivity emphasize the interplay of outer-membrane entry and periplasmic hydrolysis (<a href="https://pubmed.ncbi.nlm.nih.gov/3330755/">Nikaido &amp; Normark, 1987, PMID 3330755</a>).</p>
+<p>So Amp selection has two “forgiveness factors” after transformation:</p>
+<ul>
+<li><strong>Killing is tied to growth/wall synthesis</strong>, so a briefly paused, recovering cell is not always instantly dead the way a translating cell facing Kan can be.</li>
+<li><strong>A little β-lactamase goes a long way locally</strong> — once a few enzyme molecules appear in the periplasm, they can clear Amp in the microenvironment of that colony (and sometimes neighboring sensitive cells — the satellite story).</li>
+</ul>
+<p>That is why some experienced cloners plate Amp transformants with a shortened or skipped outgrowth and still get colonies from a strong plasmid prep. It is <em>not</em> a license to treat Amp as “no biology required.” Outgrowth still often improves counts, especially after electroporation, large assemblies, or low DNA. It <em>is</em> why Amp fails less dramatically than Kan when someone rushes the plate.</p>
+
+<h3>Phenotypic lag: genotype arrived, phenotype has not</h3>
+<p>Microbiologists have a name for “DNA says resistant, plate says sensitive”: <strong>phenotypic lag</strong> (or phenotypic delay). Modern single-cell / recombineering work shows that antibiotic-resistance mutations in <em>E. coli</em> can take multiple generations before the resistant phenotype is penetrant — partly because cells are effectively polyploid during multifork replication, so wild-type gene copies can mask recessive mutant copies for a while (<a href="https://pubmed.ncbi.nlm.nih.gov/29470493/">Sun et al., 2018, PMID 29470493</a>).</p>
+<p>Plasmid transformation is not identical to that chromosomal mutation experiment, but the teaching analogy is solid: <strong>acquiring the DNA is not the same as having a protective amount of protein.</strong> For KanR, the protective protein must accumulate before bactericidal selection. For AmpR, periplasmic β-lactamase plus growth-coupled killing often let you get away with a shorter race.</p>
+
+<table class="tps-compare">
+<tr><th>Checkpoint</th><th>Kanamycin plate</th><th>Ampicillin plate</th></tr>
+<tr><td>Drug target</td><td>Ribosome / translation</td><td>Cell-wall synthesis (PBPs)</td></tr>
+<tr><td>Typical plasmid shield</td><td>Drug-modifying enzyme (neo/aph…)</td><td>Periplasmic β-lactamase (bla)</td></tr>
+<tr><td>If plated with zero marker protein</td><td>Often lethal / empty plate</td><td>More chance to catch up</td></tr>
+<tr><td>SOC outgrowth</td><td>Treat as required</td><td>Often helpful; sometimes skipped</td></tr>
+<tr><td>Common false story</td><td>“Ligation failed”</td><td>“Satellites mean success” (not always)</td></tr>
+</table>
+
+<h3>What SOC is actually doing for you</h3>
+<ol>
+<li><strong>Metabolic recovery</strong> — Heat-shocked/electroporated cells need carbon, ions, and time before they translate well.</li>
+<li><strong>Gene expression window</strong> — Plasmid transcription → mRNA → KanR or AmpR protein accumulates.</li>
+<li><strong>No selection pressure yet</strong> — Antibiotic in the outgrowth tube would defeat the purpose.</li>
+<li><strong>Modest population expansion</strong> — You may get a few doublings; that helps, but the main win for Kan is phenotypic readiness, not turbidity.</li>
+</ol>
+<p>If your kit says 60 minutes for Kan and 30 for Amp, believe the asymmetry even if the clock feels annoying.</p>
+
+<h3>Practical rules that prevent empty Kan plates</h3>
+<ul>
+<li>Always outgrow for Kan, Cm, and most non-β-lactam markers unless a validated local SOP says otherwise.</li>
+<li>Keep outgrowth medium antibiotic-free.</li>
+<li>Shake at 37 °C (or the temperature your competent-cell insert specifies).</li>
+<li>Plate a known-good Kan plasmid control in the same session — distinguishes “biology/process” from “bad ligation.”</li>
+<li>For Amp: outgrowth is still smart after electroporation or hard assemblies; skipping is a calculated risk, not a flex.</li>
+<li>Carbenicillin is often preferred over Amp on plates because it is more stable — that is chemistry of the plate, not a reason to skip SOC for Kan.</li>
+</ul>
+
+<h3>Failure modes / misconceptions</h3>
+<ul>
+<li>“The plasmid is inside, so they are resistant” — genotype ≠ phenotype.</li>
+<li>“SOC is only for electroporation” — chemically competent heat-shock protocols use recovery too.</li>
+<li>“Amp worked without SOC, so Kan will” — different drug, different race.</li>
+<li>“Longer outgrowth always means more colonies” — diminishing returns; contamination and satellite issues can rise if you overgrow Amp cultures before plating.</li>
+<li>“Empty Kan plate = incompetent cells” — check the missing hour first.</li>
+</ul>
+
+<h3>Teaching drill</h3>
+<p>Explain Figure 2 to a teammate in one minute: Kan hits ribosomes before KanR is made; Amp hits walls and is cleared by periplasmic bla. Then answer: if you forget SOC, which plate is more likely to lie to you about a good ligation? (Kan.)</p>
+
+<h3>Reference shelf (verified PubMed / protocols)</h3>
+<ol>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/6345791/">Hanahan D. Studies on transformation of Escherichia coli with plasmids. J Mol Biol. 1983. PMID 6345791</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/29496820/">The Hanahan Method… High-Efficiency Transformation. Cold Spring Harb Protoc. PMID 29496820</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/18997900/">Froger A, Hall JE. Heat-shock transformation (JoVE). PMID 18997900</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/2268424/">Pope B, Kent HM. Optimization of routine transformation… Biotechniques. 1990. PMID 2268424</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/27252397/">Krause KM et al. Aminoglycosides: An Overview. PMID 27252397</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/26146675/">Greulich P et al. Growth-dependent bacterial susceptibility to ribosome-targeting antibiotics. PMID 26146675</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/32748785/">Bruni GN, Kralj JM. Membrane voltage… aminoglycosides. eLife. PMID 32748785</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/4565549/">Neu HC. “Periplasmic” location of a β-lactamase… J Bacteriol. 1972. PMID 4565549</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/3330755/">Nikaido H, Normark S. Sensitivity of E. coli to various β-lactams… Mol Microbiol. 1987. PMID 3330755</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/29470493/">Sun L et al. Effective polyploidy causes phenotypic delay… PLoS Biol. 2018. PMID 29470493</a></li>
+</ol>
+<p>Manufacturer / teaching notes (procedure orientation, not primary science): NEB and Addgene transformation guides commonly state that outgrowth is important for kanamycin and chloramphenicol selection and often optional for ampicillin — match whatever kit you actually use.</p>
+
+<h3>Safety note</h3>
+<p>Educational literacy only. Follow your lab’s biosafety rules for recombinant <em>E. coli</em>, autoclave waste, and antibiotic disposal. This draft is not a substitute for the competent-cell manufacturer insert.</p>
+
+</div>
+<p class="tps-footer-note">Educational companion from <a href="https://thepipettesolution.blogspot.com/">The Pipettes Solution</a>. Citations verified via PubMed/NCBI. Figures are original teaching schematics.</p>
+</article>
