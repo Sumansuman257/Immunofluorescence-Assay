@@ -16,7 +16,9 @@
 | 6 | `tps-post-template.html` | New Bench Notes posts (HTML view) |
 | 7 | `tps-tools-page.html` | Optional Pages → Lab tools (`/p/lab-tools.html`) |
 | — | `CHECKLIST.md` | Tick-box live apply checklist |
+| — | `DRAFTS-PASTE-READY.md` | Kan/SOC + high-value draft cards |
 | — | `tps-shell-css-gadget.html` | Add CSS fallback |
+| — | `paste-order/` | Numbered 01–06 copies of the above |
 | — | `tps-homepage-gadget.html` | Fallback if you already pasted shell CSS and want markup-only |
 | — | `tps-label-taxonomy.md` | Label names for posts |
 | — | `../../media/zubair-adapt/tps-home-mockup.html` | Offline preview (open in browser) |

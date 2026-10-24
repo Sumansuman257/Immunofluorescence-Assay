@@ -10,6 +10,8 @@ Copy order — tick when done on live blog:
 - [ ] Footer HTML ← `tps-footer-gadget.html`
 - [ ] Hard refresh homepage — full-bleed navy→teal hero; old welcome gone
 - [ ] Mobile check — CTAs full width; tools stack
-- [ ] Kan/SOC **draft** saved ← `kan-soc-PASTE-READY.md` (not Publish)
+- [ ] Optional Lab tools page ← `tps-tools-page.html` (`/p/lab-tools.html`)
+- [ ] Kan/SOC **draft** saved ← `kan-soc-PASTE-READY.md` / `DRAFTS-PASTE-READY.md` (not Publish)
 
-Verify against: `media/zubair-adapt/pipettes-mockup-desktop.png`
+Verify against: `media/zubair-adapt/pipettes-mockup-desktop.png`  
+Git mirror: `docs/blogger-theme/` on branch `cursor/blogspot-science-update-7c34` (PR #7)
