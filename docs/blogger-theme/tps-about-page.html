@@ -1,0 +1,94 @@
+<!--
+  Static page: About — The Pipettes Solution
+  Blogger → Pages → New page → Title: About → HTML view → paste entire file
+  Permalink / custom slug: about  →  https://thepipettesolution.blogspot.com/p/about.html
+  Publish the PAGE (OK live). Keep teaching POSTs as drafts until reviewed.
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+.tps-about {
+  --navy:#0b2f5c; --teal:#0f766e; --ink:#0b1220; --muted:#4a5a6a; --wash:#e8f1f4; --line:#c5d5de;
+  max-width: 42rem; margin: 0 auto; color: var(--ink);
+  font-family: "Source Serif 4", Georgia, serif; line-height: 1.7; font-size: 1.05rem;
+}
+.tps-about * { box-sizing: border-box; }
+.tps-about h1, .tps-about h2 {
+  font-family: "IBM Plex Sans", "Avenir Next", sans-serif; color: var(--navy);
+  letter-spacing: -0.02em; line-height: 1.2;
+}
+.tps-about h1 { font-size: clamp(1.75rem, 4vw, 2.1rem); margin: 0 0 .5rem; }
+.tps-about .lede {
+  border-left: 3px solid var(--teal); padding-left: .85rem; color: var(--muted); margin: 0 0 1.5rem;
+  font-size: 1.1rem;
+}
+.tps-about h2 { font-size: 1.25rem; margin: 1.75rem 0 .5rem; }
+.tps-about .hero-band {
+  margin: 0 0 1.5rem; padding: clamp(1.5rem, 4vw, 2rem) clamp(1.1rem, 3vw, 1.5rem);
+  background: linear-gradient(135deg, #0b2f5c, #0f766e); color: #f4faf9;
+  position: relative; overflow: hidden;
+}
+.tps-about .hero-band::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255,255,255,.04) 24px);
+}
+.tps-about .hero-band p { margin: 0; color: #d7ebe8; font-size: 1.05rem; position: relative; z-index: 1; }
+.tps-about .hero-band strong {
+  color: #fff; font-family: "IBM Plex Sans", sans-serif; font-size: clamp(1.25rem, 3vw, 1.45rem);
+  display: block; margin-bottom: .4rem; letter-spacing: -0.02em; position: relative; z-index: 1;
+}
+.tps-about ul { padding-left: 1.2rem; }
+.tps-about li { margin: .45rem 0; }
+.tps-about a { color: var(--teal); }
+.tps-about .cta-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .25rem; }
+.tps-about .cta {
+  display: inline-block; padding: .65rem 1rem;
+  background: var(--navy); color: #fff !important; text-decoration: none;
+  font-family: "IBM Plex Sans", sans-serif; font-weight: 700; border-radius: 4px;
+  transition: transform .2s cubic-bezier(.22,1,.36,1);
+}
+.tps-about .cta:hover { transform: translateY(-2px); }
+.tps-about .cta.alt { background: transparent; color: var(--navy) !important; border: 1.5px solid var(--navy); }
+.tps-about .note {
+  margin: 1.5rem 0 0; padding: 1rem 1.1rem;
+  background: linear-gradient(165deg, #fff, var(--wash));
+  border-top: 2px solid var(--teal); font-size: .95rem; color: var(--muted);
+}
+@media (max-width: 420px) {
+  .tps-about .cta { width: 100%; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tps-about .cta:hover { transform: none; }
+}
+</style>
+
+<article class="tps-about">
+  <div class="hero-band">
+    <strong>The Pipettes Solution</strong>
+    <p>A lab-literacy project: calculators, Bench Notes, and decision-shaped teaching for molecular biology.</p>
+  </div>
+
+  <h1>About</h1>
+  <p class="lede">We exist so students and scientists can plan experiments with clear units, honest controls, and prose that respects both beginners and biosafety review.</p>
+
+  <h2>What you will find</h2>
+  <ul>
+    <li><strong>Lab tools</strong> — TCID50, cloning, ligation, cDNA, and related calculators.</li>
+    <li><strong>Bench Notes</strong> — long-form teaching posts with steps-first structure, schematic figures, and citations.</li>
+    <li><strong>Literacy over recipe dumps</strong> — we teach how to think; your signed institutional SOP remains authoritative.</li>
+  </ul>
+
+  <h2>How we write</h2>
+  <p>Brand voice is practical and precise: navy and teal, expressive typography, figures that teach one idea each. We avoid flashy nonsense and we avoid pretending a blog post is a license to skip training.</p>
+
+  <h2>Draft-first publishing</h2>
+  <p>Many posts begin as unpublished drafts so citations, images, and safety language can be reviewed. If you are reading a live post, treat it as educational communication — not a substitute for local protocols.</p>
+
+  <h2>Start here</h2>
+  <div class="cta-row">
+    <a class="cta" href="https://thepipettesolution.blogspot.com/#tps-lab-tools">Lab tools</a>
+    <a class="cta alt" href="https://thepipettesolution.blogspot.com/search/label/lab%20methods">Bench Notes</a>
+    <a class="cta alt" href="https://thepipettesolution.blogspot.com/p/contact-us.html">Contact</a>
+  </div>
+
+  <p class="note"><strong style="color:#0b2f5c;font-family:IBM Plex Sans,sans-serif">Biosafety:</strong> This site does not authorize work with pathogens, animals, or human materials. Follow local training, containment, and signed protocols.</p>
+</article>

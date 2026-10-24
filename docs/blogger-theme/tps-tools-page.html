@@ -1,0 +1,93 @@
+<!--
+  Static page: Lab tools — The Pipettes Solution
+  Blogger → Pages → New page → Title: Lab tools → HTML view → paste entire file
+  Permalink: lab-tools  →  https://thepipettesolution.blogspot.com/p/lab-tools.html
+  Publish the PAGE (OK live). Calculators stay educational — verify against signed SOP.
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+.tps-tools-page {
+  --navy:#0b2f5c; --teal:#0f766e; --ink:#0b1220; --muted:#4a5a6a; --wash:#e8f1f4; --line:#c5d5de;
+  --ease: cubic-bezier(.22,1,.36,1);
+  max-width: 48rem; margin: 0 auto; font-family: "IBM Plex Sans", sans-serif; color: var(--ink);
+}
+.tps-tools-page * { box-sizing: border-box; }
+.tps-tools-page h1 {
+  font-size: clamp(1.6rem, 4vw, 2rem); color: var(--navy); letter-spacing: -0.02em; margin: 0 0 .4rem;
+}
+.tps-tools-page .lede {
+  font-family: "Source Serif 4", Georgia, serif; color: var(--muted); margin: 0 0 1.5rem;
+  line-height: 1.55; border-left: 3px solid var(--teal); padding-left: .85rem;
+}
+.tps-tools-page h2 {
+  font-size: 1.05rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--teal); margin: 1.75rem 0 .75rem;
+}
+.tps-tools-page .grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .75rem;
+}
+.tps-tools-page a.tool {
+  display: block; padding: 1rem 1.05rem;
+  background: linear-gradient(165deg, #fff, var(--wash));
+  border-top: 2px solid var(--teal); color: var(--navy) !important; text-decoration: none !important;
+  min-height: 5.5rem; transition: transform .25s var(--ease), box-shadow .25s;
+}
+.tps-tools-page a.tool:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(11,47,92,.08); }
+.tps-tools-page a.tool:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.tps-tools-page a.tool:active { transform: none; }
+.tps-tools-page strong { display: block; margin-bottom: .35rem; font-size: .95rem; }
+.tps-tools-page .tool span {
+  display: block; font-family: "Source Serif 4", Georgia, serif; font-size: .86rem;
+  color: var(--muted); line-height: 1.4;
+}
+.tps-tools-page .note {
+  margin: 2rem 0 0; padding: 1rem 1.1rem;
+  background: linear-gradient(165deg, #fff, var(--wash)); border-top: 2px solid var(--navy);
+  font-family: "Source Serif 4", Georgia, serif; font-size: .95rem; color: var(--muted); line-height: 1.55;
+}
+.tps-tools-page .note strong { font-family: "IBM Plex Sans", sans-serif; color: var(--navy); display: inline; }
+.tps-tools-page .back {
+  display: inline-block; margin-top: 1.25rem; font-weight: 700; color: var(--teal); text-decoration: none;
+}
+.tps-tools-page .back:hover { text-decoration: underline; }
+.tps-tools-page .back:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+@media (max-width: 720px) {
+  .tps-tools-page .grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 420px) {
+  .tps-tools-page .grid { grid-template-columns: 1fr; }
+  .tps-tools-page a.tool { min-height: 4.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tps-tools-page a.tool { transition: none; }
+  .tps-tools-page a.tool:hover { transform: none; box-shadow: none; }
+}
+</style>
+
+<div class="tps-tools-page">
+  <h1>Lab tools</h1>
+  <p class="lede">Calculators for titers, assemblies, and routine cloning math. Use them to plan — then verify every number against your signed institutional SOP.</p>
+
+  <h2>Titers &amp; infection math</h2>
+  <div class="grid" role="list">
+    <a class="tool" role="listitem" href="https://thepipettesolution.blogspot.com/2026/02/tcid50.html"><strong>TCID50 Calculator</strong><span>Endpoint titer thinking and Reed–Muench style helpers.</span></a>
+    <a class="tool" role="listitem" href="https://thepipettesolution.blogspot.com/search/label/virology"><strong>MOI &amp; plaque literacy</strong><span>Browse virology labels for MOI planning and plaque counting stories.</span></a>
+  </div>
+
+  <h2>Cloning &amp; assembly</h2>
+  <div class="grid" role="list">
+    <a class="tool" role="listitem" href="https://thepipettesolution.blogspot.com/p/cloning-calculator.html"><strong>Cloning Calculator</strong><span>Insert:vector ratios and assembly planning.</span></a>
+    <a class="tool" role="listitem" href="https://thepipettesolution.blogspot.com/p/multi-insert-assembly-calculator.html"><strong>Multi-insert / T4 ligation</strong><span>Multi-fragment ligation stoichiometry.</span></a>
+    <a class="tool" role="listitem" href="https://thepipettesolution.blogspot.com/2026/10/ligation-calculator.html"><strong>Ligation Calculator</strong><span>Classic T4 ligation setup checks.</span></a>
+    <a class="tool" role="listitem" href="https://thepipettesolution.blogspot.com/search/label/cloning"><strong>Cloning Bench Notes</strong><span>Teaching posts on assembly decisions and failure modes.</span></a>
+  </div>
+
+  <h2>Everyday lab math</h2>
+  <div class="grid" role="list">
+    <a class="tool" role="listitem" href="https://thepipettesolution.blogspot.com/p/universal-calculator.html"><strong>Universal Calculator</strong><span>Everyday lab arithmetic in one place.</span></a>
+    <a class="tool" role="listitem" href="https://thepipettesolution.blogspot.com/2026/09/cdna-synthesis-calculator.html"><strong>cDNA Synthesis</strong><span>RT reaction planning without guesswork.</span></a>
+  </div>
+
+  <p class="note"><strong>How to use:</strong> Pick the tool that matches the decision you are making (titer, ratio, recovery). Record units with nouns. If the tool and your SOP disagree, the SOP wins.</p>
+  <a class="back" href="https://thepipettesolution.blogspot.com/">← Back to The Pipettes Solution</a>
+</div>

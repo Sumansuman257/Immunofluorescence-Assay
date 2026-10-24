@@ -1,0 +1,1288 @@
+<style>
+.tps-shell{
+  --tps-ink:#0b1220;
+  --tps-muted:#4a5a6a;
+  --tps-brand:#0b2f5c;
+  --tps-accent:#0f766e;
+  --tps-wash:#e8f1f4;
+  --tps-line:#c5d5de;
+  --tps-card:#ffffff;
+  color:var(--tps-ink);
+  font-family:"Source Serif 4","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  line-height:1.65;
+  max-width:46rem;
+  margin:0 auto;
+  text-decoration:none;
+}
+.tps-shell s,.tps-shell strike,.tps-shell del{text-decoration:none!important}
+.tps-shell *{box-sizing:border-box}
+.tps-shell .tps-kicker{
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--tps-brand);
+}
+.tps-shell .tps-title{
+  margin:.15rem 0 .55rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-size:1.85rem;
+  font-weight:700;
+  letter-spacing:-.02em;
+  line-height:1.2;
+  color:var(--tps-brand);
+}
+.tps-shell .tps-dek{
+  margin:0 0 1rem;
+  padding-left:.85rem;
+  border-left:3px solid var(--tps-accent);
+  font-size:1.05rem;
+  color:var(--tps-muted);
+}
+.tps-shell .tps-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem;
+  margin:0 0 1.1rem;
+  padding:0;
+  list-style:none;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+}
+.tps-shell .tps-chips li{
+  margin:0;
+  padding:.28rem .65rem;
+  border:1px solid var(--tps-line);
+  background:linear-gradient(160deg,var(--tps-wash),#fff);
+  color:var(--tps-brand);
+  font-size:.78rem;
+  font-weight:600;
+}
+.tps-shell .tps-hero{
+  margin:0 0 1.25rem;
+  overflow:hidden;
+  border-top:2px solid var(--tps-accent);
+  background:linear-gradient(160deg,var(--tps-wash),#f7fbfc 55%,#fff);
+}
+.tps-shell .tps-hero img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.tps-shell .tps-hero figcaption{
+  margin:0;
+  padding:.55rem .85rem .7rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  font-size:.82rem;
+  color:var(--tps-muted);
+}
+.tps-shell .tps-body{
+  font-size:1.02rem;
+}
+.tps-shell .tps-body h2,
+.tps-shell .tps-body h3,
+.tps-shell .tps-body h4{
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  color:var(--tps-brand);
+  letter-spacing:-.02em;
+  line-height:1.25;
+}
+.tps-shell .tps-body h2{font-size:1.45rem;margin:1.6rem 0 .55rem}
+.tps-shell .tps-body h3{font-size:1.18rem;margin:1.35rem 0 .45rem}
+.tps-shell .tps-body h4{font-size:1.05rem;margin:1.1rem 0 .4rem}
+.tps-shell .tps-body p{margin:.7rem 0}
+.tps-shell .tps-body ul,.tps-shell .tps-body ol{padding-left:1.15rem}
+.tps-shell .tps-body li{margin:.4rem 0}
+.tps-shell .tps-body a{color:var(--tps-accent)}
+.tps-shell .tps-body img{max-width:100%;height:auto}
+.tps-shell .tps-callout{
+  margin:1.1rem 0;
+  padding:1rem 1.1rem;
+  background:linear-gradient(160deg,var(--tps-wash),#fff);
+  border-top:2px solid var(--tps-accent);
+}
+.tps-shell .tps-callout strong{
+  display:block;
+  margin:0 0 .35rem;
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+  color:var(--tps-brand);
+}
+.tps-shell .tps-footer-note{
+  margin:1.6rem 0 0;
+  padding-top:.85rem;
+  border-top:1px solid var(--tps-line);
+  font-size:.9rem;
+  color:var(--tps-muted);
+  font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;
+}
+@media (prefers-reduced-motion:no-preference){
+  .tps-shell .tps-dek{animation:tps-rise .65s ease both}
+  .tps-shell .tps-hero{animation:tps-rise .55s ease both .05s}
+}
+@keyframes tps-rise{
+  from{opacity:.35;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+</style>
+
+<article class="tps-shell">
+<p class="tps-kicker">The Pipettes Solution</p>
+<h2 class="tps-title">Immunofluorescence Assay (IFA)</h2>
+<p class="tps-dek">IFA steps with clearer controls thinking: antibodies, washes, and what background is trying to tell you.</p>
+<ul class="tps-chips"><li>immunofluorescence</li><li>IFA</li><li>imaging</li><li>antibodies</li><li>lab methods</li><li>protocols</li></ul>
+<figure class="tps-hero"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22960%22%20height%3D%22280%22%20viewBox%3D%220%200%20960%20280%22%20role%3D%22img%22%20aria-label%3D%22Immunofluorescence%20Assay%20%28IFA%29%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230b2f5c%22/%3E%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%23134e6f%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230b2f5c%22/%3E%3C/linearGradient%3E%3Cpattern%20id%3D%22p%22%20width%3D%2224%22%20height%3D%2224%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M24%200H0V24%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C255%2C255%2C.08%29%22%20stroke-width%3D%221%22/%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width%3D%22960%22%20height%3D%22280%22%20fill%3D%22url%28%23g%29%22/%3E%3Crect%20width%3D%22960%22%20height%3D%22280%22%20fill%3D%22url%28%23p%29%22/%3E%3Ccircle%20cx%3D%22820%22%20cy%3D%2270%22%20r%3D%2290%22%20fill%3D%22rgba%28255%2C255%2C255%2C.06%29%22/%3E%3Ccircle%20cx%3D%22880%22%20cy%3D%22210%22%20r%3D%2260%22%20fill%3D%22rgba%2815%2C118%2C110%2C.35%29%22/%3E%3Ctext%20x%3D%2248%22%20y%3D%2278%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2218%22%20font-weight%3D%22700%22%20letter-spacing%3D%224%22%20fill%3D%22%239fd5cf%22%3ETHE%20PIPETTES%20SOLUTION%3C/text%3E%3Ctext%20x%3D%2248%22%20y%3D%22138%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22700%22%20fill%3D%22%23f4faf9%22%3EImmunofluorescence%20Assay%20%28IFA%29%3C/text%3E%3Ctext%20x%3D%2248%22%20y%3D%22178%22%20font-family%3D%22Source%20Serif%204%2C%20Georgia%2C%20serif%22%20font-size%3D%2220%22%20fill%3D%22%23d7ebe8%22%3EImaging%20%C2%B7%20protocol%3C/text%3E%3Ctext%20x%3D%2248%22%20y%3D%22228%22%20font-family%3D%22IBM%20Plex%20Sans%2C%20Avenir%20Next%2C%20Segoe%20UI%2C%20sans-serif%22%20font-size%3D%2215%22%20fill%3D%22%23b7d8d3%22%3EReview%20draft%20%C2%B7%20clearer%20layout%20%C2%B7%20same%20core%20tool%3C/text%3E%3C/svg%3E" alt="Immunofluorescence Assay (IFA) thumbnail banner" /><figcaption>Featured thumbnail for this review draft — replace with a lab photo anytime.</figcaption></figure>
+<div class="tps-callout"><strong>How to use this page</strong>Skim the intro, then use the interactive tool or steps below. This is a review draft of the live post — same science, clearer reading path.</div>
+<div class="tps-body">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IFA Calculator – Immunofluorescence Assay</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f2f7fc;
+            min-height: 100vh;
+            padding: 24px 16px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px 36px 40px;
+            box-shadow: 0 16px 48px rgba(0, 20, 40, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+        .header .icon { font-size: 28px; }
+        .header h1 { font-size: 24px; font-weight: 700; color: #0b1e33; }
+        .subtitle {
+            font-size: 14px;
+            color: #3b5a7a;
+            background: #f0f7fe;
+            padding: 10px 16px;
+            border-radius: 12px;
+            border-left: 4px solid #4a8fc1;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .subtitle strong { color: #0b2a47; }
+        .subtitle .badge {
+            background: #dce8f2;
+            color: #1a4a6e;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 6px;
+        }
+
+        /* ============================================================ */
+        /* PROTOCOL TIMELINE – AT THE TOP */
+        /* ============================================================ */
+        .protocol-timeline {
+            background: #fafcff;
+            border-radius: 18px;
+            padding: 18px 20px 20px;
+            border: 2px solid #4a8fc1;
+            margin-bottom: 24px;
+        }
+        .protocol-timeline h3 {
+            font-size: 18px;
+            color: #0b2a47;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .protocol-timeline h3 .badge {
+            background: #4a8fc1;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+
+        .timer-display {
+            background: #1a3a57;
+            color: white;
+            border-radius: 14px;
+            padding: 12px 20px;
+            margin: 12px 0 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .timer-display .label {
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0.8;
+            flex: 1;
+        }
+        .timer-display .time {
+            font-size: 32px;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+        }
+        .timer-display .controls {
+            display: flex;
+            gap: 8px;
+        }
+        .timer-display .controls button {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+        .timer-display .controls button:hover {
+            background: rgba(255,255,255,0.25);
+        }
+        .timer-display .controls button.danger {
+            background: rgba(220, 80, 80, 0.4);
+        }
+        .timer-display .controls button.danger:hover {
+            background: rgba(220, 80, 80, 0.6);
+        }
+
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f4f8;
+            flex-wrap: wrap;
+        }
+        .timeline-step:last-child {
+            border-bottom: none;
+        }
+        .timeline-step .num {
+            background: #e6eef6;
+            color: #1a4a6e;
+            font-weight: 700;
+            font-size: 12px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .timeline-step .num.critical {
+            background: #fce8e8;
+            color: #8a2a2a;
+        }
+        .timeline-step .desc {
+            font-size: 13px;
+            color: #1a3a57;
+            flex: 1 1 200px;
+        }
+        .timeline-step .desc .highlight {
+            color: #c0392b;
+            font-weight: 700;
+        }
+        .timeline-step .time {
+            font-size: 12px;
+            color: #5a7a9a;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .timeline-step .timer-btn {
+            background: #dce8f2;
+            border: none;
+            border-radius: 14px;
+            padding: 4px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a4a6e;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+        .timeline-step .timer-btn:hover {
+            background: #b8d0e4;
+        }
+        .timeline-step .timer-btn.running {
+            background: #f5c6c6;
+            color: #8a2a2a;
+        }
+        .timeline-step .timer-btn.done {
+            background: #b8e0c6;
+            color: #1a6a3a;
+        }
+
+        .critical-warning {
+            background: #fce8e8;
+            border-left: 4px solid #c0392b;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #8a2a2a;
+            margin-top: 8px;
+        }
+
+        /* ============================================================ */
+        /* CALCULATOR SECTIONS */
+        /* ============================================================ */
+        .calc-section {
+            background: #fafcff;
+            border-radius: 18px;
+            padding: 18px 20px 20px;
+            margin-bottom: 22px;
+            border: 1px solid #e6eef6;
+            transition: box-shadow 0.2s;
+        }
+        .calc-section:hover {
+            box-shadow: 0 4px 12px rgba(0, 20, 40, 0.04);
+        }
+        .calc-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0b2a47;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .calc-section-title .badge {
+            background: #dce8f2;
+            color: #1a4a6e;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a3a57;
+            margin-bottom: 3px;
+        }
+        .form-group .hint {
+            font-weight: 400;
+            color: #6a8aaa;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .input-row input,
+        .input-row select {
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1.5px solid #d5e0eb;
+            background: white;
+            font-family: inherit;
+            outline: none;
+            height: 40px;
+            flex: 1 1 100px;
+            min-width: 60px;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .input-row input:focus,
+        .input-row select:focus {
+            border-color: #4a8fc1;
+            box-shadow: 0 0 0 4px rgba(74, 143, 193, 0.08);
+        }
+        .input-row .unit-label {
+            font-weight: 500;
+            color: #2a4a6a;
+            font-size: 13px;
+            min-width: 24px;
+        }
+        .input-row .inline-badge {
+            background: #edf4fa;
+            padding: 3px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #2a4a6a;
+            white-space: nowrap;
+        }
+        .input-row .result-badge {
+            background: #e8f0f8;
+            padding: 4px 14px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0b2a47;
+            white-space: nowrap;
+        }
+
+        .calc-btn {
+            background: #1a5a82;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+            margin-top: 2px;
+            width: 100%;
+        }
+        .calc-btn:hover { background: #0f3a5a; }
+
+        .result-box {
+            background: #f8faff;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-top: 12px;
+            border: 1px solid #e6eef6;
+            display: none;
+        }
+        .result-box.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 16px;
+        }
+        .result-item {
+            padding: 4px 0;
+        }
+        .result-item .label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #5a7a9a;
+        }
+        .result-item .value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0b1e33;
+        }
+        .result-item .value .unit {
+            font-size: 13px;
+            font-weight: 500;
+            color: #4a6a8a;
+            margin-left: 3px;
+        }
+        .result-item .sub {
+            font-size: 12px;
+            color: #3b5a7a;
+        }
+        .result-item.highlight .value {
+            color: #0f3a5a;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .divider {
+            border-top: 1px dashed #d5e0eb;
+            margin: 8px 0 4px;
+        }
+
+        .mm-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+        .mm-table th {
+            text-align: left;
+            font-weight: 600;
+            color: #1a3a57;
+            padding: 6px 6px 6px 0;
+            border-bottom: 2px solid #d5e0eb;
+        }
+        .mm-table td {
+            padding: 6px 6px 6px 0;
+            border-bottom: 1px solid #e6eef6;
+            color: #1a3a57;
+        }
+        .mm-table .total-row td {
+            font-weight: 700;
+            border-top: 2px solid #d5e0eb;
+        }
+
+        .text-muted { color: #5a7a9a; }
+        .text-small { font-size: 12px; }
+        .mt-1 { margin-top: 6px; }
+        .mb-1 { margin-bottom: 6px; }
+        .flex { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .section-divider {
+            border-top: 2px dashed #d5e0eb;
+            margin: 24px 0 18px;
+            padding-top: 4px;
+        }
+        .light-sensitive {
+            background: #fff3cd;
+            border-left: 4px solid #f0ad4e;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #856404;
+            margin-top: 8px;
+        }
+        .plate-ref {
+            background: #e8f0f8;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 12px;
+            color: #1a4a6e;
+            margin-top: 6px;
+        }
+        .plate-ref table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        .plate-ref th,
+        .plate-ref td {
+            padding: 4px 8px;
+            border-bottom: 1px solid #d5e0eb;
+            text-align: left;
+        }
+        .plate-ref th {
+            font-weight: 600;
+            color: #0b2a47;
+        }
+
+        @media (max-width: 550px) {
+            .card { padding: 20px 16px 24px; }
+            .result-grid { grid-template-columns: 1fr; }
+            .input-row input, .input-row select { font-size: 13px; padding: 6px 10px; height: 36px; }
+            .header h1 { font-size: 20px; }
+            .timeline-step { gap: 8px; }
+            .timeline-step .desc { flex: 1 1 100%; }
+            .timer-display .time { font-size: 24px; }
+            .timer-display .label { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+
+            <!-- Header -->
+            <div class="header">
+                <span class="icon">🔬</span>
+                <h1>IFA Calculator</h1>
+            </div>
+            <div class="subtitle">
+                <strong>Immunofluorescence Assay</strong> &nbsp;·&nbsp; Sindbis · Influenza · YFV · Seneca
+                <span class="badge">⏱️ Timers ready</span>
+                <span class="badge" style="background:#4a8fc1; color:white;">Antibody dilutions</span>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- PROTOCOL TIMELINE – FRONT AND CENTER                       -->
+            <!-- ========================================================== -->
+            <div class="protocol-timeline">
+                <h3>
+                    ⏱️ IFA Protocol
+                    <span class="badge">click Start on any step</span>
+                </h3>
+
+                <div class="timer-display" id="timerDisplay">
+                    <span class="label" id="timerLabel">⏳ Timer ready</span>
+                    <span class="time" id="timerTime">00:00</span>
+                    <div class="controls">
+                        <button onclick="stopTimer()" class="danger">⏹ Stop</button>
+                        <button onclick="resetTimer()">↺ Reset</button>
+                    </div>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="timeline-step">
+                    <span class="num">1</span>
+                    <span class="desc"><strong>Fixation:</strong> 3.7% formaldehyde (10 min) OR 100% methanol (10 min) OR 80% methanol (20 min) at 4°C.</span>
+                    <span class="time">10-20 min</span>
+                    <button class="timer-btn" data-minutes="10" onclick="startTimer(10, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-step">
+                    <span class="num">2</span>
+                    <span class="desc"><strong>Wash:</strong> 2-3× with PBS. 100-200 µL per well (plate dependent).</span>
+                    <span class="time">5 min</span>
+                    <button class="timer-btn" data-minutes="5" onclick="startTimer(5, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-step">
+                    <span class="num">3</span>
+                    <span class="desc"><strong>Permeabilization:</strong> 0.2% Triton X-100 for 8-10 min.</span>
+                    <span class="time">10 min</span>
+                    <button class="timer-btn" data-minutes="10" onclick="startTimer(10, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-step">
+                    <span class="num">4</span>
+                    <span class="desc"><strong>Wash:</strong> 3× with PBS.</span>
+                    <span class="time">5 min</span>
+                    <button class="timer-btn" data-minutes="5" onclick="startTimer(5, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="timeline-step">
+                    <span class="num">5</span>
+                    <span class="desc"><strong>Blocking:</strong> 1% PBS-BSA, 30 min at RT.</span>
+                    <span class="time">30 min</span>
+                    <button class="timer-btn" data-minutes="30" onclick="startTimer(30, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="timeline-step">
+                    <span class="num">6</span>
+                    <span class="desc"><strong>Wash:</strong> 2-3× with PBS.</span>
+                    <span class="time">5 min</span>
+                    <button class="timer-btn" data-minutes="5" onclick="startTimer(5, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 7 – Primary Antibody -->
+                <div class="timeline-step">
+                    <span class="num critical">7</span>
+                    <span class="desc"><strong>Primary Antibody:</strong> Diluted in 1% PBS-BSA. <span class="highlight">Incubate 1 hour at 37°C</span></span>
+                    <span class="time">60 min</span>
+                    <button class="timer-btn" data-minutes="60" onclick="startTimer(60, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="timeline-step">
+                    <span class="num">8</span>
+                    <span class="desc"><strong>Wash:</strong> 5-6× with PBS (100-200 µL/well).</span>
+                    <span class="time">10 min</span>
+                    <button class="timer-btn" data-minutes="10" onclick="startTimer(10, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 9 – Secondary Antibody -->
+                <div class="timeline-step">
+                    <span class="num critical">9</span>
+                    <span class="desc"><strong>Secondary Antibody:</strong> Anti-species IgG (1:1000) in 1% PBS-BSA. <span class="highlight">30-60 min at RT/37°C. PROTECT FROM LIGHT!</span></span>
+                    <span class="time">60 min</span>
+                    <button class="timer-btn" data-minutes="60" onclick="startTimer(60, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 10 -->
+                <div class="timeline-step">
+                    <span class="num">10</span>
+                    <span class="desc"><strong>Wash:</strong> 5-6× with PBS. Protect from light.</span>
+                    <span class="time">10 min</span>
+                    <button class="timer-btn" data-minutes="10" onclick="startTimer(10, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 11 -->
+                <div class="timeline-step">
+                    <span class="num">11</span>
+                    <span class="desc"><strong>Optional DAPI:</strong> 1:2000 in PBS for nuclear staining.</span>
+                    <span class="time">5 min</span>
+                    <button class="timer-btn" data-minutes="5" onclick="startTimer(5, this)">▶ Start</button>
+                </div>
+
+                <!-- Step 12 -->
+                <div class="timeline-step" style="border-bottom: none;">
+                    <span class="num">12</span>
+                    <span class="desc"><strong>Visualization:</strong> Examine under fluorescence microscope. Store in dark at 4°C in PBS.</span>
+                    <span class="time">—</span>
+                    <span style="font-size:12px; color:#5a7a9a;">no timer</span>
+                </div>
+
+                <div class="critical-warning">
+                    ⚠️ <strong>Critical:</strong> Protect fluorophore-conjugated antibodies from light! Wrap tubes in foil. Keep samples in dark during and after staining.
+                </div>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- SEPARATOR                                                  -->
+            <!-- ========================================================== -->
+            <div class="section-divider">
+                <span style="background:white; padding:0 12px; font-size:13px; font-weight:600; color:#5a7a9a;">▼ REAGENT CALCULATOR — prepare before starting ▼</span>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- CALCULATOR SECTION 1: Plate Format & Samples               -->
+            <!-- ========================================================== -->
+            <div class="calc-section">
+                <div class="calc-section-title">
+                    <span>🧪 1. Plate Format &amp; Samples</span>
+                    <span class="badge">adjust volumes</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Plate format</label>
+                    <div class="input-row">
+                        <select id="plateFormat" style="flex:0 1 180px;">
+                            <option value="96">96-well plate</option>
+                            <option value="48">48-well plate</option>
+                            <option value="24">24-well plate</option>
+                            <option value="12">12-well plate</option>
+                            <option value="6">6-well plate</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                        <span class="inline-badge" id="plateVolDisplay">40-100 µL/well</span>
+                    </div>
+                </div>
+                <div class="form-group" id="customVolGroup" style="display:none;">
+                    <label>Custom volume per well <span class="hint">(µL)</span></label>
+                    <div class="input-row">
+                        <input type="number" id="customVol" value="100" step="10" min="10" style="flex:0 1 100px;" />
+                        <span class="unit-label">µL</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of wells <span class="hint">(samples + controls)</span></label>
+                    <div class="input-row">
+                        <input type="number" id="ifaWells" value="8" step="1" min="1" style="flex:0 1 80px;" />
+                        <span class="inline-badge">wells</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Overage <span class="hint">(extra % for pipetting)</span></label>
+                    <div class="input-row">
+                        <input type="number" id="ifaOverage" value="10" step="1" min="0" style="flex:0 1 80px;" />
+                        <span class="unit-label">%</span>
+                    </div>
+                </div>
+
+                <!-- Plate reference -->
+                <div class="plate-ref">
+                    <strong>📋 Plate reference volumes:</strong>
+                    <table>
+                        <tr><th>Plate</th><th>Fix/Wash (µL)</th><th>Antibody (µL)</th><th>Triton (µL)</th><th>Storage (µL)</th></tr>
+                        <tr><td>96-well</td><td>100-200</td><td>40-100</td><td>40-100</td><td>100-200</td></tr>
+                        <tr><td>48-well</td><td>200-300</td><td>100-200</td><td>100-200</td><td>200-300</td></tr>
+                        <tr><td>24-well</td><td>300-500</td><td>150-250</td><td>150-250</td><td>300-500</td></tr>
+                        <tr><td>12-well</td><td>500-1000</td><td>250-500</td><td>250</td><td>500-1000</td></tr>
+                        <tr><td>6-well</td><td>1000-2000</td><td>500-1000</td><td>500</td><td>1000-2000</td></tr>
+                    </table>
+                </div>
+
+                <button class="calc-btn" onclick="calcIFA()">Calculate Reagent Volumes</button>
+                <div class="result-box" id="ifaResult">
+                    <div class="result-grid">
+                        <div class="result-item highlight">
+                            <div class="label">Total wells</div>
+                            <div class="value" id="ifaTotalWells">—</div>
+                            <div class="sub">including overage</div>
+                        </div>
+                        <div class="result-item highlight">
+                            <div class="label">Volume per well</div>
+                            <div class="value" id="ifaVolPerWell">— <span class="unit">µL</span></div>
+                            <div class="sub">antibody/reagent volume</div>
+                        </div>
+                    </div>
+                    <table class="mm-table">
+                        <thead><tr><th>Reagent</th><th>Per Well (µL)</th><th>Total (µL)</th></tr></thead>
+                        <tbody id="ifaTableBody"></tbody>
+                    </table>
+                    <div class="text-muted text-small mt-1">💡 PBS wash volumes can be adjusted based on plate format. Protect fluorophores from light!</div>
+                </div>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- CALCULATOR SECTION 2: Antibody Dilutions                    -->
+            <!-- ========================================================== -->
+            <div class="calc-section">
+                <div class="calc-section-title">
+                    <span>🧫 2. Antibody Dilutions</span>
+                    <span class="badge">primary · secondary</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Virus / Target</label>
+                    <div class="input-row">
+                        <select id="virusTarget" style="flex:0 1 200px;" onchange="updateAntibodyPresets()">
+                            <option value="sindbis">Sindbis (Mouse ascitic fluid, 1:500)</option>
+                            <option value="influenza">Influenza A (Rabbit, 1:500 or 1:1000)</option>
+                            <option value="yfv">Yellow Fever (Rabbit NS4B, 1:500)</option>
+                            <option value="seneca">Seneca Valley (Mouse Mab, 1:30,000; Rabbit 1:500)</option>
+                            <option value="custom">Custom antibody</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Primary Antibody -->
+                <div class="form-group">
+                    <label>Primary antibody dilution <span class="hint">(1:X)</span></label>
+                    <div class="input-row">
+                        <input type="number" id="primaryDilution" value="500" step="50" min="1" style="flex:0 1 100px;" />
+                        <span class="unit-label">1 :</span>
+                        <span class="inline-badge" id="primaryLabel">mouse ascitic fluid</span>
+                    </div>
+                </div>
+
+                <!-- Special Seneca: 1:30 then 1:1000 -->
+                <div class="form-group" id="senecaSpecialGroup" style="display:none;">
+                    <label>Seneca special dilution <span class="hint">(1:30 first, then 1:1000)</span></label>
+                    <div class="input-row">
+                        <span style="font-weight:500; color:#0b2a47;">Intermediate 1:30</span>
+                        <input type="number" id="senecaInter" value="30" step="5" min="2" style="flex:0 1 80px;" />
+                        <span style="font-weight:500; color:#0b2a47;">then 1:</span>
+                        <input type="number" id="senecaFinal" value="1000" step="100" min="10" style="flex:0 1 80px;" />
+                        <span class="inline-badge">total 1:30,000</span>
+                    </div>
+                </div>
+
+                <!-- Secondary Antibody -->
+                <div class="form-group">
+                    <label>Secondary antibody dilution <span class="hint">(1:X, anti-species IgG)</span></label>
+                    <div class="input-row">
+                        <input type="number" id="secondaryDilution" value="1000" step="100" min="1" style="flex:0 1 100px;" />
+                        <span class="unit-label">1 :</span>
+                        <select id="secondarySpecies" style="flex:0 1 140px;">
+                            <option value="mouse">anti-Mouse IgG</option>
+                            <option value="rabbit" selected>anti-Rabbit IgG</option>
+                            <option value="goat">anti-Goat IgG</option>
+                            <option value="human">anti-Human IgG</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>DAPI dilution <span class="hint">(optional, 1:X for nuclear stain)</span></label>
+                    <div class="input-row">
+                        <input type="number" id="dapiDilution" value="2000" step="100" min="100" style="flex:0 1 100px;" />
+                        <span class="unit-label">1 :</span>
+                        <span class="inline-badge">optional</span>
+                    </div>
+                </div>
+
+                <button class="calc-btn" onclick="calcAntibodies()">Calculate Antibody Dilutions</button>
+                <div class="result-box" id="antibodyResult">
+                    <div class="result-grid">
+                        <div class="result-item highlight">
+                            <div class="label">Primary Ab total volume</div>
+                            <div class="value" id="primaryTotalVol">— <span class="unit">µL</span></div>
+                            <div class="sub" id="primaryTotalDetail">neat + diluent</div>
+                        </div>
+                        <div class="result-item highlight">
+                            <div class="label">Secondary Ab total volume</div>
+                            <div class="value" id="secondaryTotalVol">— <span class="unit">µL</span></div>
+                            <div class="sub" id="secondaryTotalDetail">neat + diluent</div>
+                        </div>
+                    </div>
+                    <table class="mm-table">
+                        <thead><tr><th>Antibody</th><th>Neat Ab (µL)</th><th>Diluent (1% PBS-BSA) (µL)</th><th>Total (µL)</th></tr></thead>
+                        <tbody id="antibodyTableBody"></tbody>
+                    </table>
+                    <div class="light-sensitive">
+                        🌑 <strong>Light-sensitive!</strong> Prepare dilutions in foil-wrapped tubes. Keep samples in dark during and after staining.
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /card -->
+    </div>
+
+    <script>
+        // ============================================================
+        // TIMER SYSTEM
+        // ============================================================
+        let timerInterval = null;
+        let timerSeconds = 0;
+        let timerTotal = 0;
+        let timerActive = false;
+        let activeButton = null;
+
+        function formatTime(sec) {
+            const m = Math.floor(sec / 60);
+            const s = sec % 60;
+            return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+        }
+
+        function updateTimerDisplay() {
+            document.getElementById('timerTime').textContent = formatTime(timerSeconds);
+            if (timerSeconds <= 0 && timerActive) {
+                timerActive = false;
+                clearInterval(timerInterval);
+                timerInterval = null;
+                document.getElementById('timerLabel').textContent = '⏰ Timer finished!';
+                document.getElementById('timerTime').textContent = '00:00';
+                try {
+                    const ctx = new(window.AudioContext || window.webkitAudioContext)();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.frequency.value = 880;
+                    osc.type = 'square';
+                    gain.gain.value = 0.15;
+                    osc.start(ctx.currentTime);
+                    osc.stop(ctx.currentTime + 0.4);
+                    setTimeout(() => {
+                        const osc2 = ctx.createOscillator();
+                        const gain2 = ctx.createGain();
+                        osc2.connect(gain2);
+                        gain2.connect(ctx.destination);
+                        osc2.frequency.value = 660;
+                        osc2.type = 'square';
+                        gain2.gain.value = 0.15;
+                        osc2.start(ctx.currentTime + 0.5);
+                        osc2.stop(ctx.currentTime + 0.9);
+                    }, 500);
+                } catch (e) {}
+                if (activeButton) {
+                    activeButton.textContent = '✅ Done';
+                    activeButton.className = 'timer-btn done';
+                    activeButton = null;
+                }
+                const disp = document.getElementById('timerDisplay');
+                disp.style.background = '#8a2a2a';
+                setTimeout(() => { disp.style.background = '#1a3a57'; }, 3000);
+            }
+        }
+
+        function startTimer(minutes, btn) {
+            stopTimer();
+            timerTotal = minutes * 60;
+            timerSeconds = timerTotal;
+            timerActive = true;
+            activeButton = btn;
+            btn.textContent = '⏳ Running';
+            btn.className = 'timer-btn running';
+            const desc = btn.parentElement.querySelector('.desc')?.textContent?.trim()?.substring(0, 50) || 'Timer';
+            document.getElementById('timerLabel').textContent = '⏳ ' + desc + '...';
+            document.getElementById('timerDisplay').style.background = '#1a4a6e';
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                updateTimerDisplay();
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timerActive = false;
+            if (activeButton) {
+                activeButton.textContent = '⏹ Stopped';
+                activeButton.className = 'timer-btn';
+                activeButton = null;
+            }
+            document.getElementById('timerLabel').textContent = '⏹ Timer stopped';
+            document.getElementById('timerDisplay').style.background = '#1a3a57';
+        }
+
+        function resetTimer() {
+            stopTimer();
+            timerSeconds = timerTotal;
+            if (timerTotal > 0) {
+                updateTimerDisplay();
+                document.getElementById('timerLabel').textContent = '↺ Reset – click Start again';
+            } else {
+                document.getElementById('timerTime').textContent = '00:00';
+                document.getElementById('timerLabel').textContent = '⏳ Timer ready';
+            }
+            document.querySelectorAll('.timer-btn').forEach(b => {
+                if (b.classList.contains('running') || b.classList.contains('done')) {
+                    b.textContent = '▶ Start';
+                    b.className = 'timer-btn';
+                }
+            });
+        }
+
+        document.getElementById('timerTime').textContent = '00:00';
+        document.getElementById('timerLabel').textContent = '⏳ Click "Start" on any step';
+        timerTotal = 0;
+
+        // ============================================================
+        // PLATE FORMAT HANDLING
+        // ============================================================
+        const plateVolumes = {
+            '96': { label: '96-well', ab: 70, wash: 150, triton: 70, storage: 150 },
+            '48': { label: '48-well', ab: 150, wash: 250, triton: 150, storage: 250 },
+            '24': { label: '24-well', ab: 200, wash: 400, triton: 200, storage: 400 },
+            '12': { label: '12-well', ab: 350, wash: 750, triton: 250, storage: 750 },
+            '6': { label: '6-well', ab: 750, wash: 1500, triton: 500, storage: 1500 },
+            'custom': { label: 'Custom', ab: 100, wash: 200, triton: 100, storage: 200 }
+        };
+
+        document.getElementById('plateFormat').addEventListener('change', function() {
+            const val = this.value;
+            if (val === 'custom') {
+                document.getElementById('customVolGroup').style.display = 'block';
+                document.getElementById('plateVolDisplay').textContent = 'custom µL/well';
+            } else {
+                document.getElementById('customVolGroup').style.display = 'none';
+                const pv = plateVolumes[val];
+                document.getElementById('plateVolDisplay').textContent = pv.ab + ' µL/well (antibody)';
+            }
+            calcIFA();
+        });
+
+        document.getElementById('customVol').addEventListener('input', function() {
+            const val = document.getElementById('plateFormat').value;
+            if (val === 'custom') {
+                document.getElementById('plateVolDisplay').textContent = this.value + ' µL/well (custom)';
+                calcIFA();
+            }
+        });
+
+        // ============================================================
+        // ANTIBODY PRESETS
+        // ============================================================
+        function updateAntibodyPresets() {
+            const virus = document.getElementById('virusTarget').value;
+            const primaryDil = document.getElementById('primaryDilution');
+            const primaryLabel = document.getElementById('primaryLabel');
+            const senecaGroup = document.getElementById('senecaSpecialGroup');
+
+            if (virus === 'sindbis') {
+                primaryDil.value = 500;
+                primaryLabel.textContent = 'mouse ascitic fluid (1:500)';
+                senecaGroup.style.display = 'none';
+            } else if (virus === 'influenza') {
+                primaryDil.value = 500;
+                primaryLabel.textContent = 'rabbit PAb (1:500) or MAb (1:1000)';
+                senecaGroup.style.display = 'none';
+            } else if (virus === 'yfv') {
+                primaryDil.value = 500;
+                primaryLabel.textContent = 'rabbit NS4B (1:500)';
+                senecaGroup.style.display = 'none';
+            } else if (virus === 'seneca') {
+                primaryDil.value = 30000;
+                primaryLabel.textContent = 'mouse Mab (1:30,000 via 1:30 + 1:1000)';
+                senecaGroup.style.display = 'block';
+            } else { // custom
+                primaryDil.value = 500;
+                primaryLabel.textContent = 'custom dilution';
+                senecaGroup.style.display = 'none';
+            }
+            calcAntibodies();
+        }
+
+        // ============================================================
+        // CALCULATOR 1: IFA REAGENTS
+        // ============================================================
+        function calcIFA() {
+            const plate = document.getElementById('plateFormat').value;
+            const wells = parseInt(document.getElementById('ifaWells').value) || 1;
+            const overage = parseFloat(document.getElementById('ifaOverage').value) || 10;
+            const totalWells = Math.ceil(wells * (1 + overage / 100));
+
+            let volPerWell;
+            if (plate === 'custom') {
+                volPerWell = parseFloat(document.getElementById('customVol').value) || 100;
+            } else {
+                volPerWell = plateVolumes[plate].ab;
+            }
+
+            // Reagent volumes per well (from protocol)
+            const reagents = {
+                'PBS (wash)': plate === 'custom' ? volPerWell * 1.5 : plateVolumes[plate].wash,
+                '3.7% Formaldehyde / Methanol': volPerWell * 1.2,
+                '0.2% Triton X-100': plate === 'custom' ? volPerWell * 0.8 : plateVolumes[plate].triton,
+                '1% PBS-BSA (blocking)': volPerWell,
+                'Primary Antibody': volPerWell,
+                'Secondary Antibody': volPerWell,
+                'DAPI (optional)': volPerWell * 0.5,
+                'PBS (storage)': plate === 'custom' ? volPerWell * 1.5 : plateVolumes[plate].storage
+            };
+
+            let html = '';
+            let grandTotal = 0;
+            for (const [name, per] of Object.entries(reagents)) {
+                const total = per * totalWells;
+                grandTotal += total;
+                html += `<tr><td>${name}</td><td>${per.toFixed(0)}</td><td>${total.toFixed(0)}</td></tr>`;
+            }
+
+            document.getElementById('ifaTableBody').innerHTML = html;
+            document.getElementById('ifaTotalWells').textContent = totalWells + ' ×';
+            document.getElementById('ifaVolPerWell').innerHTML = volPerWell.toFixed(0) + ' <span class="unit">µL</span>';
+            document.getElementById('ifaResult').classList.add('visible');
+        }
+
+        document.getElementById('ifaWells').addEventListener('input', calcIFA);
+        document.getElementById('ifaOverage').addEventListener('input', calcIFA);
+        calcIFA();
+
+        // ============================================================
+        // CALCULATOR 2: ANTIBODY DILUTIONS
+        // ============================================================
+        function calcAntibodies() {
+            const plate = document.getElementById('plateFormat').value;
+            const wells = parseInt(document.getElementById('ifaWells').value) || 1;
+            const overage = parseFloat(document.getElementById('ifaOverage').value) || 10;
+            const totalWells = Math.ceil(wells * (1 + overage / 100));
+
+            let volPerWell;
+            if (plate === 'custom') {
+                volPerWell = parseFloat(document.getElementById('customVol').value) || 100;
+            } else {
+                volPerWell = plateVolumes[plate].ab;
+            }
+
+            const primaryDil = parseInt(document.getElementById('primaryDilution').value) || 500;
+            const secondaryDil = parseInt(document.getElementById('secondaryDilution').value) || 1000;
+            const dapiDil = parseInt(document.getElementById('dapiDilution').value) || 2000;
+
+            const virus = document.getElementById('virusTarget').value;
+            let primaryVol = 0;
+            let primaryLabel = 'Primary Antibody';
+
+            // Handle Seneca special dilution
+            if (virus === 'seneca') {
+                const inter = parseInt(document.getElementById('senecaInter').value) || 30;
+                const final = parseInt(document.getElementById('senecaFinal').value) || 1000;
+                // Total dilution = inter * final
+                const totalDil = inter * final;
+                // For 1:30,000 dilution, amount of neat = totalVol / totalDil
+                // But we also need to prepare the 1:30 intermediate
+                const totalVol = volPerWell * totalWells;
+                const neatAb = totalVol / totalDil;
+                // For the 1:30 intermediate: we need enough to make the final dilution
+                // We'll prepare a 1:30 stock first, then dilute 1:1000
+                const interVol = totalVol / final; // volume of 1:30 needed
+                const interNeat = interVol / inter;
+                // We'll show both steps
+                const rows = [
+                    { name: '1:30 Intermediate (neat → 1:30)', neat: interNeat, diluent: interVol - interNeat,
+                        total: interVol },
+                    { name: '1:30,000 Final (1:30 → 1:1000)', neat: interVol, diluent: totalVol - interVol,
+                        total: totalVol }
+                ];
+                let html = '';
+                rows.forEach(r => {
+                    html +=
+                        `<tr><td>${r.name}</td><td>${r.neat.toFixed(2)}</td><td>${r.diluent.toFixed(2)}</td><td>${r.total.toFixed(2)}</td></tr>`;
+                });
+                document.getElementById('antibodyTableBody').innerHTML = html;
+                document.getElementById('primaryTotalVol').innerHTML = totalVol.toFixed(2) + ' <span class="unit">µL</span>';
+                document.getElementById('primaryTotalDetail').textContent =
+                    `neat: ${neatAb.toFixed(2)} µL → 1:${inter} → 1:${final} (total 1:${totalDil})`;
+                document.getElementById('secondaryTotalVol').innerHTML = '— <span class="unit">µL</span>';
+                document.getElementById('secondaryTotalDetail').textContent = 'see secondary below';
+                // Also add secondary
+                const secTotal = volPerWell * totalWells;
+                const secNeat = secTotal / secondaryDil;
+                const secDiluent = secTotal - secNeat;
+                const secondaryRows = [{
+                    name: 'Secondary Antibody (1:' + secondaryDil + ')',
+                    neat: secNeat,
+                    diluent: secDiluent,
+                    total: secTotal
+                }];
+                secondaryRows.forEach(r => {
+                    html +=
+                        `<tr><td>${r.name}</td><td>${r.neat.toFixed(2)}</td><td>${r.diluent.toFixed(2)}</td><td>${r.total.toFixed(2)}</td></tr>`;
+                });
+                // Add DAPI
+                if (dapiDil > 0) {
+                    const dapiTotal = volPerWell * totalWells * 0.5;
+                    const dapiNeat = dapiTotal / dapiDil;
+                    const dapiDiluent = dapiTotal - dapiNeat;
+                    html +=
+                        `<tr><td>DAPI (1:${dapiDil})</td><td>${dapiNeat.toFixed(2)}</td><td>${dapiDiluent.toFixed(2)}</td><td>${dapiTotal.toFixed(2)}</td></tr>`;
+                }
+                document.getElementById('antibodyTableBody').innerHTML = html;
+                document.getElementById('antibodyResult').classList.add('visible');
+                return;
+            }
+
+            // Standard antibody dilution
+            const primaryTotal = volPerWell * totalWells;
+            const primaryNeat = primaryTotal / primaryDil;
+            const primaryDiluent = primaryTotal - primaryNeat;
+
+            const secondaryTotal = volPerWell * totalWells;
+            const secondaryNeat = secondaryTotal / secondaryDil;
+            const secondaryDiluent = secondaryTotal - secondaryNeat;
+
+            let html = '';
+            html +=
+                `<tr><td>Primary Antibody (1:${primaryDil})</td><td>${primaryNeat.toFixed(2)}</td><td>${primaryDiluent.toFixed(2)}</td><td>${primaryTotal.toFixed(2)}</td></tr>`;
+            html +=
+                `<tr><td>Secondary Antibody (1:${secondaryDil})</td><td>${secondaryNeat.toFixed(2)}</td><td>${secondaryDiluent.toFixed(2)}</td><td>${secondaryTotal.toFixed(2)}</td></tr>`;
+
+            if (dapiDil > 0) {
+                const dapiTotal = volPerWell * totalWells * 0.5;
+                const dapiNeat = dapiTotal / dapiDil;
+                const dapiDiluent = dapiTotal - dapiNeat;
+                html +=
+                    `<tr><td>DAPI (1:${dapiDil})</td><td>${dapiNeat.toFixed(2)}</td><td>${dapiDiluent.toFixed(2)}</td><td>${dapiTotal.toFixed(2)}</td></tr>`;
+            }
+
+            document.getElementById('antibodyTableBody').innerHTML = html;
+            document.getElementById('primaryTotalVol').innerHTML = primaryTotal.toFixed(2) + ' <span class="unit">µL</span>';
+            document.getElementById('primaryTotalDetail').textContent =
+                primaryNeat.toFixed(2) + ' µL neat + ' + primaryDiluent.toFixed(2) + ' µL 1% PBS-BSA';
+            document.getElementById('secondaryTotalVol').innerHTML = secondaryTotal.toFixed(2) + ' <span class="unit">µL</span>';
+            document.getElementById('secondaryTotalDetail').textContent =
+                secondaryNeat.toFixed(2) + ' µL neat + ' + secondaryDiluent.toFixed(2) + ' µL 1% PBS-BSA';
+            document.getElementById('antibodyResult').classList.add('visible');
+        }
+
+        document.getElementById('primaryDilution').addEventListener('input', calcAntibodies);
+        document.getElementById('secondaryDilution').addEventListener('input', calcAntibodies);
+        document.getElementById('dapiDilution').addEventListener('input', calcAntibodies);
+        document.getElementById('senecaInter').addEventListener('input', calcAntibodies);
+        document.getElementById('senecaFinal').addEventListener('input', calcAntibodies);
+
+        // Also recalc antibodies when plate/samples change
+        document.getElementById('ifaWells').addEventListener('input', calcAntibodies);
+        document.getElementById('ifaOverage').addEventListener('input', calcAntibodies);
+        document.getElementById('plateFormat').addEventListener('change', calcAntibodies);
+        document.getElementById('customVol').addEventListener('input', calcAntibodies);
+
+        // Initial load
+        updateAntibodyPresets();
+        calcIFA();
+        calcAntibodies();
+    </script>
+</body>
+</html>
+</div>
+<p class="tps-footer-note">Educational lab companion from <a href="https://thepipettesolution.blogspot.com/">The Pipettes Solution</a>. Follow your local SOP and biosafety rules.</p>
+</article>

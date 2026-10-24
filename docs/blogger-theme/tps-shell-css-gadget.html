@@ -1,0 +1,24 @@
+<!--
+  FALLBACK when Theme → Add CSS is full or rejects @import.
+  Blogger → Layout → HTML/JavaScript → place HIGH on page (above content).
+  Title: TPS Shell CSS
+  Prefer Theme Add CSS when possible. Still add tps-homepage-ALL-IN-ONE.html for homepage.
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+:root{--tps-navy:#0b2f5c;--tps-teal:#0f766e;--tps-ink:#0b1220;--tps-muted:#4a5a6a;--tps-wash:#e8f1f4;--tps-line:#c5d5de;--tps-paper:#f7fbfc;--tps-ease:cubic-bezier(.22,1,.36,1);--themeC:#0b2f5c!important;--linkC:#0f766e!important;--linkB:#0f766e!important;--waveB:#0f766e!important;--headC:#0b1220!important;--bodyB:#e8f1f4!important;--contentB:#f7fbfc!important;--headerB:transparent!important;--fontH:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif!important;--fontB:"Source Serif 4",Georgia,"Iowan Old Style",serif!important;--fontBa:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif!important;--buttonR:4px!important}
+html{scroll-behavior:smooth}
+html:has(.tps-pro-hero),body:has(.tps-pro-hero){overflow-x:clip}
+body{color:var(--tps-ink)!important;background:radial-gradient(1200px 500px at 10% -10%,rgba(15,118,110,.12),transparent 55%),radial-gradient(900px 400px at 90% 0%,rgba(11,47,92,.10),transparent 50%),var(--tps-wash)!important;font-family:var(--fontB)!important}
+header,.Header{background:linear-gradient(180deg,rgba(247,251,252,.96),rgba(232,241,244,.9))!important;border-bottom:1px solid var(--tps-line)!important;backdrop-filter:blur(8px)}
+.Header .titlewrapper .title,.Header h1,.Header h1 a,header .title a{font-family:"IBM Plex Sans",sans-serif!important;font-weight:700!important;letter-spacing:-.02em!important;color:var(--tps-navy)!important;font-size:clamp(1.35rem,2.2vw,1.75rem)!important}
+.Header .description{font-family:"IBM Plex Sans",sans-serif!important;color:var(--tps-muted)!important;font-size:.9rem!important}
+body:has(.tps-pro-hero) .welcome-hero{display:none!important;margin:0!important;min-height:0!important;padding:0!important}
+.post-body,.post-body.entry-content,article .post-body{font-family:"Source Serif 4",Georgia,serif!important;font-size:1.05rem!important;line-height:1.7!important;color:var(--tps-ink)!important}
+.post-body h2,.post-body h3,.post-title,h1.post-title,h3.post-title{font-family:"IBM Plex Sans",sans-serif!important;color:var(--tps-navy)!important;letter-spacing:-.02em}
+.post-body a{color:var(--tps-teal)!important}
+.post-body s,.post-body strike,.post-body del{text-decoration:none!important}
+.post-labels a,.Label a{border-radius:4px!important;background:rgba(15,118,110,.08)!important;color:var(--tps-navy)!important}
+body:has(.tps-pro-hero) .post-outer{box-shadow:none!important;border:0!important;border-bottom:1px solid var(--tps-line)!important;background:transparent!important}
+footer{border-top:1px solid var(--tps-line)!important;background:linear-gradient(180deg,transparent,rgba(11,47,92,.04))!important}
+</style>

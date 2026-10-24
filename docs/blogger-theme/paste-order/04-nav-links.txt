@@ -1,0 +1,19 @@
+# Science-first PRIMARY nav only
+# Blogger → Layout → LinkList or Pages gadget in HEADER
+# For each row: Label = left of |   URL = right of |
+
+Home|https://thepipettesolution.blogspot.com/
+Lab tools|https://thepipettesolution.blogspot.com/#tps-lab-tools
+# Alt if hash unreliable after theme quirks:
+# Lab tools|https://thepipettesolution.blogspot.com/p/lab-tools.html
+Bench Notes|https://thepipettesolution.blogspot.com/search/label/lab%20methods
+About|https://thepipettesolution.blogspot.com/p/about.html
+Contact|https://thepipettesolution.blogspot.com/p/contact-us.html
+
+# --- Sidebar / footer ONLY (not primary header) ---
+# Calculators|https://thepipettesolution.blogspot.com/search/label/calculators
+# Virology|https://thepipettesolution.blogspot.com/search/label/virology
+# Cloning|https://thepipettesolution.blogspot.com/search/label/cloning
+
+# --- REMOVE from primary header / homepage hero ---
+# Softwares, Movies, Sports News, Top Stories, Lok-Sewa, exam prep blocks
